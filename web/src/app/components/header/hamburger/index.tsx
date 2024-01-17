@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Hamburger({
   nav,
@@ -10,12 +11,15 @@ export default function Hamburger({
 
   return (
     <>
-      <img
-        className="sm:hidden"
-        src="/assets/site/nav/hamburguer.svg"
-        alt="Menu"
-        onClick={() => setOpen(true)}
-      />
+      <div className="sm:hidden relative w-10 h-10">
+        <Image
+          src="/assets/site/nav/hamburguer.svg"
+          alt="Menu"
+          layout="fill"
+          objectFit="contain"
+          onClick={() => setOpen(true)}
+        />
+      </div>
       <nav
         className={`absolute top-0 right-0 bg-blue w-full h-full flex flex-col items-center gap-5 p-5 ${
           open ? "flex" : "hidden"
