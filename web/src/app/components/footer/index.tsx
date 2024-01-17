@@ -22,12 +22,7 @@ export default function Footer({
   return (
     <footer id="contato" className="flex flex-col items-start w-full bg-white">
       <div className="h-16 mx-10 relative">
-        <Image
-          src="/assets/site/LOGO.svg"
-          alt="Logo"
-          layout="fill"
-          objectFit="contain"
-        />
+        <Image src="/assets/site/LOGO.svg" alt="Logo" />
       </div>
       <div className="w-full bg-blue h-full text-white text-center py-6 px-10 gap-10 flex flex-col items-center">
         <h2 className="text-6xl">Dúvidas?</h2>
@@ -46,11 +41,14 @@ export default function Footer({
             {socials.map((social, key) => {
               return (
                 <a key={key} href={social.url}>
-                  <img
-                    className="w-20 h-20"
-                    src={social.icon}
-                    alt={`logo ${social.name}`}
-                  />
+                  <div className="h-16 mx-10 relative">
+                    <Image
+                      layout="fill"
+                      objectFit="contain"
+                      src={social.icon}
+                      alt={`logo ${social.name}`}
+                    />
+                  </div>
                 </a>
               );
             })}

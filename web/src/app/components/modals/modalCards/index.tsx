@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function ModalService({
   name,
   img,
@@ -14,7 +16,9 @@ export default function ModalService({
       <div className="bg-white w-[95%] h-[95%] rounded-lg text-left overflow-hidden shadow-xl transform transition-all relative">
         <div className="bg-white px-4 pt-5 w-11/12 h-[90%] pb-4 ">
           <div className="flex flex-col items-center justify-center">
-            <img className="md:w-32 w-56" src={img} alt="" />
+            <div className="md:w-32 w-56 relative">
+              <Image src={img} alt="" layout="fill" objectFit="contain" />
+            </div>
             <h3 className="text-4xl leading-6 font-medium text-gray-900 text-center uppercase">
               {name}
             </h3>
