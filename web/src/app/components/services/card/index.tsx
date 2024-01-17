@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Button from "../../button";
 
 export default function Card({
@@ -15,7 +16,9 @@ export default function Card({
 }) {
   return (
     <>
-      <img className="md:w-40 w-56" src={img} alt="" />
+      <div className="md:w-40 w-56 relative">
+        <Image src={img} alt="" layout="fill" objectFit="contain" />
+      </div>
       <div className="flex flex-col justify-evenly gap-4 h-full">
         <h2 className="text-xl font-bold text-center uppercase h-20">{name}</h2>
         <div className="flex flex-col gap-4 w-full h-full">
