@@ -1,4 +1,5 @@
 import Button from "../button";
+import Image from "next/image";
 
 const socials = [
   {
@@ -20,7 +21,14 @@ export default function Footer({
 }) {
   return (
     <footer id="contato" className="flex flex-col items-start w-full bg-white">
-      <img className="h-16 mx-10" src="/assets/site/LOGO.svg" alt="Logo" />
+      <div className="h-16 mx-10 relative">
+        <Image
+          src="/assets/site/LOGO.svg"
+          alt="Logo"
+          layout="fill"
+          objectFit="contain"
+        />
+      </div>
       <div className="w-full bg-blue h-full text-white text-center py-6 px-10 gap-10 flex flex-col items-center">
         <h2 className="text-6xl">Dúvidas?</h2>
         <h2 className="text-3xl">
