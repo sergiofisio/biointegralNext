@@ -29,14 +29,13 @@ const nav = [
 export default function Header() {
   return (
     <header className="flex items-center justify-around h-40 w-full">
-      <div className="w-80 h-20 relative md:w-60">
-        <Image
-          src="/assets/site/LOGO.svg"
-          alt="Logo"
-          layout="fill"
-          objectFit="contain"
-        />
-      </div>
+      <Image
+        className="w-80 h-auto md:w-60 md:h-auto"
+        src="/assets/site/LOGO.svg"
+        alt="Logo"
+        width={200}
+        height={200}
+      />
       <Hamburger nav={nav} />
       <nav className="hidden sm:block">
         <Navbar nav={nav} />

@@ -22,7 +22,6 @@ export default function Local({
         <iframe
           className="md:w-80 md:h-80 w-96 h-96 rounded-3xl shadow-blue shadow-sm"
           src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBjHw9J59KysKkh8EpHdSxRTQ6u3wv-ZKc&q=${lat},${lng}`}
-          frameBorder="0"
           allowFullScreen={true}
           loading="lazy"
         ></iframe>

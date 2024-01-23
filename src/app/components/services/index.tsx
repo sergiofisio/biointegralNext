@@ -121,12 +121,12 @@ const services = [
 export default function Services({
   setShowModal,
 }: {
-  setShowModal: (modal: string, info: any) => void;
+  setShowModal: ({ type, info }: { type: string; info: any }) => void;
 }) {
   return (
     <div
       id="tecnica"
-      className="md:max-w-[90vw] px-10 h-full w-full flex flex-col items-center font-manroge gap-14 py-6 "
+      className="md:max-w-[90vw] md:px-0 px-10 h-full w-full flex flex-col items-center font-manroge gap-14 py-6 "
     >
       <h1 className="md:text-3xl text-6xl font-bold text-center">
         Técnicas Que Utilizamos
@@ -136,12 +136,12 @@ export default function Services({
         consulta para maximizar os resultados com o menor número de sessões
         possíveis.
       </p>
-      <div className="md:overflow-y-auto md:w-full w-full justify-evenly flex items-center gap-8 h-[40rem]">
+      <div className="md:overflow-y-auto md:p-2 md:justify-normal w-full flex justify-evenly items-center gap-8 h-[40rem]">
         {services.map(({ nome, img, descricao, modal }, key) => {
           return (
             <div
               key={key}
-              className="w-80 h-full border-t-4 border-t-blue border-solid shadow-black shadow-lg rounded-b-3xl flex flex-col items-center justify-between py-2 px-5 font-manroge"
+              className="md:min-w-[80%] md:shadow-none w-80 h-full border-t-4 border-t-blue border-solid shadow-black shadow-lg rounded-b-3xl flex flex-col items-center justify-between py-2 px-5 font-manroge"
             >
               <Card
                 name={nome}

@@ -7,12 +7,12 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
   function verifyInputs() {
     if (!hasError) return;
     if (
-      !checkForm(form.step2, [
-        "physic",
-        "infection",
-        "pain",
-        "autoimune",
-        "simptomes",
+      !checkForm(form.step4, [
+        "parentsAlive",
+        "haveSiblings",
+        "relationship",
+        "haveKids",
+        "moreInfo",
       ])
     ) {
       sethasError(false);
@@ -56,7 +56,7 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
           )}
         </div>
         {form.step4.parentsAlive.value && (
-          <InputSelect
+          <Input
             className="flex w-1/4 h-full items-center gap-4"
             question={form.step4.parentsAlive.description}
             set={(e: any) => {
