@@ -11,15 +11,14 @@ export default function Hamburger({
 
   return (
     <>
-      <div className="sm:hidden relative w-10 h-10">
-        <Image
-          src="/assets/site/nav/hamburguer.svg"
-          alt="Menu"
-          layout="fill"
-          objectFit="contain"
-          onClick={() => setOpen(true)}
-        />
-      </div>
+      <Image
+        className="sm:hidden w-10 h-10"
+        src="/assets/site/nav/hamburguer.svg"
+        alt="Menu"
+        onClick={() => setOpen(true)}
+        width={200}
+        height={200}
+      />
       <nav
         className={`absolute top-0 right-0 bg-blue w-full h-full flex flex-col items-center gap-5 p-5 ${
           open ? "flex" : "hidden"

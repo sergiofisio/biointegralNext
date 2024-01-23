@@ -1,4 +1,4 @@
-import Local from "../services/card/local";
+import Local from "./local";
 
 const locals = [
   {

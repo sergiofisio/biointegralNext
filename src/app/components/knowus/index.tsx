@@ -4,7 +4,7 @@ export default function KnowUs() {
   return (
     <div
       id="quem"
-      className="md:justify-around md:items-center md:bg-none h-[50rem] items-center p-4 flex flex-col w-full"
+      className="md:justify-around md:items-center md:bg-none h-[50rem] items-center p-4 flex flex-col w-full px-14"
     >
       <h1 className="md:text-3xl text-6xl flex justify-around text-center font-bold">
         Conheça o Dr. Sergio e a Dra. Fresia

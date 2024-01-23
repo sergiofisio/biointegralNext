@@ -13,6 +13,8 @@ export default function InputSelect({
   set?: React.Dispatch<React.SetStateAction<any>>;
   onFocus?: (e: any) => void;
 }) {
+  console.log(question);
+
   return (
     <div key={key} className={className}>
       <label className="uppercase w-full">{question.question}</label>

@@ -10,7 +10,7 @@ import Button from "../../button";
 import emailjs from "@emailjs/browser";
 
 export default function PatientForm() {
-  const [activeStep, setActiveStep] = useState(4);
+  const [activeStep, setActiveStep] = useState(1);
   const [hasError, sethasError] = useState(false);
   const [form, setForm] = useState({
     step1: {
