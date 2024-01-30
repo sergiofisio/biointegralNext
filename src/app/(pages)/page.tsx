@@ -9,14 +9,13 @@ import Maps from "../components/maps";
 import Footer from "../components/footer";
 import ModalFooter from "../components/modals/modalFooter";
 import ModalService from "../components/modals/modalCards";
+import Voltar from "../components/voltar";
 
 export default function Home() {
   const [showModal, setShowModal] = useState({
     type: "",
     info: { name: "", img: "", modal: [] },
   });
-
-  console.log(showModal.type);
 
   return (
     <RootLayout header={<Header />}>
@@ -26,6 +25,7 @@ export default function Home() {
         <Services setShowModal={setShowModal} />
         <Maps />
         <Footer setShowModal={setShowModal} />
+        <Voltar />
       </main>
       {showModal.type === "contato" && (
         <ModalFooter setShowModal={setShowModal} />

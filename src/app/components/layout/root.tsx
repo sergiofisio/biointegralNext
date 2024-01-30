@@ -10,7 +10,7 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <main id="#inicio">
+      <main id="#inicio" className="relative">
         {header}
         {children}
       </main>
