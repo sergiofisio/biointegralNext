@@ -37,12 +37,16 @@ export default function Footer({ setShowModal }: { setShowModal: any }) {
         />
 
         <div className="flex w-full justify-center">
-          <div className="w-20 h-20 flex items-center gap-4">
+          <div className="w-full h-fit flex justify-center items-center">
             {socials.map((social, key) => {
               return (
-                <a key={key} href={social.url}>
+                <a
+                  className="flex items-center justify-center w-40 h-auto"
+                  key={key}
+                  href={social.url}
+                >
                   <Image
-                    className="h-16 mx-10"
+                    className="flex w-20 h-20"
                     width={200}
                     height={200}
                     src={social.icon}
