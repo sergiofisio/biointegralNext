@@ -2,13 +2,10 @@ import Input from "@/app/components/inputs/input";
 import InputSelect from "@/app/components/inputs/select";
 import { checkForm } from "@/app/functions/check";
 import { handleChangeError, handleInputChange } from "@/app/functions/input";
-import {
-  getLocalStorage,
-  handleLocalStorage,
-} from "@/app/functions/localstorage";
+import { handleLocalStorage } from "@/app/functions/localstorage";
 import { toastfy } from "@/app/functions/toast";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function Step1({ form, setForm, sethasError, hasError }: any) {
   async function calculateAge() {
