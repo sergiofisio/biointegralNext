@@ -1,3 +1,5 @@
+import { handleLocalStorage } from "@/app/functions/localstorage";
+
 export default function Step3({ form, setForm, sethasError, hasError }: any) {
   function verifyInputs(key: number, value: string) {
     if (!hasError) return;
@@ -41,7 +43,9 @@ export default function Step3({ form, setForm, sethasError, hasError }: any) {
                   ],
                 }));
                 verifyInputs(key, e.target.value);
+                handleLocalStorage(`question.${key + 1}`, e.target.value);
               }}
+              value={question.value}
             >
               {question.options.map((option: any, key: number) => {
                 return (

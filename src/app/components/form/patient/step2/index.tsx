@@ -2,6 +2,7 @@ import Input from "@/app/components/inputs/input";
 import InputSelect from "@/app/components/inputs/select";
 import { checkForm } from "@/app/functions/check";
 import { handleInputChange } from "@/app/functions/input";
+import { handleLocalStorage } from "@/app/functions/localstorage";
 
 export default function Step2({ form, setForm, sethasError, hasError }: any) {
   function verifyInputs() {
@@ -28,7 +29,8 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
           className="flex w-full h-full items-center gap-4"
           set={(e: any) => {
             handleInputChange(setForm, "step2", "physic", e.target.value),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("physic", e.target.value);
           }}
         />
       </section>
@@ -38,7 +40,8 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
           className="flex w-1/4 h-full items-center gap-4"
           set={(e: any) => {
             handleInputChange(setForm, "step2", "infection", e.target.value),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("infection", e.target.value);
           }}
         />
         {form.step2.infection.value === "Sim" && (
@@ -53,7 +56,8 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
                 e.target.value,
                 "typeOf"
               ),
-                verifyInputs();
+                verifyInputs(),
+                handleLocalStorage("infection.type", e.target.value);
             }}
           />
         )}
@@ -66,7 +70,8 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
           }`}
           set={(e: any) => {
             handleInputChange(setForm, "step2", "pain", e.target.value),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("pain", e.target.value);
           }}
         />
         {form.step2.pain.value === "Sim" && (
@@ -82,7 +87,8 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
                   e.target.value,
                   "cause"
                 ),
-                  verifyInputs();
+                  verifyInputs(),
+                  handleLocalStorage("pain.cause", e.target.value);
               }}
             />
             <InputSelect
@@ -96,7 +102,8 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
                   e.target.value,
                   "dayTime"
                 ),
-                  verifyInputs();
+                  verifyInputs(),
+                  handleLocalStorage("pain.dayTime", e.target.value);
               }}
             />
             <InputSelect
@@ -110,7 +117,8 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
                   e.target.value,
                   "edema"
                 ),
-                  verifyInputs();
+                  verifyInputs(),
+                  handleLocalStorage("pain.edema", e.target.value);
               }}
             />
           </div>
@@ -121,7 +129,8 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
         question={form.step2.autoimune}
         set={(e) => {
           handleInputChange(setForm, "step2", "autoimune", e.target.value),
-            verifyInputs();
+            verifyInputs(),
+            handleLocalStorage("autoimune", e.target.value);
         }}
       />
       <section className="flex gap-3">
@@ -134,29 +143,30 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
           }`}
         >
           {form.step2.simptomes.options.map((option: string, key: number) => {
+            const selected: string[] = form.step2.simptomes.value as string[];
             return (
               <label key={key} className="capitalize cursor-pointer">
                 <input
                   type="checkbox"
                   value={option}
                   onChange={(e: any) => {
-                    const selected = form.step2.simptomes.value;
-                    if (e.target.checked) {
-                      selected.push(e.target.value);
-                    } else {
-                      if (selected.indexOf(e.target.value) > -1)
-                        selected.splice(selected.indexOf(e.target.value), 1);
-                    }
-                    {
-                      handleInputChange(
-                        setForm,
-                        "step2",
+                    const value = e.target.value;
+                    const newSelected = e.target.checked
+                      ? [...selected, value]
+                      : selected.filter((item) => item !== value);
+                    handleInputChange(
+                      setForm,
+                      "step2",
+                      "simptomes",
+                      newSelected
+                    ),
+                      verifyInputs(),
+                      handleLocalStorage(
                         "simptomes",
-                        selected
-                      ),
-                        verifyInputs();
-                    }
+                        JSON.stringify(newSelected)
+                      );
                   }}
+                  checked={selected.includes(option)}
                 />
                 {option}
               </label>

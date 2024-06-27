@@ -2,14 +2,16 @@ import Input from "@/app/components/inputs/input";
 import InputSelect from "@/app/components/inputs/select";
 import { checkForm } from "@/app/functions/check";
 import { handleChangeError, handleInputChange } from "@/app/functions/input";
+import {
+  getLocalStorage,
+  handleLocalStorage,
+} from "@/app/functions/localstorage";
 import { toastfy } from "@/app/functions/toast";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function Step1({ form, setForm, sethasError, hasError }: any) {
-  function calculateAge(e: any) {
-    e.preventDefault();
-    e.stopPropagation();
-
+  async function calculateAge() {
     try {
       if (form.step1.birth.value) {
         const today = new Date();
@@ -27,6 +29,7 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
             age: { ...form.step1.age, value: age },
           },
         });
+        await handleLocalStorage("age", age);
       }
     } catch (error: any) {
       console.log(error);
@@ -56,7 +59,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
             "adress",
             data.logradouro,
             "street"
-          );
+          ),
+          handleLocalStorage("adress.street", data.logradouro);
       }
 
       {
@@ -67,7 +71,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
             "adress",
             data.bairro,
             "neighborhood"
-          );
+          ),
+          handleLocalStorage("adress.neighborhood", data.bairro);
       }
 
       {
@@ -78,12 +83,14 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
             "adress",
             data.localidade,
             "city"
-          );
+          ),
+          handleLocalStorage("adress.city", data.localidade);
       }
 
       {
         data.uf &&
-          handleInputChange(setForm, "step1", "adress", data.uf, "state");
+          handleInputChange(setForm, "step1", "adress", data.uf, "state"),
+          handleLocalStorage("adress.state", data.uf);
       }
     } catch (error: any) {
       toastfy("error", error.message, 3000, "bg-red-500");
@@ -123,6 +130,12 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
     }
   }
 
+  useEffect(() => {
+    if (form.step1.birth.value) {
+      calculateAge();
+    }
+  }, [form.step1.birth.value]);
+
   return (
     <form className="flex flex-col w-full h-full gap-3">
       <h2 className="text-center text-5xl font-bold">DADOS PESSOAIS</h2>
@@ -132,7 +145,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
           question={form.step1.name}
           set={(e: any) => {
             handleInputChange(setForm, "step1", "name", e.target.value),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("name", e.target.value);
           }}
           onFocus={() => {
             handleChangeError(setForm, "name", "step1", false), verifyInputs();
@@ -143,7 +157,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
           question={form.step1.gender}
           set={(e: any) => {
             handleInputChange(setForm, "step1", "gender", e.target.value),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("gender", e.target.value);
           }}
           onFocus={() => {
             handleChangeError(setForm, "gender", "step1", false),
@@ -157,7 +172,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
           question={form.step1.email}
           set={(e: any) => {
             handleInputChange(setForm, "step1", "email", e.target.value),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("email", e.target.value);
           }}
           onFocus={() => {
             handleChangeError(setForm, "email", "step1", false), verifyInputs();
@@ -168,9 +184,11 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
           question={form.step1.birth}
           set={(e: any) => {
             handleInputChange(setForm, "step1", "birth", e.target.value),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("birth", e.target.value),
+              calculateAge();
           }}
-          onBlur={(e) => calculateAge(e)}
+          onBlur={(e) => calculateAge()}
           onFocus={() => {
             handleChangeError(setForm, "birth", "step1", false), verifyInputs();
           }}
@@ -178,9 +196,10 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
         <Input
           className="flex flex-col items-center w-1/12"
           question={form.step1.age}
-          set={(e: any) =>
-            handleInputChange(setForm, "step1", "age", e.target.value)
-          }
+          set={(e: any) => {
+            handleInputChange(setForm, "step1", "age", e.target.value),
+              handleLocalStorage("age", e.target.value);
+          }}
           disabled
         />
       </div>
@@ -196,7 +215,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
                 "ageFirstPeriod",
                 e.target.value
               ),
-                verifyInputs();
+                verifyInputs(),
+                handleLocalStorage("ageFirstPeriod", e.target.value);
             }}
             onFocus={() => {
               if (!form.step1.ageFirstPeriod.value)
@@ -216,7 +236,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
                   "menopause",
                   e.target.value
                 ),
-                  verifyInputs();
+                  verifyInputs(),
+                  handleLocalStorage("menopause", e.target.value);
               }}
               onFocus={() => {
                 handleChangeError(setForm, "menopause", "step1", false),
@@ -236,7 +257,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
                   e.target.value,
                   "age"
                 ),
-                  verifyInputs();
+                  verifyInputs(),
+                  handleLocalStorage("menopause.age", e.target.value);
               }}
               onFocus={() => {
                 if (!form.step1.ageFirstPeriod.value)
@@ -254,7 +276,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
           question={form.step1.religion}
           set={(e: any) => {
             handleInputChange(setForm, "step1", "religion", e.target.value),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("religion", e.target.value);
           }}
           onFocus={() => {
             handleChangeError(setForm, "religion", "step1", false),
@@ -266,7 +289,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
           question={form.step1.job}
           set={(e: any) => {
             handleInputChange(setForm, "step1", "job", e.target.value),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("job", e.target.value);
           }}
           onFocus={() => {
             handleChangeError(setForm, "job", "step1", false), verifyInputs();
@@ -277,7 +301,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
           question={form.step1.phone}
           set={(e: any) => {
             handleInputChange(setForm, "step1", "phone", e.target.value),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("phone", e.target.value);
           }}
           onFocus={() => {
             handleChangeError(setForm, "phone", "step1", false), verifyInputs();
@@ -298,7 +323,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
               "zipcode"
             ),
               getAdress(e.target.value),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("adress.zipcode", e.target.value);
           }}
           onFocus={() => {
             handleChangeError(setForm, "adress", "step1", false, "zipcode"),
@@ -317,7 +343,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
                 e.target.value,
                 "street"
               ),
-                verifyInputs();
+                verifyInputs(),
+                handleLocalStorage("adress.street", e.target.value);
             }}
             onFocus={() => {
               handleChangeError(setForm, "adress", "step1", false, "street"),
@@ -336,7 +363,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
                 e.target.value,
                 "number"
               ),
-                verifyInputs();
+                verifyInputs(),
+                handleLocalStorage("adress.number", e.target.value);
             }}
             onFocus={() => {
               if (!form.step1.adress.number.value)
@@ -357,7 +385,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
                 e.target.value,
                 "complement"
               ),
-                verifyInputs();
+                verifyInputs(),
+                handleLocalStorage("adress.complement", e.target.value);
             }}
             onFocus={() => {
               handleChangeError(
@@ -383,7 +412,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
                 e.target.value,
                 "neighborhood"
               ),
-                verifyInputs();
+                verifyInputs(),
+                handleLocalStorage("adress.neighborhood", e.target.value);
             }}
             onFocus={() => {
               handleChangeError(
@@ -408,7 +438,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
                 e.target.value,
                 "city"
               ),
-                verifyInputs();
+                verifyInputs(),
+                handleLocalStorage("adress.city", e.target.value);
             }}
             onFocus={() => {
               handleChangeError(setForm, "adress", "step1", false, "city"),
@@ -427,7 +458,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
                 e.target.value,
                 "state"
               ),
-                verifyInputs();
+                verifyInputs(),
+                handleLocalStorage("adress.state", e.target.value);
             }}
             onFocus={() => {
               handleChangeError(setForm, "adress", "step1", false, "state"),
@@ -442,7 +474,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
         question={form.step1.knowUs}
         set={(e: any) => {
           handleInputChange(setForm, "step1", "knowUs", e.target.value),
-            verifyInputs();
+            verifyInputs(),
+            handleLocalStorage("knowUs", e.target.value);
         }}
         onFocus={() => {
           handleChangeError(setForm, "knowUs", "step1", false), verifyInputs();
@@ -453,7 +486,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
         question={form.step1.motive}
         set={(e: any) => {
           handleInputChange(setForm, "step1", "motive", e.target.value),
-            verifyInputs();
+            verifyInputs(),
+            handleLocalStorage("motive", e.target.value);
         }}
         onFocus={() => {
           handleChangeError(setForm, "motive", "step1", false), verifyInputs();
@@ -473,27 +507,37 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
           }`}
         >
           {form.step1.emotion.options.map((option: string, key: number) => {
+            const selected: string[] = form.step1.emotion.value as string[];
+
             return (
               <div key={key}>
                 <label className="capitalize cursor-pointer">
                   <input
                     type="checkbox"
                     value={option}
-                    onChange={(e: any) => {
-                      const selected = form.step1.emotion.value;
-                      if (e.target.checked) {
-                        selected.push(e.target.value);
-                      } else {
-                        if (selected.indexOf(e.target.value) > -1)
-                          selected.splice(selected.indexOf(e.target.value), 1);
-                      }
-                      handleInputChange(setForm, "step1", "emotion", selected),
-                        verifyInputs();
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      const value = e.target.value;
+                      const newSelected = e.target.checked
+                        ? [...selected, value]
+                        : selected.filter((item) => item !== value);
+
+                      handleInputChange(
+                        setForm,
+                        "step1",
+                        "emotion",
+                        newSelected
+                      );
+                      verifyInputs();
+                      handleLocalStorage(
+                        "emotion",
+                        JSON.stringify(newSelected)
+                      );
                     }}
                     onFocus={() => {
-                      handleChangeError(setForm, "emotion", "step1", false),
-                        verifyInputs();
+                      handleChangeError(setForm, "emotion", "step1", false);
+                      verifyInputs();
                     }}
+                    checked={selected.includes(option)}
                   />
                   {option}
                 </label>
@@ -512,7 +556,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
               e.target.value,
               "especifique"
             ),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("emotion.especifique", e.target.value);
           }}
           onFocus={() => {
             handleChangeError(
@@ -531,7 +576,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
         question={form.step1.start}
         set={(e: any) => {
           handleInputChange(setForm, "step1", "start", e.target.value),
-            verifyInputs();
+            verifyInputs(),
+            handleLocalStorage("start", e.target.value);
         }}
         onFocus={() => {
           handleChangeError(setForm, "start", "step1", false), verifyInputs();
@@ -542,7 +588,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
         question={form.step1.advantage}
         set={(e: any) => {
           handleInputChange(setForm, "step1", "advantage", e.target.value),
-            verifyInputs();
+            verifyInputs(),
+            handleLocalStorage("advantage", e.target.value);
         }}
         onFocus={() => {
           handleChangeError(setForm, "advantage", "step1", false),
@@ -554,7 +601,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
         question={form.step1.inconvenient}
         set={(e: any) => {
           handleInputChange(setForm, "step1", "inconvenient", e.target.value),
-            verifyInputs();
+            verifyInputs(),
+            handleLocalStorage("inconvenient", e.target.value);
         }}
         onFocus={() => {
           handleChangeError(setForm, "inconvenient", "step1", false),
@@ -566,7 +614,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
         question={form.step1.needs}
         set={(e: any) => {
           handleInputChange(setForm, "step1", "needs", e.target.value),
-            verifyInputs();
+            verifyInputs(),
+            handleLocalStorage("needs", e.target.value);
         }}
         onFocus={() => {
           handleChangeError(setForm, "needs", "step1", false), verifyInputs();
@@ -577,7 +626,8 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
         question={form.step1.problemOneWord}
         set={(e: any) => {
           handleInputChange(setForm, "step1", "problemOneWord", e.target.value),
-            verifyInputs();
+            verifyInputs(),
+            handleLocalStorage("problemOneWord", e.target.value);
         }}
         onBlur={() => verifyInputs()}
         onFocus={() => {

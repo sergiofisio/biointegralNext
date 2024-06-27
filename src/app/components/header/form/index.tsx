@@ -9,6 +9,7 @@ export default function HeaderForm() {
         alt="Logo"
         width={200}
         height={200}
+        priority
       />
     </header>
   );

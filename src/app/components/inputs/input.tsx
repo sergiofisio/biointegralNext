@@ -7,7 +7,6 @@ export default function Input({
   disabled,
   set,
   onFocus,
-  onBlur,
 }: InputProps) {
   return (
     <div className={className}>
@@ -24,7 +23,6 @@ export default function Input({
           onChange={set}
           value={question.value}
           disabled={disabled || false}
-          onBlur={onBlur}
           onFocus={onFocus}
         />
       ) : (

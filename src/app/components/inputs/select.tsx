@@ -12,9 +12,8 @@ export default function InputSelect({
   question: any;
   set?: React.Dispatch<React.SetStateAction<any>>;
   onFocus?: (e: any) => void;
+  onChange?: (e: any) => void;
 }) {
-  console.log(question);
-
   return (
     <div key={key} className={className}>
       <label className="uppercase w-full">{question.question}</label>
@@ -27,6 +26,7 @@ export default function InputSelect({
         } flex border-black border-2 border-solid rounded-3xl max-h-full h-full w-full px-3`}
         onChange={set}
         onFocus={onFocus}
+        value={question.value}
       >
         {question.options.map((option: any, key: number) => {
           return (

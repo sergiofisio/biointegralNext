@@ -19,6 +19,8 @@ const config: Config = {
           500: "#121212",
         },
         blue: "#007aff",
+        blueDark: "#0a2454",
+        darkBlue: "#2B5A9B",
         gold: "#d4992e",
         green: "#3bb77e",
         greenScale: {
@@ -29,15 +31,27 @@ const config: Config = {
         purple: {
           300: "#5f2350",
         },
+        pink: "#b4838a",
         bgModal: "#adadad82",
       },
       fontFamily: {
-        main: ["Manrope"],
-        special: ["Poppins"],
-        secondary: ["hind"],
+        main: ["Manrope, sans-serif"],
+        special: ["Poppins, sans-serif"],
+        secondary: ["hind, sans-serif"],
+        tertiary: ["abhaya-libre, sans-serif"],
       },
+      typography: () => ({
+        DEFAULT: {
+          css: {
+            p: {
+              textIndent: "1.5em",
+              margin: "0",
+            },
+          },
+        },
+      }),
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
 export default config;
