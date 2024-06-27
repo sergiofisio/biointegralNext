@@ -2,6 +2,7 @@ import InputSelect from "@/app/components/inputs/select";
 import { handleInputChange } from "../../../../functions/input";
 import Input from "@/app/components/inputs/input";
 import { checkForm } from "@/app/functions/check";
+import { handleLocalStorage } from "@/app/functions/localstorage";
 
 export default function Step4({ form, setForm, sethasError, hasError }: any) {
   function verifyInputs() {
@@ -35,7 +36,8 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
                 "parentsAlive",
                 e.target.value
               ),
-                verifyInputs();
+                verifyInputs(),
+                handleLocalStorage("parentsAlive", e.target.value);
             }}
           />
           {form.step4.parentsAlive.value && (
@@ -50,7 +52,11 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
                   e.target.value,
                   "relationship"
                 ),
-                  verifyInputs();
+                  verifyInputs(),
+                  handleLocalStorage(
+                    "parentsAlive.relationship",
+                    e.target.value
+                  );
               }}
             />
           )}
@@ -67,7 +73,8 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
                 e.target.value,
                 "description"
               ),
-                verifyInputs();
+                verifyInputs(),
+                handleLocalStorage("parentsAlive.description", e.target.value);
             }}
           />
         )}
@@ -78,7 +85,8 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
           question={form.step4.haveSiblings}
           set={(e: any) => {
             handleInputChange(setForm, "step4", "haveSiblings", e.target.value),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("haveSiblings", e.target.value);
           }}
         />
         {form.step4.haveSiblings.value === "Sim" && (
@@ -94,7 +102,8 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
                   e.target.value,
                   "many"
                 ),
-                  verifyInputs();
+                  verifyInputs(),
+                  handleLocalStorage("haveSiblings.many", e.target.value);
               }}
             />
             <InputSelect
@@ -108,7 +117,11 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
                   e.target.value,
                   "relationship"
                 ),
-                  verifyInputs();
+                  verifyInputs(),
+                  handleLocalStorage(
+                    "haveSiblings.relationship",
+                    e.target.value
+                  );
               }}
             />
             <Input
@@ -122,7 +135,11 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
                   e.target.value,
                   "description"
                 ),
-                  verifyInputs();
+                  verifyInputs(),
+                  handleLocalStorage(
+                    "haveSiblings.description",
+                    e.target.value
+                  );
               }}
             />
           </>
@@ -134,7 +151,8 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
           question={form.step4.relationship}
           set={(e: any) => {
             handleInputChange(setForm, "step4", "relationship", e.target.value),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("relationship", e.target.value);
           }}
         />
         {form.step4.relationship.value && (
@@ -150,7 +168,11 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
                   e.target.value,
                   "description"
                 ),
-                  verifyInputs();
+                  verifyInputs(),
+                  handleLocalStorage(
+                    "relationship.description",
+                    e.target.value
+                  );
               }}
             />
           </>
@@ -162,7 +184,8 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
           question={form.step4.haveKids}
           set={(e: any) => {
             handleInputChange(setForm, "step4", "haveKids", e.target.value),
-              verifyInputs();
+              verifyInputs(),
+              handleLocalStorage("haveKids", e.target.value);
           }}
         />
         {form.step4.haveKids.value === "Sim" && (
@@ -178,7 +201,8 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
                   e.target.value,
                   "many"
                 ),
-                  verifyInputs();
+                  verifyInputs(),
+                  handleLocalStorage("haveKids.many", e.target.value);
               }}
             />
             <InputSelect
@@ -192,7 +216,8 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
                   e.target.value,
                   "abortion"
                 ),
-                  verifyInputs();
+                  verifyInputs(),
+                  handleLocalStorage("haveKids.abortion", e.target.value);
               }}
             />
             {form.step4.haveKids.abortion.value === "Sim" && (
@@ -215,7 +240,11 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
                         },
                       },
                     },
-                  });
+                  }),
+                    handleLocalStorage(
+                      "haveKids.abortion.many",
+                      e.target.value
+                    );
                 }}
               />
             )}
@@ -233,7 +262,8 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
                 e.target.value,
                 "description"
               ),
-                verifyInputs();
+                verifyInputs(),
+                handleLocalStorage("haveKids.description", e.target.value);
             }}
           />
         )}
@@ -243,7 +273,8 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
         question={form.step4.moreInfo}
         set={(e: any) => {
           handleInputChange(setForm, "step4", "moreInfo", e.target.value),
-            verifyInputs();
+            verifyInputs(),
+            handleLocalStorage("moreInfo", e.target.value);
         }}
       />
     </form>
