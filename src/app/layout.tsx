@@ -1,6 +1,5 @@
 import type { Metadata as NextMetadata } from "next";
 import { Toaster } from "sonner";
-import type { Viewport } from "next";
 
 import "./globals.css";
 
@@ -18,13 +17,15 @@ export const metadata: Metadata = {
   description:
     "Dr. Sergio e Dra Fresia - Pioneiros no Brasil de várias técnicas como MICROFISIOTERAPIA, PSYCH-K® e BIODECODAGE",
   favicon: "/favicon.ico",
+  keywords:
+    "Biointegral Saúde, MICROFISIOTERAPIA, PSYCH-K®, BIODECODAGE, saúde integral, terapias complementares, bem-estar, saúde emocional, saúde física",
   metadataBase: new URL("https://www.biointegral.com.br"),
   openGraph: {
     title: "Biointegral Saúde",
     description:
       "Dr. Sergio e Dra Fresia - Pioneiros no Brasil de várias técnicas como MICROFISIOTERAPIA, PSYCH-K® e BIODECODAGE",
     url: new URL("https://www.biointegral.com.br"),
-    // image: '/assets/OG/site.png',
+    images: ["/assets/OG/site.png"],
   },
 };
 
