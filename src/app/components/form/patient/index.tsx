@@ -161,14 +161,14 @@ export default function PatientForm() {
       },
       age: {
         question: "Idade",
-        value: 0,
+        value: "" as number | string,
         type: "number",
         error: false,
         required: true,
       },
       ageFirstPeriod: {
         question: "Idade da primeira menstruação",
-        value: 0,
+        value: "" as number | string,
         type: "number",
         error: false,
       },
@@ -178,7 +178,7 @@ export default function PatientForm() {
         value: "",
         age: {
           question: "Idade da menopausa",
-          value: 0,
+          value: "" as number | string,
           type: "number",
           error: false,
         },
@@ -218,7 +218,7 @@ export default function PatientForm() {
         },
         number: {
           question: "Nº",
-          value: 0,
+          value: "" as number | string,
           type: "number",
           error: false,
           required: true,
@@ -802,7 +802,7 @@ export default function PatientForm() {
         options: ["", "Sim", "Não"],
         many: {
           question: "Quantos irmãos?",
-          value: 0,
+          value: "" as number | string,
           error: false,
           type: "number",
         },
@@ -837,7 +837,7 @@ export default function PatientForm() {
         options: ["", "Sim", "Não"],
         many: {
           question: "Quantos filhos?",
-          value: 0,
+          value: "" as number | string,
           error: false,
           type: "number",
         },
@@ -848,7 +848,7 @@ export default function PatientForm() {
           error: false,
           many: {
             question: "Quantos Abortos?",
-            value: 0,
+            value: "" as number | string,
             error: false,
             type: "number",
           },
@@ -1182,7 +1182,7 @@ export default function PatientForm() {
             },
             number: {
               ...currentForm.step1.adress.number,
-              value: (formItens[17][1] as number | null) || 0,
+              value: (Number(formItens[17][1]) as number) || "",
             },
             complement: {
               ...currentForm.step1.adress.complement,
@@ -1267,7 +1267,7 @@ export default function PatientForm() {
             value: formItens[95][1] || "",
             many: {
               ...currentForm.step4.haveSiblings.many,
-              value: Number(formItens[96][1]) || 0,
+              value: (Number(formItens[96][1]) as number) || "",
             },
             relationship: {
               ...currentForm.step4.haveSiblings.relationship,
@@ -1291,14 +1291,14 @@ export default function PatientForm() {
             value: formItens[101][1] || "",
             many: {
               ...currentForm.step4.haveKids.many,
-              value: Number(formItens[102][1]) || 0,
+              value: (Number(formItens[102][1]) as number) || "",
             },
             abortion: {
               ...currentForm.step4.haveKids.abortion,
               value: formItens[103][1] || "",
               many: {
                 ...currentForm.step4.haveKids.abortion.many,
-                value: Number(formItens[104][1]) || 0,
+                value: (Number(formItens[104][1]) as number) || "",
               },
             },
             description: {
@@ -1317,7 +1317,7 @@ export default function PatientForm() {
   }, []);
 
   return (
-    <div className="flex flex-col w-full h-full gap-4 px-20 py-8">
+    <div className="flex flex-col w-full h-full gap-4 px-20 py-8 md:p-2">
       {activeStep === 1 && (
         <Step1
           form={form}
@@ -1363,7 +1363,7 @@ export default function PatientForm() {
             activeStep < 4 ? handleChangeStep(e, "next") : handleSubmit(e);
           }}
           text={`${activeStep === 4 ? "Finalizar" : "Próximo"}`}
-          className={`w-2/12 border-blue `}
+          className={`w-2/12 border-blue md:w-1/2`}
           disabled={activeStep === 4 ? disabled : hasError}
         />
       </div>

@@ -136,7 +136,7 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
   return (
     <form className="flex flex-col w-full h-full gap-3">
       <h2 className="text-center text-5xl font-bold">DADOS PESSOAIS</h2>
-      <div className="flex w-full gap-4">
+      <div className="flex w-full gap-4 md:flex-col">
         <Input
           className="flex flex-col w-full"
           question={form.step1.name}
@@ -150,7 +150,7 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
           }}
         />
         <InputSelect
-          className="flex flex-col w-1/6"
+          className="flex flex-col w-1/6 md:w-full"
           question={form.step1.gender}
           set={(e: any) => {
             handleInputChange(setForm, "step1", "gender", e.target.value),
@@ -163,7 +163,7 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
           }}
         />
       </div>
-      <div className="flex w-full gap-4">
+      <div className="flex w-full gap-4 md:flex-col">
         <Input
           className="flex flex-col w-full"
           question={form.step1.email}
@@ -176,29 +176,32 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
             handleChangeError(setForm, "email", "step1", false), verifyInputs();
           }}
         />
-        <Input
-          className="flex flex-col w-1/5"
-          question={form.step1.birth}
-          set={(e: any) => {
-            handleInputChange(setForm, "step1", "birth", e.target.value),
-              verifyInputs(),
-              handleLocalStorage("birth", e.target.value),
-              calculateAge();
-          }}
-          onBlur={(e) => calculateAge()}
-          onFocus={() => {
-            handleChangeError(setForm, "birth", "step1", false), verifyInputs();
-          }}
-        />
-        <Input
-          className="flex flex-col items-center w-1/12"
-          question={form.step1.age}
-          set={(e: any) => {
-            handleInputChange(setForm, "step1", "age", e.target.value),
-              handleLocalStorage("age", e.target.value);
-          }}
-          disabled
-        />
+        <div className="flex w-full">
+          <Input
+            className="flex flex-col w-1/5 max-w-[75%] md:w-full"
+            question={form.step1.birth}
+            set={(e: any) => {
+              handleInputChange(setForm, "step1", "birth", e.target.value),
+                verifyInputs(),
+                handleLocalStorage("birth", e.target.value),
+                calculateAge();
+            }}
+            onBlur={(e) => calculateAge()}
+            onFocus={() => {
+              handleChangeError(setForm, "birth", "step1", false),
+                verifyInputs();
+            }}
+          />
+          <Input
+            className="flex flex-col items-center text-center max-w-[25%] md:w-full"
+            question={form.step1.age}
+            set={(e: any) => {
+              handleInputChange(setForm, "step1", "age", e.target.value),
+                handleLocalStorage("age", e.target.value);
+            }}
+            disabled
+          />
+        </div>
       </div>
       {form.step1.gender.value === "Feminino" && form.step1.age.value >= 10 && (
         <div className="flex w-full gap-4">
@@ -309,7 +312,7 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
       <div className="flex flex-col w-full px-10">
         <h2 className="text-2xl font-bold">Endereço</h2>
         <Input
-          className="flex flex-col w-1/12"
+          className="flex flex-col w-1/12 md:w-full"
           question={form.step1.adress.zipcode}
           set={(e: any) => {
             handleInputChange(
@@ -328,7 +331,7 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
               verifyInputs();
           }}
         />
-        <div className="flex w-full gap-4">
+        <div className="flex w-full gap-4 md:flex-col md:gap-0">
           <Input
             className="flex flex-col"
             question={form.step1.adress.street}
@@ -349,53 +352,55 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
             }}
             disabled={form.step1.adress.street.fill}
           />
-          <Input
-            className="flex flex-col"
-            question={form.step1.adress.number}
-            set={(e: any) => {
-              handleInputChange(
-                setForm,
-                "step1",
-                "adress",
-                e.target.value,
-                "number"
-              ),
-                verifyInputs(),
-                handleLocalStorage("adress.number", e.target.value);
-            }}
-            onFocus={() => {
-              if (!form.step1.adress.number.value)
-                handleInputChange(setForm, "step1", "adress", "", "number");
+          <div className="flex ">
+            <Input
+              className="flex flex-col"
+              question={form.step1.adress.number}
+              set={(e: any) => {
+                handleInputChange(
+                  setForm,
+                  "step1",
+                  "adress",
+                  e.target.value,
+                  "number"
+                ),
+                  verifyInputs(),
+                  handleLocalStorage("adress.number", e.target.value);
+              }}
+              onFocus={() => {
+                if (!form.step1.adress.number.value)
+                  handleInputChange(setForm, "step1", "adress", "", "number");
 
-              handleChangeError(setForm, "adress", "step1", false, "number"),
-                verifyInputs();
-            }}
-          />
-          <Input
-            className="flex flex-col"
-            question={form.step1.adress.complement}
-            set={(e: any) => {
-              handleInputChange(
-                setForm,
-                "step1",
-                "adress",
-                e.target.value,
-                "complement"
-              ),
-                verifyInputs(),
-                handleLocalStorage("adress.complement", e.target.value);
-            }}
-            onFocus={() => {
-              handleChangeError(
-                setForm,
-                "adress",
-                "step1",
-                false,
-                "complement"
-              ),
-                verifyInputs();
-            }}
-          />
+                handleChangeError(setForm, "adress", "step1", false, "number"),
+                  verifyInputs();
+              }}
+            />
+            <Input
+              className="flex flex-col"
+              question={form.step1.adress.complement}
+              set={(e: any) => {
+                handleInputChange(
+                  setForm,
+                  "step1",
+                  "adress",
+                  e.target.value,
+                  "complement"
+                ),
+                  verifyInputs(),
+                  handleLocalStorage("adress.complement", e.target.value);
+              }}
+              onFocus={() => {
+                handleChangeError(
+                  setForm,
+                  "adress",
+                  "step1",
+                  false,
+                  "complement"
+                ),
+                  verifyInputs();
+              }}
+            />
+          </div>
         </div>
         <div className="flex w-full gap-4">
           <Input
