@@ -28,7 +28,10 @@ const nav = [
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-around h-40 w-full">
+    <header
+      id="inicio"
+      className="flex items-center justify-around h-40 w-full"
+    >
       <Image
         className="w-80 h-auto md:w-60 md:h-auto"
         src="/assets/site/LOGO.svg"

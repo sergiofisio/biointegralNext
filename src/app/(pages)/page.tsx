@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RootLayout from "../components/layout/root";
 import Header from "../components/header";
 import Apresentation from "../components/apresentation";
@@ -16,6 +16,25 @@ export default function Home() {
     type: "",
     info: { name: "", img: "", modal: [] },
   });
+  const [showBackButton, setShowBackButton] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Define a altura em que o botão deve aparecer
+      const showAfterHeight = 500;
+      const currentScrollPosition = window.scrollY;
+
+      if (currentScrollPosition > showAfterHeight) {
+        setShowBackButton(true);
+      } else {
+        setShowBackButton(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <RootLayout header={<Header />}>
@@ -25,7 +44,7 @@ export default function Home() {
         <Services setShowModal={setShowModal} />
         <Maps />
         <Footer setShowModal={setShowModal} />
-        <Voltar />
+        <Voltar showBackButton={showBackButton} />
       </main>
       {showModal.type === "contato" && (
         <ModalFooter setShowModal={setShowModal} />
