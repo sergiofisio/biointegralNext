@@ -93,12 +93,12 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
         "inconvenient",
         "needs",
         "problemOneWord",
-        "adress.street",
-        "adress.number",
-        "adress.neighborhood",
-        "adress.city",
-        "adress.state",
-        "adress.zipcode",
+        "address.street",
+        "address.number",
+        "address.neighborhood",
+        "address.city",
+        "address.state",
+        "address.zipcode",
       ])
     ) {
       sethasError(false);
