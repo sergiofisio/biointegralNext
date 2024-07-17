@@ -33,13 +33,13 @@ const key = [
   "inconvenient",
   "needs",
   "problemOneWord",
-  "adress.street",
-  "adress.number",
+  "address.street",
+  "address.number",
   "address.complement",
-  "adress.neighborhood",
-  "adress.city",
-  "adress.state",
-  "adress.zipcode",
+  "address.neighborhood",
+  "address.city",
+  "address.state",
+  "address.zipcode",
   "physic",
   "infection",
   "infection.type",
@@ -272,7 +272,7 @@ export default function PatientForm() {
         error: false,
         required: true,
       },
-      adress: {
+      address: {
         street: {
           question: "Rua",
           value: "",

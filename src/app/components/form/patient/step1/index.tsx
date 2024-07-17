@@ -35,10 +35,11 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
     }
   }
 
-  async function getAdress(cep: string) {
+  async function getAddress(cep: string) {
     try {
       if (cep.includes("_")) return;
       const cleanedCep = cep.replace("-", "");
+      console.log({ cleanedCep });
 
       const { data } = await axios.get(
         `https://viacep.com.br/ws/${cleanedCep}/json/`
@@ -56,7 +57,7 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
         state: data.uf,
       };
 
-      handleInputChange(setForm, "step1", "adress", cep, "zipcode");
+      handleInputChange(setForm, "step1", "address", cep, "zipcode");
 
       Object.entries(addressFields).forEach(([key, value]) => {
         if (value) {
@@ -293,9 +294,9 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
               e.target.value,
               "zipcode"
             ),
-              getAdress(e.target.value),
+              getAddress(e.target.value),
               verifyInputs(),
-              handleLocalStorage("adress.zipcode", e.target.value);
+              handleLocalStorage("address.zipcode", e.target.value);
           }}
           onFocus={() => {
             handleChangeError(setForm, "adress", "step1", false, "zipcode"),
@@ -305,65 +306,65 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
         <div className="flex w-full gap-4 md:flex-col md:gap-0">
           <Input
             className="flex flex-col"
-            question={form.step1.adress.street}
+            question={form.step1.address.street}
             set={(e: any) => {
               handleInputChange(
                 setForm,
                 "step1",
-                "adress",
+                "address",
                 e.target.value,
                 "street"
               ),
                 verifyInputs(),
-                handleLocalStorage("adress.street", e.target.value);
+                handleLocalStorage("address.street", e.target.value);
             }}
             onFocus={() => {
-              handleChangeError(setForm, "adress", "step1", false, "street"),
+              handleChangeError(setForm, "address", "step1", false, "street"),
                 verifyInputs();
             }}
-            disabled={form.step1.adress.street.fill}
+            disabled={form.step1.address.street.fill}
           />
           <div className="flex ">
             <Input
               className="flex flex-col"
-              question={form.step1.adress.number}
+              question={form.step1.address.number}
               set={(e: any) => {
                 handleInputChange(
                   setForm,
                   "step1",
-                  "adress",
+                  "address",
                   e.target.value,
                   "number"
                 ),
                   verifyInputs(),
-                  handleLocalStorage("adress.number", e.target.value);
+                  handleLocalStorage("address.number", e.target.value);
               }}
               onFocus={() => {
-                if (!form.step1.adress.number.value)
-                  handleInputChange(setForm, "step1", "adress", "", "number");
+                if (!form.step1.address.number.value)
+                  handleInputChange(setForm, "step1", "address", "", "number");
 
-                handleChangeError(setForm, "adress", "step1", false, "number"),
+                handleChangeError(setForm, "address", "step1", false, "number"),
                   verifyInputs();
               }}
             />
             <Input
               className="flex flex-col"
-              question={form.step1.adress.complement}
+              question={form.step1.address.complement}
               set={(e: any) => {
                 handleInputChange(
                   setForm,
                   "step1",
-                  "adress",
+                  "address",
                   e.target.value,
                   "complement"
                 ),
                   verifyInputs(),
-                  handleLocalStorage("adress.complement", e.target.value);
+                  handleLocalStorage("address.complement", e.target.value);
               }}
               onFocus={() => {
                 handleChangeError(
                   setForm,
-                  "adress",
+                  "address",
                   "step1",
                   false,
                   "complement"
@@ -376,69 +377,69 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
         <div className="flex w-full gap-4">
           <Input
             className="flex flex-col"
-            question={form.step1.adress.neighborhood}
+            question={form.step1.address.neighborhood}
             set={(e: any) => {
               handleInputChange(
                 setForm,
                 "step1",
-                "adress",
+                "address",
                 e.target.value,
                 "neighborhood"
               ),
                 verifyInputs(),
-                handleLocalStorage("adress.neighborhood", e.target.value);
+                handleLocalStorage("address.neighborhood", e.target.value);
             }}
             onFocus={() => {
               handleChangeError(
                 setForm,
-                "adress",
+                "address",
                 "step1",
                 false,
                 "neighborhood"
               ),
                 verifyInputs();
             }}
-            disabled={form.step1.adress.street.fill}
+            disabled={form.step1.address.street.fill}
           />
           <Input
             className="flex flex-col"
-            question={form.step1.adress.city}
+            question={form.step1.address.city}
             set={(e: any) => {
               handleInputChange(
                 setForm,
                 "step1",
-                "adress",
+                "address",
                 e.target.value,
                 "city"
               ),
                 verifyInputs(),
-                handleLocalStorage("adress.city", e.target.value);
+                handleLocalStorage("address.city", e.target.value);
             }}
             onFocus={() => {
-              handleChangeError(setForm, "adress", "step1", false, "city"),
+              handleChangeError(setForm, "address", "step1", false, "city"),
                 verifyInputs();
             }}
-            disabled={form.step1.adress.street.fill}
+            disabled={form.step1.address.street.fill}
           />
           <Input
             className="flex flex-col"
-            question={form.step1.adress.state}
+            question={form.step1.address.state}
             set={(e: any) => {
               handleInputChange(
                 setForm,
                 "step1",
-                "adress",
+                "address",
                 e.target.value,
                 "state"
               ),
                 verifyInputs(),
-                handleLocalStorage("adress.state", e.target.value);
+                handleLocalStorage("address.state", e.target.value);
             }}
             onFocus={() => {
-              handleChangeError(setForm, "adress", "step1", false, "state"),
+              handleChangeError(setForm, "address", "step1", false, "state"),
                 verifyInputs();
             }}
-            disabled={form.step1.adress.street.fill}
+            disabled={form.step1.address.street.fill}
           />
         </div>
       </div>
