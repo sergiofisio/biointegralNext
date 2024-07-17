@@ -285,12 +285,12 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
         <h2 className="text-2xl font-bold">Endereço</h2>
         <Input
           className="flex flex-col w-1/12 md:w-full"
-          question={form.step1.adress.zipcode}
+          question={form.step1.address.zipcode}
           set={(e: any) => {
             handleInputChange(
               setForm,
               "step1",
-              "adress",
+              "address",
               e.target.value,
               "zipcode"
             ),
@@ -299,7 +299,7 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
               handleLocalStorage("address.zipcode", e.target.value);
           }}
           onFocus={() => {
-            handleChangeError(setForm, "adress", "step1", false, "zipcode"),
+            handleChangeError(setForm, "address", "step1", false, "zipcode"),
               verifyInputs();
           }}
         />
