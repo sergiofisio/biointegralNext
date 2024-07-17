@@ -1,3 +1,4 @@
+import InputBirthday from "@/app/components/inputs/bithday";
 import Input from "@/app/components/inputs/input";
 import InputSelect from "@/app/components/inputs/select";
 import { checkForm } from "@/app/functions/check";
@@ -8,26 +9,27 @@ import axios from "axios";
 import { useEffect } from "react";
 
 export default function Step1({ form, setForm, sethasError, hasError }: any) {
-  async function calculateAge() {
+  async function calculateAge(day: number, month: number, year: number) {
     try {
-      if (form.step1.birth.value) {
-        const today = new Date();
-        const birthDate = new Date(form.step1.birth.value);
-        let age = today.getFullYear() - birthDate.getFullYear();
-        const m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-          age--;
-        }
-
-        setForm({
-          ...form,
-          step1: {
-            ...form.step1,
-            age: { ...form.step1.age, value: age },
-          },
-        });
-        await handleLocalStorage("age", age);
+      const today = new Date();
+      const birthDate = new Date(year, month - 1, day);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      if (
+        monthDiff < 0 ||
+        (monthDiff === 0 && today.getDate() < birthDate.getDate())
+      ) {
+        age--;
       }
+
+      setForm({
+        ...form,
+        step1: {
+          ...form.step1,
+          age: { ...form.step1.age, value: age },
+        },
+      });
+      await handleLocalStorage("age", age);
     } catch (error: any) {
       console.log(error);
     }
@@ -36,62 +38,35 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
   async function getAdress(cep: string) {
     try {
       if (cep.includes("_")) return;
-      cep.replace("-", "");
-      console.log(cep);
+      const cleanedCep = cep.replace("-", "");
 
-      const { data } = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
-      console.log(data);
+      const { data } = await axios.get(
+        `https://viacep.com.br/ws/${cleanedCep}/json/`
+      );
 
       if (data.erro) {
         throw new Error("Endereço não encontrado pelo CEP digitado");
       }
 
+      const addressFields = {
+        zipcode: cleanedCep,
+        street: data.logradouro,
+        neighborhood: data.bairro,
+        city: data.localidade,
+        state: data.uf,
+      };
+
       handleInputChange(setForm, "step1", "adress", cep, "zipcode");
 
-      {
-        data.logradouro &&
-          handleInputChange(
-            setForm,
-            "step1",
-            "adress",
-            data.logradouro,
-            "street"
-          ),
-          handleLocalStorage("adress.street", data.logradouro);
-      }
-
-      {
-        data.bairro &&
-          handleInputChange(
-            setForm,
-            "step1",
-            "adress",
-            data.bairro,
-            "neighborhood"
-          ),
-          handleLocalStorage("adress.neighborhood", data.bairro);
-      }
-
-      {
-        data.localidade &&
-          handleInputChange(
-            setForm,
-            "step1",
-            "adress",
-            data.localidade,
-            "city"
-          ),
-          handleLocalStorage("adress.city", data.localidade);
-      }
-
-      {
-        data.uf &&
-          handleInputChange(setForm, "step1", "adress", data.uf, "state"),
-          handleLocalStorage("adress.state", data.uf);
-      }
+      Object.entries(addressFields).forEach(([key, value]) => {
+        if (value) {
+          handleInputChange(setForm, "step1", "address", value, key);
+          handleLocalStorage(`address.${key}`, value);
+        }
+      });
     } catch (error: any) {
       toastfy("error", error.message, 3000, "bg-red-500");
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -102,7 +77,9 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
         "name",
         "email",
         "phone",
-        "birth",
+        "birth.day",
+        "birth.month",
+        "birth.year",
         "gender",
         "religion",
         "job",
@@ -128,10 +105,16 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
   }
 
   useEffect(() => {
-    if (form.step1.birth.value) {
-      calculateAge();
+    const { day, month, year } = form.step1.birth;
+    if (
+      day.value &&
+      month.value &&
+      year.value &&
+      String(year.value).length === 4
+    ) {
+      calculateAge(Number(day.value), Number(month.value), Number(year.value));
     }
-  }, [form.step1.birth.value]);
+  }, [form.step1.birth]);
 
   return (
     <form className="flex flex-col w-full h-full gap-3">
@@ -165,7 +148,7 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
       </div>
       <div className="flex w-full gap-4 md:flex-col">
         <Input
-          className="flex flex-col w-full"
+          className="flex flex-col justify-end w-full"
           question={form.step1.email}
           set={(e: any) => {
             handleInputChange(setForm, "step1", "email", e.target.value),
@@ -176,32 +159,20 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
             handleChangeError(setForm, "email", "step1", false), verifyInputs();
           }}
         />
-        <div className="flex w-full">
-          <Input
-            className="flex flex-col w-1/5 max-w-[75%] md:w-full"
-            question={form.step1.birth}
-            set={(e: any) => {
-              handleInputChange(setForm, "step1", "birth", e.target.value),
-                verifyInputs(),
-                handleLocalStorage("birth", e.target.value),
-                calculateAge();
-            }}
-            onBlur={(e) => calculateAge()}
-            onFocus={() => {
-              handleChangeError(setForm, "birth", "step1", false),
-                verifyInputs();
-            }}
-          />
-          <Input
-            className="flex flex-col items-center text-center max-w-[25%] md:w-full"
-            question={form.step1.age}
-            set={(e: any) => {
-              handleInputChange(setForm, "step1", "age", e.target.value),
-                handleLocalStorage("age", e.target.value);
-            }}
-            disabled
-          />
-        </div>
+        <InputBirthday
+          birth={form.step1.birth}
+          setForm={setForm}
+          verifyInputs={verifyInputs}
+        />
+        <Input
+          className="flex flex-col items-center justify-end text-center max-w-[25%] md:w-full"
+          question={form.step1.age}
+          set={(e: any) => {
+            handleInputChange(setForm, "step1", "age", e.target.value),
+              handleLocalStorage("age", e.target.value);
+          }}
+          disabled
+        />
       </div>
       {form.step1.gender.value === "Feminino" && form.step1.age.value >= 10 && (
         <div className="flex w-full gap-4">
