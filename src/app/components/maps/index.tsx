@@ -17,14 +17,14 @@ const locals = [
   {
     city: "São Bernardo do Campo",
     coordinates: {
-      lat: -23.691863,
-      lng: -46.549258,
+      lat: -23.6626358,
+      lng: -46.532915,
     },
     address: {
-      local: "Espaço Damaru",
-      street: "Rua José Versolato",
-      number: 111,
-      complement: "bloco B - sala 3414",
+      local: "Livance",
+      street: "Avenida Portugal",
+      number: 1285,
+      complement: "3º andar",
     },
   },
 ];
