@@ -34,7 +34,7 @@ export default function InputBirthday({
 }: BirthProps) {
   const handleSelectChange = (
     field: keyof BirthProps["birth"],
-    value: string
+    value: string | number
   ) => {
     handleInputChange(setForm, "step1", "birth", value, field);
     verifyInputs();
@@ -85,6 +85,7 @@ export default function InputBirthday({
             max="2099"
             value={birth.year.value || ""}
             onChange={(e) => handleSelectChange("year", e.target.value)}
+            onFocus={() => handleFocus("year")}
           />
         </div>
       </div>

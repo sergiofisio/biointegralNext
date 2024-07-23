@@ -42,6 +42,8 @@ export function handleChangeError(
   error: boolean,
   subfield?: string
 ) {
+  console.log({ setForm, field, step, error, subfield });
+
   setForm((prevState: any) => {
     if (subfield) {
       return {
