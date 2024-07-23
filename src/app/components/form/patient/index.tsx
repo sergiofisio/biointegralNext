@@ -218,8 +218,8 @@ export default function PatientForm() {
           required: true,
         },
         year: {
-          value: null as number | null,
-          type: "number",
+          value: "" as string | null,
+          type: "text",
           error: false,
           required: true,
         },
@@ -233,8 +233,8 @@ export default function PatientForm() {
       },
       ageFirstPeriod: {
         question: "Idade da primeira menstruação",
-        value: "" as number | string,
-        type: "number",
+        value: "" as string | null,
+        type: "text",
         error: false,
       },
       menopause: {
@@ -243,8 +243,8 @@ export default function PatientForm() {
         value: "",
         age: {
           question: "Idade da menopausa",
-          value: "" as number | string,
-          type: "number",
+          value: "" as string | null,
+          type: "text",
           error: false,
         },
         type: "text",
@@ -283,8 +283,8 @@ export default function PatientForm() {
         },
         number: {
           question: "Nº",
-          value: "" as number | string,
-          type: "number",
+          value: "" as string | null,
+          type: "text",
           error: false,
           required: true,
         },
@@ -968,12 +968,12 @@ export default function PatientForm() {
             "inconvenient",
             "needs",
             "problemOneWord",
-            "adress.street",
-            "adress.number",
-            "adress.neighborhood",
-            "adress.city",
-            "adress.state",
-            "adress.zipcode",
+            "address.street",
+            "address.number",
+            "address.neighborhood",
+            "address.city",
+            "address.state",
+            "address.zipcode",
           ])
         ) {
           throw new Error("Preencha todos os campos obrigatórios");
@@ -1207,7 +1207,7 @@ export default function PatientForm() {
             },
             year: {
               ...currentForm.step1.birth.year,
-              value: Number(formItens[5][1]) || null,
+              value: formItens[5][1] || null,
             },
           },
           gender: { ...currentForm.step1.gender, value: formItens[6][1] || "" },
@@ -1255,7 +1255,7 @@ export default function PatientForm() {
             ...currentForm.step1.problemOneWord,
             value: formItens[17][1] || "",
           },
-          adress: {
+          address: {
             ...currentForm.step1.address,
             street: {
               ...currentForm.step1.address.street,
@@ -1263,7 +1263,7 @@ export default function PatientForm() {
             },
             number: {
               ...currentForm.step1.address.number,
-              value: (Number(formItens[19][1]) as number) || "",
+              value: formItens[19][1] || "",
             },
             complement: {
               ...currentForm.step1.address.complement,

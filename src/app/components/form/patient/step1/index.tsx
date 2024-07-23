@@ -39,7 +39,6 @@ export default function Step1({ form, setForm, sethasError, hasError }: any) {
     try {
       if (cep.includes("_")) return;
       const cleanedCep = cep.replace("-", "");
-      console.log({ cleanedCep });
 
       const { data } = await axios.get(
         `https://viacep.com.br/ws/${cleanedCep}/json/`
