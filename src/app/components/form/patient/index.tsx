@@ -9,10 +9,6 @@ import { checkForm } from "@/app/functions/check";
 import Button from "../../button";
 import emailjs from "@emailjs/browser";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {
-  getLocalStorage,
-  handleLocalStorage,
-} from "@/app/functions/localstorage";
 
 const key = [
   "name",
@@ -127,7 +123,7 @@ const key = [
 ];
 
 export default function PatientForm() {
-  const [activeStep, setActiveStep] = useState(4);
+  const [activeStep, setActiveStep] = useState(1);
   const [hasError, sethasError] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [form, setForm] = useState({
@@ -1010,7 +1006,6 @@ export default function PatientForm() {
         }
 
         setActiveStep(activeStep + 1);
-        await handleLocalStorage("step", activeStep + 1);
       }
 
       if (action === "prev") {
@@ -1182,8 +1177,6 @@ export default function PatientForm() {
   useEffect(() => {
     async function getInfoForm() {
       const formItens = await AsyncStorage.multiGet(key);
-
-      setActiveStep(Number(await getLocalStorage("step")) || 1);
 
       setForm((currentForm) => ({
         ...currentForm,
