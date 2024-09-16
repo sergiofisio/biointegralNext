@@ -23,7 +23,7 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
   return (
     <form className="flex flex-col w-full h-full gap-3">
       <h2 className="text-center text-5xl font-bold">SOBRE SUA SAÚDE FÍSICA</h2>
-      <section className="flex w-1/2 gap-4">
+      <section className="flex w-1/2 gap-4 md:w-full">
         <InputSelect
           question={form.step2.physic}
           className="flex w-full h-full items-center gap-4"
@@ -34,10 +34,10 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
           }}
         />
       </section>
-      <section className="flex gap-4">
+      <section className="flex gap-4 md:flex-col">
         <InputSelect
           question={form.step2.infection}
-          className="flex w-1/4 h-full items-center gap-4"
+          className="flex w-1/4 h-full items-center gap-4 md:w-full"
           set={(e: any) => {
             handleInputChange(setForm, "step2", "infection", e.target.value),
               verifyInputs(),
@@ -47,7 +47,7 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
         {form.step2.infection.value === "Sim" && (
           <InputSelect
             question={form.step2.infection.typeOf}
-            className="flex w-1/4 h-full items-center gap-4"
+            className="flex w-1/4 h-full items-center gap-4 md:w-full"
             set={(e: any) => {
               handleInputChange(
                 setForm,
@@ -62,10 +62,10 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
           />
         )}
       </section>
-      <section className="flex gap-4">
+      <section className="flex gap-4 md:flex-col">
         <InputSelect
           question={form.step2.pain}
-          className={`flex h-full items-center gap-4 ${
+          className={`flex h-full items-center gap-4 md:w-full ${
             form.step2.pain.value === "Sim" ? "w-1/3" : "w-1/4"
           }`}
           set={(e: any) => {
@@ -77,7 +77,7 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
         {form.step2.pain.value === "Sim" && (
           <div className="w-full">
             <Input
-              className="flex w-1/4 items-center gap-4"
+              className="flex w-1/4 items-center gap-4 md:w-full"
               question={form.step2.pain.cause}
               set={(e) => {
                 handleInputChange(
@@ -92,7 +92,7 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
               }}
             />
             <InputSelect
-              className="flex w-1/4 items-center gap-4"
+              className="flex w-1/4 items-center gap-4 md:w-full"
               question={form.step2.pain.dayTime}
               set={(e) => {
                 handleInputChange(
@@ -107,7 +107,7 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
               }}
             />
             <InputSelect
-              className="flex w-1/4 items-center gap-4"
+              className="flex w-1/4 items-center gap-4 md:w-full"
               question={form.step2.pain.edema}
               set={(e) => {
                 handleInputChange(
@@ -125,7 +125,7 @@ export default function Step2({ form, setForm, sethasError, hasError }: any) {
         )}
       </section>
       <InputSelect
-        className="flex w-1/4 h-full items-center gap-4"
+        className="flex w-1/4 h-full items-center gap-4 md:w-full"
         question={form.step2.autoimune}
         set={(e) => {
           handleInputChange(setForm, "step2", "autoimune", e.target.value),

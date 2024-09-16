@@ -127,7 +127,7 @@ const key = [
 ];
 
 export default function PatientForm() {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(4);
   const [hasError, sethasError] = useState(false);
   const [disabled, setDisabled] = useState(false);
   const [form, setForm] = useState({
@@ -978,7 +978,6 @@ export default function PatientForm() {
         ) {
           throw new Error("Preencha todos os campos obrigatórios");
         }
-        await handleLocalStorage("step", 2);
 
         if (
           activeStep === 2 &&
@@ -992,8 +991,6 @@ export default function PatientForm() {
         ) {
           throw new Error("Preencha todos os campos obrigatórios");
         }
-
-        await handleLocalStorage("step", 3);
 
         if (activeStep === 3) {
           let valid = true;
@@ -1011,9 +1008,9 @@ export default function PatientForm() {
             throw new Error("Ficaram perguntas sem resposta");
           }
         }
-        await handleLocalStorage("step", 4);
 
         setActiveStep(activeStep + 1);
+        await handleLocalStorage("step", activeStep + 1);
       }
 
       if (action === "prev") {
@@ -1031,12 +1028,12 @@ export default function PatientForm() {
     try {
       setDisabled(true);
       if (
-        checkForm(form.step2, [
-          "physic",
-          "infection",
-          "pain",
-          "autoimune",
-          "simptomes",
+        checkForm(form.step4, [
+          "parentsAlive",
+          "haveSiblings",
+          "relationship",
+          "haveKids",
+          "moreInfo",
         ])
       )
         throw new Error("Preencha todos os campos obrigatórios");
@@ -1437,14 +1434,14 @@ export default function PatientForm() {
           text="Voltar"
           className={`${
             activeStep === 1 ? "hidden" : ""
-          } w-2/12 bg-blue hover:text-blue hover:bg-white border-blue`}
+          } w-full bg-blue hover:text-blue hover:bg-white border-blue`}
         />
         <Button
           onClick={(e: any) => {
             activeStep < 4 ? handleChangeStep(e, "next") : handleSubmit(e);
           }}
           text={`${activeStep === 4 ? "Finalizar" : "Próximo"}`}
-          className={`w-2/12 border-blue md:w-1/2`}
+          className={`w-full border-blue`}
           disabled={activeStep === 4 ? disabled : hasError}
         />
       </div>

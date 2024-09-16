@@ -29,7 +29,7 @@ export default function Step3({ form, setForm, sethasError, hasError }: any) {
               required={question.required}
               className={`${
                 question.error ? "border-red-500" : "border-black"
-              } w-fit flex border-black border-2 border-solid rounded-3xl`}
+              } w-fit flex border-black border-2 border-solid rounded-3xl md:w-full`}
               onChange={(e: any) => {
                 setForm((prevForm: any) => ({
                   ...prevForm,

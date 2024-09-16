@@ -16,14 +16,14 @@ export default function InputSelect({
 }) {
   return (
     <div key={key} className={className}>
-      <label className="uppercase w-full">{question.question}</label>
+      <label className="uppercase w-fit">{question.question}</label>
       <select
         name="question"
         id="question"
         required={question.required}
         className={`${
           question.error ? "border-red-500" : "border-black"
-        } flex border-black border-2 border-solid rounded-3xl max-h-full h-full w-full px-3 md:h-16`}
+        } flex border-black border-2 border-solid rounded-3xl max-h-full h-full w-fit px-3 md:h-16`}
         onChange={set}
         onFocus={onFocus}
         value={question.value}
