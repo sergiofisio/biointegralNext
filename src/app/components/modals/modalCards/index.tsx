@@ -15,7 +15,7 @@ export default function ModalService({
 
   return (
     <div className="fixed right-0 top-0 z-10 overflow-y-auto w-full h-full flex items-center justify-center bg-blue bg-opacity-50">
-      <div className="bg-white w-[50%] h-[95%] rounded-3xl text-left overflow-hidden shadow-xl transform transition-all relative flex flex-col items-center">
+      <div className="bg-white w-[50%] h-[95%] rounded-3xl text-left overflow-hidden shadow-xl transform transition-all relative flex flex-col items-center md:w-11/12">
         <button
           type="button"
           onClick={() =>
@@ -26,15 +26,15 @@ export default function ModalService({
           X
         </button>
         <div className="bg-white px-4 pt-5 w-11/12 h-[90%] pb-4 flex flex-col items-center justify-center gap-4">
-          <div className="flex flex-col items-center justify-center w-full gap-4">
+          <div className="flex flex-col items-center justify-center w-full gap-4 md:max-h-[30%]">
             <Image
               src={img}
               alt={`Logo de ${name}`}
-              className="md:w-32 w-56 h-auto"
-              width={200}
-              height={200}
+              className="md:max-h-[50%] md:w-full w-1/2 h-auto"
+              width={20}
+              height={20}
             />
-            <h3 className="flex text-7xl font-medium text-gray-900 text-center uppercase h-full">
+            <h3 className="flex text-6xl font-medium text-gray-900 text-center uppercase md:text-4xl">
               {name}
             </h3>
           </div>
