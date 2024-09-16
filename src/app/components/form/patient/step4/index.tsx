@@ -25,9 +25,9 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
         Sobre os seus relacionamentos
       </h2>
       <div className="flex flex-col gap-4">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 md:flex-col w-full">
           <InputSelect
-            className="flex w-1/4 h-full items-center gap-4"
+            className="flex w-fit h-full items-center gap-4 md:w-full"
             question={form.step4.parentsAlive}
             set={(e: any) => {
               handleInputChange(
@@ -42,7 +42,7 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
           />
           {form.step4.parentsAlive.value && (
             <InputSelect
-              className="flex w-1/4 h-full items-center gap-4"
+              className="flex w-fit h-full items-center gap-4 md:w-full"
               question={form.step4.parentsAlive.relationship}
               set={(e: any) => {
                 handleInputChange(
@@ -63,7 +63,7 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
         </div>
         {form.step4.parentsAlive.value && (
           <Input
-            className="flex w-1/4 h-full items-center gap-4"
+            className="flex w-full h-full items-center gap-4"
             question={form.step4.parentsAlive.description}
             set={(e: any) => {
               handleInputChange(
@@ -81,7 +81,7 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
       </div>
       <div className="flex flex-col gap-4">
         <InputSelect
-          className="flex w-1/4 h-full items-center gap-4"
+          className="flex w-1/4 h-full items-center gap-4 md:w-full"
           question={form.step4.haveSiblings}
           set={(e: any) => {
             handleInputChange(setForm, "step4", "haveSiblings", e.target.value),
@@ -92,7 +92,7 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
         {form.step4.haveSiblings.value === "Sim" && (
           <>
             <Input
-              className="flex w-1/4 h-full items-center gap-4"
+              className="flex w-1/4 h-full items-center gap-4 md:w-full"
               question={form.step4.haveSiblings.many}
               set={(e: any) => {
                 handleInputChange(
@@ -107,7 +107,7 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
               }}
             />
             <InputSelect
-              className="flex w-1/4 h-full items-center gap-4"
+              className="flex w-full h-full items-center gap-4"
               question={form.step4.haveSiblings.relationship}
               set={(e: any) => {
                 handleInputChange(
@@ -125,7 +125,7 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
               }}
             />
             <Input
-              className="flex w-1/4 h-full items-center gap-4"
+              className="flex w-full h-full items-center gap-4"
               question={form.step4.haveSiblings.description}
               set={(e: any) => {
                 handleInputChange(
@@ -147,7 +147,7 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
       </div>
       <div className="flex flex-col gap-4">
         <InputSelect
-          className="flex w-1/4 h-full items-center gap-4"
+          className="flex w-1/4 h-full items-center gap-4 md:w-full"
           question={form.step4.relationship}
           set={(e: any) => {
             handleInputChange(setForm, "step4", "relationship", e.target.value),
@@ -158,7 +158,7 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
         {form.step4.relationship.value && (
           <>
             <Input
-              className="flex w-1/4 h-full items-center gap-4"
+              className="flex w-full h-full items-center gap-4"
               question={form.step4.relationship.description}
               set={(e: any) => {
                 handleInputChange(
@@ -180,7 +180,7 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
       </div>
       <div className="flex flex-col gap-4">
         <InputSelect
-          className="flex w-1/4 h-full items-center gap-4"
+          className="flex w-1/4 h-full items-center gap-4 md:w-full"
           question={form.step4.haveKids}
           set={(e: any) => {
             handleInputChange(setForm, "step4", "haveKids", e.target.value),
@@ -191,7 +191,7 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
         {form.step4.haveKids.value === "Sim" && (
           <>
             <Input
-              className="flex w-1/4 h-full items-center gap-4"
+              className="flex w-1/4 h-full items-center gap-4 md:w-full"
               question={form.step4.haveKids.many}
               set={(e: any) => {
                 handleInputChange(
@@ -206,7 +206,7 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
               }}
             />
             <InputSelect
-              className="flex w-1/4 h-full items-center gap-4"
+              className="flex w-1/4 h-full items-center gap-4 md:w-full"
               question={form.step4.haveKids.abortion}
               set={(e: any) => {
                 handleInputChange(
@@ -222,7 +222,7 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
             />
             {form.step4.haveKids.abortion.value === "Sim" && (
               <Input
-                className="flex w-1/4 h-full items-center gap-4"
+                className="flex w-1/4 h-full items-center gap-4 md:w-full"
                 question={form.step4.haveKids.abortion.many}
                 set={(e: any) => {
                   setForm({
@@ -252,7 +252,7 @@ export default function Step4({ form, setForm, sethasError, hasError }: any) {
         )}
         {form.step4.haveKids.value && (
           <Input
-            className="flex w-1/4 h-full items-center gap-4"
+            className="flex w-full h-full items-center gap-4"
             question={form.step4.haveKids.description}
             set={(e: any) => {
               handleInputChange(
