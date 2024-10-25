@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://www.biointegralsaude.com.br/sitemap.xml
+Sitemap: https://www.biointegralsaude.com.br/sitemap.xml
