@@ -51,7 +51,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             Array.isArray(metadata.openGraph?.images) &&
             metadata.openGraph.images.length > 0
               ? metadata.openGraph.images[0].toString()
-              : "/assets/OG/default.png" // Use uma imagem padrão caso `images` esteja vazio ou indefinido
+              : "/assets/OG/site.png"
           }
         />
         <link rel="icon" href={metadata.favicon || "/favicon.ico"} />
