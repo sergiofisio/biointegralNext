@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     title: "Biointegral Saúde",
     description:
       "Dr. Sergio e Dra Fresia - Pioneiros no Brasil de várias técnicas como MICROFISIOTERAPIA, PSYCH-K® e BIODECODAGE",
-    url: new URL("https://www.biointegral.com.br"),
+    url: new URL("https://www.biointegralsaude.com.br"),
     images: ["/assets/OG/site.png"],
   },
 };
@@ -56,14 +56,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         />
         <link rel="icon" href={metadata.favicon || "/favicon.ico"} />
 
-        <>
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=G-5JGHQFVJYM`}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=G-5JGHQFVJYM`}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
                   window.dataLayer = window.dataLayer || [];
                   function gtag(){dataLayer.push(arguments);}
                   gtag('js', new Date());
@@ -71,9 +70,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     page_path: window.location.pathname,
                   });
                 `,
-            }}
-          />
-        </>
+          }}
+        />
 
         {/* Script Clarity (já existente) */}
         <script
