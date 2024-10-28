@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   favicon: "/favicon.ico",
   keywords:
     "biointegral saúde, microfisioterapia, psych, psych-k®, biodecodage, saúde integral, terapias complementares, bem-estar, saúde emocional, saúde física",
-  metadataBase: new URL("https://www.biointegral.com.br"),
+  metadataBase: new URL("https://www.biointegralsaude.com.br"),
   openGraph: {
     title: "Biointegral Saúde",
     description:
