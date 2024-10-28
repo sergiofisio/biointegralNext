@@ -55,6 +55,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           }
         />
         <link rel="icon" href={metadata.favicon || "/favicon.ico"} />
+
+        <>
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=G-5JGHQFVJYM`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'G-5JGHQFVJYM', {
+                    page_path: window.location.pathname,
+                  });
+                `,
+            }}
+          />
+        </>
+
+        {/* Script Clarity (já existente) */}
         <script
           type="text/javascript"
           dangerouslySetInnerHTML={{
