@@ -2,6 +2,8 @@ import type { Metadata as NextMetadata } from "next";
 import { Toaster } from "sonner";
 import Head from "next/head";
 import "./globals.css";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 
 interface Metadata extends NextMetadata {
   favicon?: string;
@@ -55,35 +57,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           }
         />
         <link rel="icon" href={metadata.favicon || "/favicon.ico"} />
-
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=G-5JGHQFVJYM`}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-                  window.dataLayer = window.dataLayer || [];
-                  function gtag(){dataLayer.push(arguments);}
-                  gtag('js', new Date());
-                  gtag('config', 'G-5JGHQFVJYM', {
-                    page_path: window.location.pathname,
-                  });
-                `,
-          }}
-        />
-
-        {/* Script Clarity (já existente) */}
-        <script
-          type="text/javascript"
-          dangerouslySetInnerHTML={{
-            __html: `(function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "opomyyzey5");`,
-          }}
-        />
       </Head>
       <body
         className="max-w-[100vw] h-screen relative"
@@ -102,6 +75,16 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             },
           }}
         />
+        <Script id="clarity-script" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "opomyyzey5");
+          `}
+        </Script>
+        <GoogleAnalytics gaId="G-5JGHQFVJYM" />
       </body>
     </html>
   );
