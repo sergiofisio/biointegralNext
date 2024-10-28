@@ -1,4 +1,3 @@
-import Script from "next/script";
 import type { Metadata as NextMetadata } from "next";
 import { Toaster } from "sonner";
 import Head from "next/head";
@@ -52,10 +51,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             Array.isArray(metadata.openGraph?.images) &&
             metadata.openGraph.images.length > 0
               ? metadata.openGraph.images[0].toString()
-              : "/assets/OG/default.png"
+              : "/assets/OG/default.png" // Use uma imagem padrão caso `images` esteja vazio ou indefinido
           }
         />
         <link rel="icon" href={metadata.favicon || "/favicon.ico"} />
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `(function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "opomyyzey5");`,
+          }}
+        />
       </Head>
       <body
         className="max-w-[100vw] h-screen relative"
@@ -72,17 +81,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             classNames: {
               closeButton: `!bg-black !text-white !right-2 !left-none !top-2 !w-5 !h-5 hover:!bg-white hover:!text-black`,
             },
-          }}
-        />
-        <Script
-          id="clarity-script"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "opomyyzey5");`,
           }}
         />
       </body>
