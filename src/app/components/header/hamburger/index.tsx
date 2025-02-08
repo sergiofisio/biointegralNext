@@ -20,7 +20,7 @@ export default function Hamburger({
         height={200}
       />
       <nav
-        className={`absolute top-0 right-0 bg-blue w-full h-full flex flex-col items-center gap-5 p-5 ${
+        className={`absolute top-0 right-0 bg-blue w-screen h-screen flex flex-col items-center gap-5 p-5 ${
           open ? "flex" : "hidden"
         }`}
       >
@@ -38,7 +38,11 @@ export default function Hamburger({
               key={key}
               className="border-2 border-solid border-white w-full text-center rounded-3xl"
             >
-              <Link key={item.name} href={item.href}>
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={() => setOpen(false)}
+              >
                 {item.name}
               </Link>
             </li>
