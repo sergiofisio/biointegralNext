@@ -3,7 +3,7 @@
 		"target": "es5",
 		"lib": ["dom", "dom.iterable", "esnext"],
 		"allowJs": true,
-		"skipLibCheck": false,
+		"skipLibCheck": true,
 		"strict": true,
 		"noEmit": true,
 		"esModuleInterop": true,
@@ -11,7 +11,6 @@
 		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"types": ["prop-types"],
 		"jsx": "preserve",
 		"incremental": true,
 		"plugins": [
@@ -22,7 +21,7 @@
 		"paths": {
 			"@/*": ["./src/*"]
 		},
-		"typeRoots": ["./node_modules/@types", "./node_modules/@types/prop-types"]
+		"typeRoots": ["./node_modules/@types"]
 	},
 	"include": [
 		"src/**/*",
