@@ -24,11 +24,11 @@ jobs:
       
       - name: 📝 Criar .env.local
         run: |
-          echo "SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}" >> .env.local
-          echo "NEXT_EMAILJS_SERVICE=${{ secrets.NEXT_EMAILJS_SERVICE }}" >> .env.local
-          echo "NEXT_EMAILJS_TEMPLATE_CONSULTA=${{ secrets.NEXT_EMAILJS_TEMPLATE_CONSULTA }}" >> .env.local
-          echo "NEXT_EMAILJS_TEMPLATE_CONTATO=${{ secrets.NEXT_EMAILJS_TEMPLATE_CONTATO }}" >> .env.local
-          echo "NEXT_EMAILJS_USER=${{ secrets.NEXT_EMAILJS_USER }}" >> .env.local
+          echo "NEXT_PUBLIC_SENTRY_AUTH_TOKEN=${{ secrets.NEXT_PUBLIC_SENTRY_AUTH_TOKEN }}" >> .env.local
+          echo "NEXT_PUBLIC_EMAILJS_SERVICE=${{ secrets.NEXT_PUBLIC_EMAILJS_SERVICE }}" >> .env.local
+          echo "NEXT_PUBLIC_EMAILJS_TEMPLATE_CONSULTA=${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_CONSULTA }}" >> .env.local
+          echo "NEXT_PUBLIC_EMAILJS_TEMPLATE_CONTATO=${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_CONTATO }}" >> .env.local
+          echo "NEXT_PUBLIC_EMAILJS_USER=${{ secrets.NEXT_PUBLIC_EMAILJS_USER }}" >> .env.local
 
       - name: 🏗️ Build e exportação
         run: |
