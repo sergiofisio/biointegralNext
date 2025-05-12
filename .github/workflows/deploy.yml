@@ -37,9 +37,9 @@ jobs:
       - name: 📤 Deploy via FTP para Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          server: ftp.biointegralsaude.com.br
+          username: u773096491
+          password: ${{ secrets.ftp_password }}
           local-dir: ./out/
           server-dir: ./
 
