@@ -1,0 +1,48 @@
+name: Deploy para Hostinger via FTP
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Build e Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ⬇️ Clonar repositório
+        uses: actions/checkout@v3
+
+      - name: 🟢 Instalar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: 📦 Instalar dependências
+        run: yarn install --frozen-lockfile
+
+      - name: 🏗️ Build e exportação
+        run: |
+          yarn build
+      
+      - name: 📝 Criar .env.local
+        run: |
+          echo "SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}" >> .env.local
+          echo "NEXT_EMAILJS_SERVICE=${{ secrets.NEXT_EMAILJS_SERVICE }}" >> .env.local
+          echo "NEXT_EMAILJS_TEMPLATE_CONSULTA=${{ secrets.NEXT_EMAILJS_TEMPLATE_CONSULTA }}" >> .env.local
+          echo "NEXT_EMAILJS_TEMPLATE_CONTATO=${{ secrets.NEXT_EMAILJS_TEMPLATE_CONTATO }}" >> .env.local
+          echo "NEXT_EMAILJS_USER=${{ secrets.NEXT_EMAILJS_USER }}" >> .env.local
+
+      - name: 📤 Deploy via FTP para Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: ./out
+          server-dir: public_html/
+
+
