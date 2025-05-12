@@ -41,6 +41,6 @@ jobs:
           username: u773096491
           password: ${{ secrets.ftp_password }}
           local-dir: ./out/
-          server-dir: ./
+          server-dir: ./domains/biointegralsaude.com.br/public_html
 
 
