@@ -1039,8 +1039,8 @@ export default function PatientForm() {
       const step4 = form.step4;
 
       await emailjs.send(
-        process.env.NEXT_NEXT_EMAILJS_SERVICE,
-        process.env.NEXT_EMAILJS_TEMPLATE_CONSULTA,
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_CONSULTA,
         {
           nomeCompleto: step1.name.value,
           sexo: step1.gender.value,
@@ -1154,7 +1154,7 @@ export default function PatientForm() {
           relacaoFilhos: step4.haveKids.description.value,
           acrescentarMais: step4.moreInfo.value,
         },
-        process.env.NEXT_EMAILJS_USER
+        process.env.NEXT_PUBLIC_EMAILJS_USER
       );
       setDisabled(false);
       toastfy(

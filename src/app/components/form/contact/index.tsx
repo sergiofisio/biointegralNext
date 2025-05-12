@@ -57,15 +57,15 @@ export default function ContactForm({
       }
 
       await emailjs.send(
-        process.env.NEXT_NEXT_EMAILJS_SERVICE,
-        process.env.NEXT_EMAILJS_TEMPLATE_CONTATO,
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_CONTATO,
         {
           nome: form.name,
           email: form.email,
           telefone: form.phone,
           mensagem: form.message,
         },
-        process.env.NEXT_EMAILJS_USER
+        process.env.NEXT_PUBLIC_EMAILJS_USER
       );
 
       setForm({
