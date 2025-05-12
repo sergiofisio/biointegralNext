@@ -36,6 +36,12 @@ export default function ContactForm({
   const [disabled, setDisabled] = useState(false);
 
   async function handleSubmit(e: any) {
+    console.log(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_CONTATO,
+      process.env.NEXT_PUBLIC_EMAILJS_USER
+    );
+
     e.preventDefault();
     e.stopPropagation();
     try {
@@ -84,6 +90,8 @@ export default function ContactForm({
       setShowModal({ type: "", info: { name: "", img: "", modal: [] } });
       setDisabled(false);
     } catch (error: any) {
+      console.log({ error });
+
       setDisabled(false);
       toastfy("error", error.message, 3000, "bg-red-500");
     }
