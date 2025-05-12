@@ -19,8 +19,8 @@ jobs:
         with:
           node-version: '22.*'
 
-      - name: 📦 Instalar dependências
-        run: npm install
+      - name: 📦 Instalar dependências (forçando resolução)
+        run: npm install --legacy-peer-deps
       
       - name: 📝 Criar .env.local
         run: |
