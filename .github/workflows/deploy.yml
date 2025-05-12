@@ -42,7 +42,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
           port: ${{ secrets.FTP_PORT }}
-          local-dir: ./out
+          local-dir: ./out/
           server-dir: public_html/
 
 
