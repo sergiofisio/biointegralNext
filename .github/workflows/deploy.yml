@@ -17,14 +17,10 @@ jobs:
       - name: 🟢 Instalar Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '22.*'
 
       - name: 📦 Instalar dependências
-        run: yarn install --frozen-lockfile
-
-      - name: 🏗️ Build e exportação
-        run: |
-          yarn build
+        run: npm install
       
       - name: 📝 Criar .env.local
         run: |
@@ -34,6 +30,10 @@ jobs:
           echo "NEXT_EMAILJS_TEMPLATE_CONTATO=${{ secrets.NEXT_EMAILJS_TEMPLATE_CONTATO }}" >> .env.local
           echo "NEXT_EMAILJS_USER=${{ secrets.NEXT_EMAILJS_USER }}" >> .env.local
 
+      - name: 🏗️ Build e exportação
+        run: |
+          npm run build
+
       - name: 📤 Deploy via FTP para Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -41,7 +41,6 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
-          port: ${{ secrets.FTP_PORT }}
           local-dir: ./out/
           server-dir: public_html/
 
