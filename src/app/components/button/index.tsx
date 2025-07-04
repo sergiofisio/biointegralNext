@@ -2,11 +2,13 @@ import { tailwindProperty } from "./../../functions/tailwind";
 import { PulseLoader } from "react-spinners";
 export default function Button({
   text,
+  type: string,
   className,
   onClick,
   disabled,
 }: {
   text: string;
+  type?: "submit" | "button" | "reset";
   className?: string;
   onClick: (e: any) => void;
   disabled?: boolean;
