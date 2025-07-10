@@ -6,7 +6,6 @@ export default function Navbar({
 }: {
   nav: { name: string; href: string }[];
 }) {
-  const router = useNavigate();
 
   return (
     <nav className="flex items-center justify-around w-[59rem]">
