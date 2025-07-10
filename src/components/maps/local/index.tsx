@@ -7,6 +7,8 @@ export default function Local({
   city: string;
   locals: local[];
 }) {
+  console.log(import.meta.env.VITE_GOOGLE_MAPS_API_KEY);
+
   return (
     <tr className="max-md:justify-around max-md:items-center max-md:bg-none w-full items-center flex flex-col justify-evenly font-manroge py-4 gap-6">
       <h2 className="text-3xl font-bold text-center">{city}</h2>
