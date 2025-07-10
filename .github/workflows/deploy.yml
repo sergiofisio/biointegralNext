@@ -22,13 +22,18 @@ jobs:
       - name: 📦 Instalar dependências (forçando resolução)
         run: npm install --legacy-peer-deps
       
-      - name: 📝 Criar .env.local
+      - name: 📝 Criar .env
         run: |
-          echo "NEXT_PUBLIC_SENTRY_AUTH_TOKEN=${{ secrets.NEXT_PUBLIC_SENTRY_AUTH_TOKEN }}" >> .env.local
-          echo "NEXT_PUBLIC_EMAILJS_SERVICE=${{ secrets.NEXT_PUBLIC_EMAILJS_SERVICE }}" >> .env.local
-          echo "NEXT_PUBLIC_EMAILJS_TEMPLATE_CONSULTA=${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_CONSULTA }}" >> .env.local
-          echo "NEXT_PUBLIC_EMAILJS_TEMPLATE_CONTATO=${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_CONTATO }}" >> .env.local
-          echo "NEXT_PUBLIC_EMAILJS_USER=${{ secrets.NEXT_PUBLIC_EMAILJS_USER }}" >> .env.local
+          echo "NEXT_PUBLIC_SENTRY_AUTH_TOKEN=${{ secrets.NEXT_PUBLIC_SENTRY_AUTH_TOKEN }}" >> .env
+          echo "NEXT_PUBLIC_EMAILJS_SERVICE=${{ secrets.NEXT_PUBLIC_EMAILJS_SERVICE }}" >> .env
+          echo "NEXT_PUBLIC_EMAILJS_TEMPLATE_CONSULTA=${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_CONSULTA }}" >> .env
+          echo "NEXT_PUBLIC_EMAILJS_TEMPLATE_CONTATO=${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_CONTATO }}" >> .env
+          echo "NEXT_PUBLIC_EMAILJS_USER=${{ secrets.NEXT_PUBLIC_EMAILJS_USER }}" >> .env
+          echo "VITE_EMAILJS_SERVICE=${{ secrets.VITE_EMAILJS_SERVICE }}" >> .env
+          echo "VITE_EMAILJS_TEMPLATE_CONTATO=${{ secrets.VITE_EMAILJS_TEMPLATE_CONTATO }}" >> .env
+          echo "VITE_EMAILJS_TEMPLATE_SATISFACAO=${{ secrets.VITE_EMAILJS_TEMPLATE_SATISFACAO }}" >> .env
+          echo "VITE_EMAILJS_USER=${{ secrets.VITE_EMAILJS_USER }}" >> .env
+          echo "VITE_GOOGLE_MAPS_API_KEY=${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}" >> .env
 
       - name: 🏗️ Build e exportação
         run: |
@@ -40,7 +45,7 @@ jobs:
           server: ftp.biointegralsaude.com.br
           username: u773096491
           password: ${{ secrets.ftp_password }}
-          local-dir: ./out/
+          local-dir: ./dist/
           server-dir: ./domains/biointegralsaude.com.br/public_html/
 
 
