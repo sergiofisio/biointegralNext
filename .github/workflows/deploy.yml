@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: ⬇️ Clonar repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 🟢 Instalar Node.js
         uses: actions/setup-node@v3
@@ -24,7 +24,7 @@ jobs:
       
       - name: 📝 Criar .env
         run: |
-          echo "NEXT_PUBLIC_SENTRY_AUTH_TOKEN=${{ secrets.NEXT_PUBLIC_SENTRY_AUTH_TOKEN }}" >> .env
+          echo "NEXT_PUBLIC_SENTRY_AUTH_TOKEN=${{ secrets.NEXT_PUBLIC_SENTRY_AUTH_TOKEN }}" > .env
           echo "NEXT_PUBLIC_EMAILJS_SERVICE=${{ secrets.NEXT_PUBLIC_EMAILJS_SERVICE }}" >> .env
           echo "NEXT_PUBLIC_EMAILJS_TEMPLATE_CONSULTA=${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_CONSULTA }}" >> .env
           echo "NEXT_PUBLIC_EMAILJS_TEMPLATE_CONTATO=${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_CONTATO }}" >> .env
