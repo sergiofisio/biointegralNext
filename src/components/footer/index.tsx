@@ -1,6 +1,5 @@
 import facebook from "../../assets/site/logo_social/fb.svg";
 import instagram from "../../assets/site/logo_social/instagram.svg";
-import logo from "../../assets/site/logo.svg";
 import Button from "../button";
 
 const socials = [

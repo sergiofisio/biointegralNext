@@ -16,7 +16,7 @@ export default function Navbar({
             className="transition-all duration-500 ease-in-out hover:font-bold uppercase text-2xl"
             key={item.name}
             to={item.href}
-            onClick={(e) => handleClick(e, item.href, router)}
+            onClick={(e) => handleClick(e, item.href)}
           >
             {item.name}
           </Link>
