@@ -23,10 +23,11 @@ export default function Local({
                   className="max-md:w-80 max-md:h-80 w-96 h-96 rounded-3xl shadow-blue shadow-sm"
                   src={`https://www.google.com/maps/embed/v1/place?key=${
                     import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-                  }=${coordinates.lat},${coordinates.lng}`}
+                  }&q=${coordinates.lat},${coordinates.lng}`}
                   allowFullScreen={true}
                   loading="lazy"
                 ></iframe>
+
                 <div className="flex flex-col items-center text-xl text-center">
                   <h2>
                     {address.street}, {address.number}, {address.complement}
