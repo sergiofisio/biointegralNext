@@ -78,13 +78,12 @@ export default function SatisfacaoForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      console.log("Formulário enviado:", form);
       if (!verifyForm()) {
         throw new Error("Validação do formulário falhou.");
       }
       await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_CONSULTA,
+        process.env.VITE_EMAILJS_SERVICE,
+        process.env.VITE_EMAILJS_TEMPLATE_SATISFACAO,
         {
           nomeCompleto: form.name.value,
           email: form.email.value,
@@ -93,7 +92,7 @@ export default function SatisfacaoForm() {
           comentario: form.comment.value,
           depoimento: form.testmonial.value,
         },
-        process.env.NEXT_PUBLIC_EMAILJS_USER
+        process.env.VITE_EMAILJS_USER
       );
       showToast({
         message: "Formulário enviado com sucesso!",
@@ -113,7 +112,7 @@ export default function SatisfacaoForm() {
   };
 
   return (
-    <div className="flex flex-col  w-full h-full gap-4 px-20 py-8 md:p-2">
+    <div className="flex flex-col  w-full h-full gap-4 !px-20 !py-8 md:p-2">
       <form className="flex flex-col gap-4 w-full h-full">
         <h1>Questionário de Satisfação</h1>
         <Input

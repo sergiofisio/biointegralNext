@@ -23,7 +23,7 @@ export default function InputSelect({
         required={question.required}
         className={`${
           question.error ? "border-red-500" : "border-black"
-        } flex border-black border-2 border-solid rounded-3xl max-h-full h-full w-fit px-3 md:h-16`}
+        } flex border-black border-2 border-solid rounded-3xl max-h-full h-full w-fit px-3 max-md:h-16`}
         onChange={set}
         onFocus={onFocus}
         value={question.value}

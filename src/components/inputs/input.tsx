@@ -11,6 +11,15 @@ export default function Input({
   onFocus,
   onBlur,
 }: InputProps) {
+  const autoResize = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    e.target.style.height = "auto";
+    e.target.style.height = `${e.target.scrollHeight}px`;
+
+    if (set) {
+      set(e);
+    }
+  };
+
   return (
     <div className={className}>
       <label className="uppercase">{question.question}</label>
@@ -21,7 +30,7 @@ export default function Input({
             question.mask ? question.mask.replace(/9/g, "_") : question.question
           }
           name="question"
-          className={`border-2 border-solid rounded-3xl px-3 h-10 w-full ${
+          className={`border-2 border-solid rounded-3xl !px-3 h-10 w-full ${
             question.error ? "border-red-500" : "border-black"
           } ${disabled && "bg-gray-500 bg-opacity-20 cursor-not-allowed"}`}
           type={question.type}
@@ -52,10 +61,10 @@ export default function Input({
       ) : (
         <textarea
           name="question"
-          className={`border-2 border-solid rounded-3xl h-40 p-3 w-full ${
+          className={`border-2 border-solid rounded-3xl resize-y h-fit overflow-hidden !p-3 w-full ${
             question.error ? "border-red-500" : "border-black"
           } ${disabled && "bg-gray-500 bg-opacity-20 cursor-not-allowed"}`}
-          onChange={set}
+          onChange={autoResize}
           value={question.value}
           onFocus={onFocus}
           disabled={disabled || false}
