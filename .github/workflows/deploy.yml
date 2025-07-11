@@ -24,11 +24,11 @@ jobs:
       
       - name: 📝 Criar .env
         run: |
-          echo "VITE_EMAILJS_SERVICE=${{ variables.VITE_EMAILJS_SERVICE }}" >> .env
-          echo "VITE_EMAILJS_TEMPLATE_CONTATO=${{ variables.VITE_EMAILJS_TEMPLATE_CONTATO }}" >> .env
-          echo "VITE_EMAILJS_TEMPLATE_SATISFACAO=${{ variables.VITE_EMAILJS_TEMPLATE_SATISFACAO }}" >> .env
-          echo "VITE_EMAILJS_USER=${{ variables.VITE_EMAILJS_USER }}" >> .env
-          echo "VITE_GOOGLE_MAPS_API_KEY=${{ variables.VITE_GOOGLE_MAPS_API_KEY }}" >> .env
+          echo "VITE_EMAILJS_SERVICE=${{ secrets.VITE_EMAILJS_SERVICE }}" >> .env
+          echo "VITE_EMAILJS_TEMPLATE_CONTATO=${{ secrets.VITE_EMAILJS_TEMPLATE_CONTATO }}" >> .env
+          echo "VITE_EMAILJS_TEMPLATE_SATISFACAO=${{ secrets.VITE_EMAILJS_TEMPLATE_SATISFACAO }}" >> .env
+          echo "VITE_EMAILJS_USER=${{ secrets.VITE_EMAILJS_USER }}" >> .env
+          echo "VITE_GOOGLE_MAPS_API_KEY=${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}" >> .env
 
       - name: 🏗️ Build e exportação
         run: |
