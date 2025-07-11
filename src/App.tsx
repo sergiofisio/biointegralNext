@@ -1,4 +1,5 @@
-import { Route, Routes, useLocation } from "react-router-dom";
+// import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/page";
 import Satisfacao from "./pages/satisfacao/page";
 // import HeaderForm from "./components/header/form";
