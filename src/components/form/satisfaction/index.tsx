@@ -10,21 +10,21 @@ import Button from "../../button";
 export default function SatisfacaoForm() {
   const [form, setForm] = useState<SatisfacaoFormState>({
     name: {
-      question: "Nome Completo",
+      question: "Nome Completo *",
       value: "",
       type: "text",
       error: false,
       required: true,
     },
     email: {
-      question: "E-mail",
+      question: "E-mail *",
       value: "",
       type: "email",
       error: false,
       required: true,
     },
     terapist: {
-      question: "Qual o nome do profissional que te atendeu?",
+      question: "Qual o nome do profissional que te atendeu? *",
       options: ["", "Dra. Fresia Sá", "Dr. Sergio Bastos"],
       value: "",
       type: "text",
@@ -32,7 +32,7 @@ export default function SatisfacaoForm() {
       required: true,
     },
     grade: {
-      question: "Qual a sua avaliação do tratamento",
+      question: "Qual a sua avaliação do tratamento *",
       options: ["", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10"],
       value: "",
       error: false,
@@ -79,7 +79,7 @@ export default function SatisfacaoForm() {
     e.preventDefault();
     try {
       if (!verifyForm()) {
-        throw new Error("Validação do formulário falhou.");
+        throw new Error("Todos os campos com * são obrigatórios.");
       }
       await emailjs.send(
         process.env.VITE_EMAILJS_SERVICE,
