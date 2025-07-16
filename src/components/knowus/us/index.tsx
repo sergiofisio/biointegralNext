@@ -10,6 +10,7 @@ export default function Us({
   return (
     <div className="h-full w-56 flex flex-col items-center gap-4">
       <img
+        loading="lazy"
         className="max-md:w-32 max-md:h-32 w-56 h-56 border-4 border-blue border-solid rounded-[100%] shadow-blue shadow-2xl"
         src={image}
         alt={`foto ${name}`}

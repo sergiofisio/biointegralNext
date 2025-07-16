@@ -6,7 +6,7 @@ import micro from "../../assets/site/tecnicas/micro.svg";
 const services = [
   {
     id: 1,
-    nome: "biodecodage",
+    nome: "Biodecodage",
     img: biodecodage,
     descricao: [
       {
@@ -15,107 +15,103 @@ const services = [
       },
       {
         paragrafo:
-          "A observação, ouvindo os pacientes por um número crescente de pesquisadores, médicos, terapeutas e entusiastas, destaca a ligação intrínseca entre cada doença e uma emoção chamada: ressentir biológico conflitual.",
+          "Essa abordagem destaca a ligação entre cada doença e uma emoção chamada: ressentir biológico conflitual.",
       },
     ],
     modal: [
       {
         paragrafo:
-          "A Biodecodage é uma abordagem terapêutica que busca compreender as origens emocionais e mentais por trás de sintomas físicos ou doenças.",
+          "A Biodecodage busca compreender as origens emocionais por trás de sintomas físicos ou doenças.",
       },
       {
         paragrafo:
-          "Segundo essa abordagem, o corpo humano é um reflexo das nossas emoções, pensamentos e experiências passadas, e quando reprimimos ou ignoramos essas emoções e experiências, elas podem se manifestar como sintomas físicos ou doenças.",
+          "Quando emoções são ignoradas, elas podem se manifestar fisicamente como sintomas ou doenças.",
       },
       {
         paragrafo:
-          "A Biodecodage utiliza a linguagem do corpo, como sintomas e dores, para identificar essas emoções e experiências reprimidas, e ajudar o indivíduo a reconhecer e liberar essas emoções, a fim de promover o bem-estar emocional e físico.",
+          "A técnica utiliza a linguagem do corpo para identificar essas emoções reprimidas e promover bem-estar.",
       },
       {
         paragrafo:
-          "Os terapeutas de Biodecodage trabalham com o indivíduo para identificar a causa raiz dos sintomas físicos ou emocionais e para explorar as emoções e crenças subjacentes que podem estar contribuindo para o problema. Eles utilizam técnicas terapêuticas para ajudar o indivíduo a liberar essas emoções reprimidas, para que possam experimentar um estado mais equilibrado e saudável.",
+          "Terapeutas ajudam o paciente a liberar essas emoções para alcançar equilíbrio físico e emocional.",
       },
       {
         paragrafo:
-          "A Biodecodage é uma abordagem holística que trata o indivíduo como um todo, reconhecendo que o corpo, mente e espírito estão todos interligados. É uma abordagem complementar que pode ser utilizada juntamente com outros tratamentos médicos e terapêuticos convencionais.",
-      },
-      {
-        paragrafo:
-          "Se você está procurando por uma abordagem terapêutica que pode ajudar a identificar e liberar emoções reprimidas e promover o bem-estar emocional e físico, a Biodecodage pode ser uma opção útil a ser considerada..",
+          "É uma abordagem holística que pode ser usada junto com tratamentos médicos convencionais.",
       },
     ],
   },
   {
     id: 2,
-    nome: "psych-k®",
+    nome: "Psych-K®",
     img: psych,
     descricao: [
       {
         paragrafo:
-          "Técnica americana, que tem função identificar as crenças limitantes no subconsciente e transformá-las.",
+          "Técnica americana que identifica e transforma crenças limitantes no subconsciente.",
       },
       {
         paragrafo:
-          "Permite acessar o inconsciente através de posturas e testes cinesiológicos.",
+          "Acesso ao inconsciente por meio de posturas e testes cinesiológicos.",
       },
     ],
     modal: [
       {
         paragrafo:
-          "O Psych-k® é uma técnica terapêutica que ajuda a reprogramar crenças limitantes e padrões de comportamento negativos em nossa mente subconsciente.",
+          "O Psych-K® ajuda a reprogramar padrões negativos no subconsciente.",
       },
       {
         paragrafo:
-          "Desenvolvida por Robert Williams na década de 1980, o Psych-k® utiliza uma combinação de técnicas de PNL (Programação Neurolinguística), cinesiologia e psicologia para ajudar as pessoas a mudarem suas crenças e pensamentos subconscientes.",
+          "Combina PNL, cinesiologia e psicologia para mudar crenças e pensamentos.",
       },
       {
-        paragrafo: `O processo envolve uma comunicação direta com o subconsciente, através de uma técnica chamada "balanço muscular" ou "teste muscular". Durante o processo, o indivíduo é guiado pelo terapeuta para identificar crenças limitantes e padrões de pensamento negativos, e então substituí-los por novas crenças e padrões mais positivos e capacitantes.`,
+        paragrafo:
+          "Usa testes musculares para identificar crenças limitantes e substituí-las.",
       },
       {
-        paragrafo: `O Psych-k® pode ser utilizado para tratar uma ampla variedade de problemas, como traumas emocionais, ansiedade, depressão, fobias, crenças limitantes relacionadas a dinheiro, relacionamentos, saúde, sucesso, entre outros.`,
+        paragrafo:
+          "Pode tratar ansiedade, traumas, crenças limitantes sobre dinheiro, saúde, sucesso etc.",
       },
       {
-        paragrafo: `A técnica é geralmente considerada segura e não invasiva, e muitas pessoas relatam mudanças positivas significativas em sua vida após uma sessão de Psych-K®.`,
-      },
-      {
-        paragrafo: `Em resumo, o Psych-K® é uma técnica terapêutica que ajuda as pessoas a transformarem suas crenças e pensamentos subconscientes, a fim de melhorar sua saúde mental e emocional, e alcançar uma vida mais feliz e satisfatória.`,
+        paragrafo:
+          "É considerada uma técnica segura, não invasiva e altamente transformadora.",
       },
     ],
   },
   {
     id: 3,
-    nome: "microfisioterapia / terapia manual evolutiva(TME)",
+    nome: "Microfisioterapia / TME",
     img: micro,
     descricao: [
       {
         paragrafo:
-          "Técnica francesa, que tem função de restaurar a vitalidade dos tecidos do corpo que foram afetados por traumas, seja uma torção, infecção por vírus ou um choque emocional.",
+          "Técnica francesa que restaura a vitalidade dos tecidos afetados por traumas ou emoções.",
       },
       {
         paragrafo:
-          "Permite ao organismo limpar as informações negativas que guardou na memória corporal por tantos anos.",
+          "Ajuda o corpo a limpar memórias negativas acumuladas nos tecidos.",
       },
     ],
     modal: [
       {
         paragrafo:
-          "A Microfisioterapia/TME é uma técnica de terapia manual que tem como objetivo identificar e tratar os traumas emocionais e físicos que ficaram registrados nas células do corpo humano. Desenvolvida na França, na década de 1980, por Patrice Benini e Daniel Grosjean, a técnica é baseada na ideia de que o corpo humano é capaz de guardar memórias de traumas sofridos ao longo da vida.",
+          "Identifica e trata traumas emocionais e físicos registrados nas células do corpo.",
       },
       {
         paragrafo:
-          "Esses traumas podem ser físicos, como uma lesão ou um acidente, ou emocionais, como um trauma psicológico ou uma situação de estresse intenso. A Microfisioterapia busca identificar esses traumas por meio de toques sutis em diferentes partes do corpo, que estimulam a reação do organismo e ajudam a liberar as memórias de traumas.",
+          "Utiliza toques sutis para estimular a reação do organismo e liberar essas memórias.",
       },
       {
         paragrafo:
-          "O terapeuta de Microfisioterapia/TME realiza um mapeamento do corpo do paciente, identificando as áreas que apresentam desequilíbrios ou bloqueios corporais. A partir dessa análise, são feitas sessões de toques suaves e específicos, que visam estimular a capacidade de autorregulação do corpo e ajudar a liberar as memórias de traumas.",
+          "O terapeuta mapeia o corpo para encontrar bloqueios e ajudar na autorregulação.",
       },
       {
         paragrafo:
-          "A Microfisioterapia/TME pode ser utilizada no tratamento de uma ampla variedade de problemas de saúde, como dores crônicas, distúrbios do sono, ansiedade, depressão, alergias, problemas digestivos, entre outros. A técnica é indicada para pessoas de todas as idades e pode ser usada como terapia complementar a outros tratamentos médicos.",
+          "Indicado para problemas como dores, insônia, ansiedade, alergias e outros.",
       },
       {
         paragrafo:
-          "É importante ressaltar que a Microfisioterapia/TME não é uma técnica invasiva e não utiliza medicamentos. Ela busca trabalhar com o próprio potencial de autorregulação do corpo humano, ajudando a restabelecer o equilíbrio energético e emocional. Seu principal objetivo é ajudar o paciente a reconhecer e liberar os traumas que estão afetando sua saúde e qualidade de vida.",
+          "É não invasiva, sem medicamentos, e promove equilíbrio físico e emocional.",
       },
     ],
   },
@@ -127,36 +123,34 @@ export default function Services({
   setShowModal: ({ type, info }: { type: string; info: any }) => void;
 }) {
   return (
-    <div
+    <section
       id="tecnica"
-      className="max-md:max-w-[90vw] max-md:px-0 px-10 h-full w-full flex flex-col items-center font-manroge gap-14 py-6 "
+      className="px-10 max-md:px-4 w-full flex flex-col items-center font-manroge gap-14 py-10"
     >
-      <h1 className="max-md:text-3xl text-6xl font-bold text-center">
+      <h1 className="text-6xl max-md:text-3xl font-bold text-center">
         Técnicas Que Utilizamos
       </h1>
-      <p className="max-md:text-xl text-3xl font-base text-gray text-center">
-        O nosso trabalho é integrar o maior número de técnicas possíveis na
-        consulta para maximizar os resultados com o menor número de sessões
-        possíveis.
+      <p className="text-3xl max-md:text-xl text-gray text-center">
+        Integramos diversas técnicas em cada sessão para maximizar os resultados
+        com o menor número de atendimentos possível.
       </p>
-      <div className="max-md:overflow-y-auto max-md:p-2 max-md:justify-normal w-full flex justify-evenly items-center gap-8 h-[40rem]">
-        {services.map(({ nome, img, descricao, modal }, key) => {
-          return (
-            <div
-              key={key}
-              className="max-md:min-w-[80%] max-md:shadow-none w-80 h-full border-t-4 border-t-blue border-solid shadow-black shadow-lg rounded-b-3xl flex flex-col items-center justify-between !py-2 !px-5 font-manroge"
-            >
-              <Card
-                name={nome}
-                img={img}
-                description={descricao}
-                modal={modal}
-                setShowModal={setShowModal}
-              />
-            </div>
-          );
-        })}
+
+      <div className="flex w-full h-[40rem] gap-8 justify-evenly items-start max-md:flex-nowrap max-md:overflow-x-auto max-md:pr-4">
+        {services.map(({ id, nome, img, descricao, modal }) => (
+          <div
+            key={id}
+            className="w-80 min-w-[80%] max-md:min-w-[85%] h-full border-t-4 border-t-blue border-solid shadow-black shadow-lg rounded-b-3xl flex flex-col items-center justify-between px-5 py-4"
+          >
+            <Card
+              name={nome}
+              img={img}
+              description={descricao}
+              modal={modal}
+              setShowModal={setShowModal}
+            />
+          </div>
+        ))}
       </div>
-    </div>
+    </section>
   );
 }

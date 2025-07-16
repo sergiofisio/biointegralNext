@@ -1,13 +1,14 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import Apresentation from "../components/apresentation";
 import KnowUs from "../components/knowus";
 import Services from "../components/services";
 import Maps from "../components/maps";
 import Footer from "../components/footer";
-import ModalFooter from "../components/modals/modalFooter";
-import ModalService from "../components/modals/modalCards";
 import Voltar from "../components/voltar";
+
+const ModalFooter = lazy(() => import("../components/modals/modalFooter"));
+const ModalService = lazy(() => import("../components/modals/modalCards"));
 
 export default function Home() {
   const [showModal, setShowModal] = useState({
@@ -18,7 +19,6 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Define a altura em que o botão deve aparecer
       const showAfterHeight = 500;
       const currentScrollPosition = window.scrollY;
 
@@ -44,17 +44,19 @@ export default function Home() {
         <Footer setShowModal={setShowModal} />
         <Voltar showBackButton={showBackButton} />
       </main>
-      {showModal.type === "contato" && (
-        <ModalFooter setShowModal={setShowModal} />
-      )}
-      {showModal.type === "servico" && (
-        <ModalService
-          name={showModal.info.name}
-          img={showModal.info.img}
-          paragraphs={showModal.info.modal}
-          setShowModal={setShowModal}
-        />
-      )}
+      <Suspense fallback={<div>Carregando...</div>}>
+        {showModal.type === "contato" && (
+          <ModalFooter setShowModal={setShowModal} />
+        )}
+        {showModal.type === "servico" && (
+          <ModalService
+            name={showModal.info.name}
+            img={showModal.info.img}
+            paragraphs={showModal.info.modal}
+            setShowModal={setShowModal}
+          />
+        )}
+      </Suspense>
     </>
   );
 }
