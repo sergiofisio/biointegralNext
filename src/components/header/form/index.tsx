@@ -3,7 +3,6 @@ import logo from "../../../assets/site/LOGO.svg";
 
 export default function HeaderForm() {
   const location = useLocation();
-  console.log({ location });
 
   return (
     <>
