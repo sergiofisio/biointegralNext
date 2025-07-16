@@ -8,19 +8,25 @@ import LivroPage from "./pages/livro";
 
 export default function App() {
   const location = useLocation();
-  const hostname = window.location.hostname;
+  // const hostname = window.location.hostname;
 
   // Se estiver no subdomínio "livro", mostra uma página separada
-  if (hostname.startsWith("livro.")) {
-    return <LivroPage />;
-  }
+  // if (hostname.startsWith("livro.")) {
+  //   return <LivroPage />;
+  // }
   return (
     <>
-      {location.pathname !== "/" ? <HeaderForm /> : <Header />}
+      {location.pathname === "/livros" ? (
+        ""
+      ) : location.pathname !== "/" ? (
+        <HeaderForm />
+      ) : (
+        <Header />
+      )}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/satisfacao" element={<Satisfacao />} />
-        <Route path="/livro" element={<LivroPage />} />
+        <Route path="/livros" element={<LivroPage />} />
         {/* Add more routes as needed */}
       </Routes>
     </>
