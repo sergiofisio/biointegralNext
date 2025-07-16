@@ -20,7 +20,7 @@ export default function Card({
           src={img}
           alt={`Ícone representando a técnica ${name}`}
           loading="lazy"
-          className="w-20 h-20 object-contain"
+          className="w-40 h-40 object-contain"
         />
       </div>
 
@@ -37,7 +37,7 @@ export default function Card({
 
       <Button
         text="Saiba mais"
-        className="mt-6 px-4 py-2 rounded-3xl bg-blue text-white hover:text-blue hover:bg-white border-blue transition-all duration-300"
+        className="mt-6 !px-4 !py-2 rounded-3xl bg-blue text-white font-bold hover:text-blue hover:bg-white border-blue transition-all duration-300"
         onClick={() =>
           setShowModal({
             type: "servico",

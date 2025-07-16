@@ -139,7 +139,7 @@ export default function Services({
         {services.map(({ id, nome, img, descricao, modal }) => (
           <div
             key={id}
-            className="w-80 min-w-[80%] max-md:min-w-[85%] h-full border-t-4 border-t-blue border-solid shadow-black shadow-lg rounded-b-3xl flex flex-col items-center justify-between px-5 py-4"
+            className="w-80 max-md:min-w-[85%] h-full border-t-4 border-t-blue border-solid shadow-black shadow-lg rounded-b-3xl flex flex-col items-center justify-between !px-5 !py-4"
           >
             <Card
               name={nome}
