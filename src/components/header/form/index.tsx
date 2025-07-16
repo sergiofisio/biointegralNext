@@ -7,7 +7,7 @@ export default function HeaderForm() {
 
   return (
     <>
-      {location.pathname === "/livros" ? (
+      {location.pathname === "/livros/" ? (
         ""
       ) : (
         <header className="flex items-center justify-around bg-white h-full w-full">
