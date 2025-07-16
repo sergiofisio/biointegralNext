@@ -16,13 +16,7 @@ export default function App() {
   // }
   return (
     <>
-      {location.pathname === "/livros" ? (
-        ""
-      ) : location.pathname !== "/" ? (
-        <HeaderForm />
-      ) : (
-        <Header />
-      )}
+      {location.pathname !== "/" ? <HeaderForm /> : <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/satisfacao" element={<Satisfacao />} />
