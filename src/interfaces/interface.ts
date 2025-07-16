@@ -51,3 +51,24 @@ export interface local {
   };
   maps: string;
 }
+
+export interface livro {
+  id: string;
+  nome: string;
+  subtitulo: string;
+  descricao: {
+    id: string;
+    paragrafo: string;
+  }[];
+  img: string;
+  preco: {
+    id: string;
+    ebook: boolean;
+    preco: number;
+  }[];
+  links: {
+    id: string;
+    nome: string;
+    url: string;
+  }[];
+}
