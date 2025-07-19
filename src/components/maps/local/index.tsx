@@ -22,9 +22,7 @@ export default function Local({
                 <iframe
                   title={`Mapa de ${address.local}`}
                   className="max-md:w-80 max-md:h-80 w-96 h-96 rounded-3xl shadow-blue shadow-sm"
-                  src={`https://www.google.com/maps/embed/v1/place?key=${
-                    import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-                  }&q=${coordinates.lat},${coordinates.lng}`}
+                  src={`https://maps.google.com/maps?q=${coordinates.lat},${coordinates.lng}&z=15&output=embed`}
                   allowFullScreen={true}
                   loading="lazy"
                 ></iframe>
