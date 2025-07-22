@@ -30,10 +30,12 @@ export default function SatisfacaoForm() {
     e.stopPropagation();
 
     const isValid =
-      verifyField(name, setName) ||
-      verifyField(email, setEmail) ||
-      verifyField(terapist, setTerapist) ||
+      verifyField(name, setName) &&
+      verifyField(email, setEmail) &&
+      verifyField(terapist, setTerapist) &&
       verifyField(grade, setGrade);
+
+    console.log({ isValid });
 
     if (!isValid) {
       showToast({
