@@ -16,7 +16,7 @@ export default function Button({
   return (
     <button
       className={`${className} text-white font-poppins rounded-3xl text-2xl transition-all duration-500 ease-in-out border-2  border-solid md:text-xl ${
-        disabled
+        !disabled
           ? "cursor-not-allowed bg-gray-500 border-gray-500"
           : `cursor-pointer bg-blue ${tailwindProperty("hover", [
               "text-blue",
@@ -25,10 +25,10 @@ export default function Button({
       }`}
       type={string || "button"}
       onClick={onClick}
-      disabled={disabled}
+      disabled={!disabled}
     >
-      {text === "Voltar" && !disabled && "⋘ "}
-      {disabled ? <PulseLoader color="white" /> : text}
+      {text === "Voltar" && disabled && "⋘ "}
+      {!disabled ? <PulseLoader color="white" /> : text}
       {text === "Próximo" && !disabled && " ⋙"}
     </button>
   );

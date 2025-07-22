@@ -10,6 +10,7 @@ export default function SatisfacaoForm() {
   const [grade, setGrade] = useState({ value: "", error: false });
   const [comment, setComment] = useState({ value: "", error: false });
   const [testmonial, setTestmonial] = useState({ value: "", error: false });
+  const [send, setSend] = useState(true);
 
   const verifyField = (
     field: { value: string; error: boolean },
@@ -29,9 +30,9 @@ export default function SatisfacaoForm() {
     e.stopPropagation();
 
     const isValid =
-      verifyField(name, setName) &&
-      verifyField(email, setEmail) &&
-      verifyField(terapist, setTerapist) &&
+      verifyField(name, setName) ||
+      verifyField(email, setEmail) ||
+      verifyField(terapist, setTerapist) ||
       verifyField(grade, setGrade);
 
     if (!isValid) {
@@ -46,8 +47,8 @@ export default function SatisfacaoForm() {
 
     try {
       await emailjs.send(
-        process.env.VITE_EMAILJS_SERVICE!,
-        process.env.VITE_EMAILJS_TEMPLATE_SATISFACAO!,
+        import.meta.env.VITE_EMAILJS_SERVICE!,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_SATISFACAO!,
         {
           nomeCompleto: name.value,
           email: email.value,
@@ -56,7 +57,7 @@ export default function SatisfacaoForm() {
           comentario: comment.value,
           depoimento: testmonial.value,
         },
-        process.env.VITE_EMAILJS_USER!
+        import.meta.env.VITE_EMAILJS_USER!
       );
 
       showToast({
@@ -65,8 +66,9 @@ export default function SatisfacaoForm() {
         position: "top-right",
         timeout: 3000,
       });
+      console.log("enviado");
 
-      // resetar todos os campos
+      setSend(true);
       setName({ value: "", error: false });
       setEmail({ value: "", error: false });
       setTerapist({ value: "", error: false });
@@ -112,6 +114,7 @@ export default function SatisfacaoForm() {
               type="text"
               value={name.value}
               onChange={(e) => setName({ ...name, value: e.target.value })}
+              onFocus={() => setName({ ...name, error: false })}
               className={`border-2 border-solid rounded-3xl !px-3 h-10 w-full ${
                 name.error ? "border-red-500" : "border-black"
               }`}
@@ -127,6 +130,9 @@ export default function SatisfacaoForm() {
               type="email"
               value={email.value}
               onChange={(e) => setEmail({ ...email, value: e.target.value })}
+              onFocus={() => {
+                setEmail({ ...email, error: false });
+              }}
               className={`border-2 border-solid rounded-3xl !px-3 h-10 w-full ${
                 email.error ? "border-red-500" : "border-black"
               }`}
@@ -143,6 +149,7 @@ export default function SatisfacaoForm() {
               onChange={(e) =>
                 setTerapist({ ...terapist, value: e.target.value })
               }
+              onFocus={() => setTerapist({ ...terapist, error: false })}
               className={`${
                 terapist.error ? "border-red-500" : "border-black"
               }  flex border-black border-2 border-solid rounded-3xl max-h-full h-full !px-3 max-md:h-16`}
@@ -161,6 +168,7 @@ export default function SatisfacaoForm() {
             <select
               value={grade.value}
               onChange={(e) => setGrade({ ...grade, value: e.target.value })}
+              onFocus={() => setGrade({ ...grade, error: false })}
               className={`${
                 grade.error ? "border-red-500" : "border-black"
               }  flex border-black border-2 border-solid rounded-3xl max-h-full h-full !px-3 max-md:h-16`}
@@ -214,6 +222,7 @@ export default function SatisfacaoForm() {
           <Button
             type="submit"
             text="Enviar"
+            disabled={send}
             className="w-full bg-blue hover:text-blue hover:bg-white border-blue"
           />
         </div>
