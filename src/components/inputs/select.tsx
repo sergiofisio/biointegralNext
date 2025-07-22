@@ -1,21 +1,19 @@
 import React from "react";
+import type { FormField } from "../../interfaces/interface";
 
 export default function InputSelect({
-  key,
   className,
   question,
   set,
   onFocus,
 }: {
-  key?: number;
   className: string;
-  question: any;
-  set?: React.Dispatch<React.SetStateAction<any>>;
-  onFocus?: (e: any) => void;
-  onChange?: (e: any) => void;
+  question: FormField;
+  set?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onFocus?: (e: React.FocusEvent<HTMLSelectElement>) => void;
 }) {
   return (
-    <div key={key} className={className}>
+    <div className={className}>
       <label className="uppercase w-fit">{question.question}</label>
       <select
         name="question"
@@ -28,7 +26,7 @@ export default function InputSelect({
         onFocus={onFocus}
         value={question.value}
       >
-        {question.options.map((option: any, key: number) => {
+        {question.options?.map((option: any, key: number) => {
           return (
             <option className="text-black" key={key} value={option}>
               {option}
