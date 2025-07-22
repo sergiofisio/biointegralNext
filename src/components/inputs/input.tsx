@@ -66,7 +66,7 @@ export default function Input({
           } ${disabled && "bg-gray-500 bg-opacity-20 cursor-not-allowed"}`}
           onChange={autoResize}
           value={question.value}
-          onFocus={onFocus}
+          // onFocus={onFocus}
           disabled={disabled || false}
         />
       )}
