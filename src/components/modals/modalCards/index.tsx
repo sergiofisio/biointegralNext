@@ -17,7 +17,7 @@ export default function ModalService({
           onClick={() =>
             setShowModal({ type: "", info: { name: "", img: "", modal: [] } })
           }
-          className="w-11 h-11 text-3xl justify-center rounded-[100%] border border-transparent shadow-sm p-1 bg-blue font-medium text-white hover:bg-white hover:text-blue transition-all duration-500 ease-in-out absolute right-2 top-2 "
+          className="w-11 h-11 cursor-pointer text-3xl justify-center rounded-[100%] border border-transparent shadow-sm p-1 bg-blue font-medium text-white transition-all duration-500 ease-in-out absolute right-2 top-2 hover:text-blue hover:bg-white hover:border-blue"
         >
           X
         </button>
@@ -32,11 +32,10 @@ export default function ModalService({
               {name}
             </h3>
           </div>
-          <div className="overflow-y-auto h-4/6 flex flex-col gap-3 p-4">
+          <div className="overflow-y-auto h-4/6 flex flex-col gap-3 p-4 indent-8">
             {paragraphs.map((paragraph: any, key: number) => {
               return (
-                <p key={key} className="text-xl text-justify">
-                  {paragraph.paragrafo}
+                <p key={key} className="text-xl text-justify" dangerouslySetInnerHTML={{ __html: paragraph.paragrafo }}>
                 </p>
               );
             })}
