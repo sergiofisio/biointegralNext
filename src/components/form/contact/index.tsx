@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { showToast } from "../../../functions/toast";
 import InputContact from "../../inputs/contact";
 import Button from "../../button";
@@ -31,35 +31,34 @@ export default function ContactForm({
     phone: false,
     message: false,
   });
-  const [disabled, setDisabled] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    const hasEmptyField = Object.values(form).some(
+      (value) => value.trim() === ""
+    );
+
+    setDisabled(!hasEmptyField);
+  }, [form]); 
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     e.stopPropagation();
     try {
-      setDisabled(true);
+      setDisabled(false); 
       let tempError = { ...hasError };
-      let hasEmptyField = false;
+      let hasValidationError = false;
 
       for (const fieldKey of Object.keys(form) as Array<keyof FormField>) {
         if (form[fieldKey].trim() === "") {
           tempError = { ...tempError, [fieldKey]: true };
-          hasEmptyField = true;
-        }
-
-        if (
-          fieldKey === "phone" &&
-          form.phone.includes("_") &&
-          form.phone.replace(/[^0-9]/g, "").length < 10
-        ) {
-          tempError = { ...tempError, phone: true };
-          hasEmptyField = true;
+          hasValidationError = true;
         }
       }
 
       sethasError(tempError);
 
-      if (hasEmptyField) {
+      if (hasValidationError) {
         throw new Error("Preencha todos os campos corretamente.");
       }
 
@@ -94,11 +93,9 @@ export default function ContactForm({
         timeout: 3000,
       });
       setShowModal({ type: "", info: { name: "", img: "", modal: [] } });
-      setDisabled(false);
     } catch (error: any) {
       console.error({ error });
 
-      setDisabled(false);
       showToast({
         message: error.message || "Ocorreu um erro ao enviar a mensagem.",
         type: "error",
@@ -124,7 +121,6 @@ export default function ContactForm({
           placeholder="Digite seu nome"
           value={form.name}
           onChange={(e) => {
-            console.log(e.target.value);
             setForm({ ...form, name: e.target.value });
           }}
           error={hasError.name}
@@ -163,7 +159,7 @@ export default function ContactForm({
       </div>
       <Button
         text="Enviar"
-        onClick={handleSubmit} // O onClick do botão deve chamar o handleSubmit
+        type="submit"
         className="w-1/2 border-blue md:h-fit"
         disabled={disabled}
       />

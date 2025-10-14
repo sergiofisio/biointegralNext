@@ -72,3 +72,14 @@ export interface livro {
     url: string;
   }[];
 }
+
+export interface ServiceInfo {
+  name: string;
+  img: string;
+  modal: { paragrafo: string }[];
+}
+
+export interface ModalState {
+  type: string;
+  info: ServiceInfo;
+}

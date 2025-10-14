@@ -27,12 +27,12 @@ export default function KnowUs() {
       </div>
       <div className="max-md:flex-col flex items-center justify-evenly w-full">
         <Us
-          image={sergio}
+          image={fresia}
           name="Dra. Fresia Jorge de Sá Bastos"
           register="Crefito 3 - 118.225-F"
         />
         <Us
-          image={fresia}
+          image={sergio}
           name="Dr. Sergio Augusto Moreira Bastos Jr."
           register="Crefito 3 - 111.132-F"
         />

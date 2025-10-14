@@ -1,3 +1,4 @@
+import type { ModalState } from "../../../interfaces/interface";
 import Button from "../../button";
 
 export default function Card({
@@ -11,7 +12,7 @@ export default function Card({
   img: string;
   description: { paragrafo: string }[];
   modal: { paragrafo: string }[];
-  setShowModal: ({ type, info }: { type: string; info: any }) => void;
+  setShowModal: (state: ModalState) => void;
 }) {
   return (
     <>
@@ -25,8 +26,7 @@ export default function Card({
       </div>
 
       <div className="flex flex-col justify-evenly gap-4 h-full mt-4">
-        <h2 className="text-xl font-bold text-center uppercase h-20">{name}</h2>
-        <div className="flex flex-col gap-2 w-full h-full">
+      <h2 className="text-xl font-bold text-center uppercase min-h-20 flex items-center justify-center">{name}</h2>        <div className="flex flex-col gap-2 w-full h-full">
           {description.map(({ paragrafo }, key) => (
             <p key={key} className="text-base text-center">
               {paragrafo}
@@ -44,6 +44,7 @@ export default function Card({
             info: { name, img, modal },
           })
         }
+        disabled={true}
       />
     </>
   );

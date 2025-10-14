@@ -25,9 +25,10 @@ export default function Footer({ setShowModal }: { setShowModal: any }) {
           de nossas unidades ou envie sua mensagem pelo formulário abaixo.
         </h2>
         <Button
-          className="border-white w-52 h-20 md:h-fit"
+          className="border-white w-52 h-20 max-md:h-fit"
           text="Contato"
           onClick={() => setShowModal({ type: "contato" })}
+          disabled={true}
         />
 
         <div className="flex justify-center w-full">
