@@ -6,12 +6,13 @@ import Services from "../components/services";
 import Maps from "../components/maps";
 import Footer from "../components/footer";
 import Voltar from "../components/voltar";
+import type { ModalState } from "../interfaces/interface";
 
 const ModalFooter = lazy(() => import("../components/modals/modalFooter"));
 const ModalService = lazy(() => import("../components/modals/modalCards"));
 
 export default function Home() {
-  const [showModal, setShowModal] = useState({
+  const [showModal, setShowModal] = useState<ModalState>({
     type: "",
     info: { name: "", img: "", modal: [] },
   });
@@ -52,7 +53,7 @@ export default function Home() {
           <ModalService
             name={showModal.info.name}
             img={showModal.info.img}
-            paragraphs={showModal.info.modal}
+            paragraphs={showModal.info.modal.map(p => p.paragrafo)}
             setShowModal={setShowModal}
           />
         )}

@@ -9,6 +9,8 @@ export default function ModalService({
   paragraphs: string[];
   setShowModal: ({ type, info }: { type: string; info: any }) => void;
 }) {
+  console.log({paragraphs});
+  console.log({name});
   return (
     <div className="fixed right-0 top-0 z-10 overflow-y-auto w-full h-full flex items-center justify-center bg-blue bg-opacity-50">
       <div className="bg-white w-[50%] h-[95%] rounded-3xl text-left overflow-hidden shadow-xl transform transition-all relative flex flex-col items-center md:w-11/12">
@@ -35,7 +37,7 @@ export default function ModalService({
           <div className="overflow-y-auto h-4/6 flex flex-col gap-3 p-4 indent-8">
             {paragraphs.map((paragraph: any, key: number) => {
               return (
-                <p key={key} className="text-xl text-justify" dangerouslySetInnerHTML={{ __html: paragraph.paragrafo }}>
+                <p key={key} className="text-xl text-justify" dangerouslySetInnerHTML={{ __html: paragraph }}>
                 </p>
               );
             })}
