@@ -138,7 +138,7 @@ export default function ContactForm({
         <InputContact
           label="Telefone"
           type="text"
-          mask="(99) 99999-9999"
+          mask="(__) _____-____"
           placeholder="Digite seu Telefone"
           value={form.phone}
           onChange={(e: any) => {

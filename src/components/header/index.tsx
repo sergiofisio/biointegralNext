@@ -5,7 +5,7 @@ import logo from "../../assets/site/LOGO.svg";
 
 const nav = [
   {
-    name: "inicio",
+    name: "início",
     href: "#inicio",
   },
   {
@@ -27,18 +27,24 @@ const nav = [
 ];
 
 export default function Header() {
-  const isMobile = window.innerWidth < 640; // Check if the screen width is less than 640px
-
   return (
     <header
       id="inicio"
-      className="flex items-center justify-around h-40 w-full"
+      className="flex items-center justify-between w-full h-24 !px-8 sm:px-12"
     >
-      <img src={logo} alt="Logo Biointegral Saúde" className="h-20" />
-      {isMobile ? <Hamburger nav={nav} /> : ""}
-      <nav className="hidden sm:block">
-        <Navbar nav={nav} />
-      </nav>
+      <img
+        src={logo}
+        alt="Logo Biointegral Saúde"
+        className="h-16 w-auto sm:h-20"
+      />
+      <div className="flex items-center gap-4">
+        <div className="sm:hidden">
+          <Hamburger nav={nav} />
+        </div>
+        <nav className="hidden sm:block">
+          <Navbar nav={nav} />
+        </nav>
+      </div>
     </header>
   );
 }

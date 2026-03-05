@@ -6,11 +6,11 @@ export default function KnowUs() {
   return (
     <div
       id="quem"
-      className="max-md:justify-around max-md:items-center max-md:bg-none h-[50rem] items-center p-4 flex flex-col w-full !px-14"
+      className="max-md:justify-around max-md:items-center max-md:bg-none min-h-[40rem] items-center p-4 flex flex-col w-full !px-4 md:!px-14 gap-10"
     >
-      <h1 className="max-md:text-3xl text-6xl flex justify-around text-center font-bold">
-        Conheça o Dr. Sergio e a Dra. Fresia
-      </h1>
+      <h2 className="max-md:text-3xl text-5xl flex justify-around text-center font-bold">
+        Quem somos – Dr. Sergio e Dra. Fresia
+      </h2>
       <div className="max-md:hidden text-4xl text-gray font-normal flex flex-col leading-[2.8rem] gap-8 justify-around bg-none h-96">
         <p>
           Fisioterapeutas formados pelas Faculdades Integradas Pitágoras de

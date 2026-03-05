@@ -18,6 +18,7 @@
     "framer-motion": "^12.23.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-helmet-async": "^3.0.0",
     "react-imask": "^7.6.1",
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^7.6.3",

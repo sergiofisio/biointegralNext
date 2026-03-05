@@ -5,7 +5,7 @@ export default function Apresentation() {
     <section
       className={`h-[50rem] flex bg-cover bg-no-repeat bg-right w-full bg-[url(/src/assets/site/capa.svg)]`}
     >
-      <div className="!px-2 flex flex-col items-center h-full bg-gradient-to-r from-white from-75% w-2/4 justify-between font-main text-center max-md:w-full max-md:justify-around max-md:items-center max-md:bg-white max-md:bg-opacity-30 max-md:gap-0 max-md:p-0">
+      <div className="!px-4 flex flex-col items-center h-full bg-gradient-to-r from-white from-75% w-2/4 justify-between font-main text-center max-md:w-full max-md:justify-around max-md:items-center max-md:bg-white max-md:bg-opacity-30 max-md:gap-0 max-md:p-0">
         <h1 className="text-[clamp(2rem,8vw,6rem)] max-md:w-full max-md:text-3xl text-center">
           BIOINTEGRAL SAÚDE
         </h1>
