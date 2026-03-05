@@ -2,10 +2,12 @@ import logo from "../../assets/site/footer/LOGO-BRANCO.svg";
 import livro from "../../assets/livro/capa.jpg.svg";
 import CardLivro from "../../components/livro";
 import ModalLivro from "../../components/modals/modalLivro";
+import SeoHead from "../../components/seo/SeoHead";
 import sergio from "../../assets/site/fotoQuemSomos/sergio.svg";
 import fresia from "../../assets/site/fotoQuemSomos/fresia.svg";
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { SEO_BASE_URL } from "../../config/seo";
 // import axios from "./../../services/hotmart";
 
 const FAQ = [
@@ -146,11 +148,56 @@ export default function LivroPage() {
     []
   );
 
+  const jsonLd = useMemo(
+    () => [
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Início", item: SEO_BASE_URL },
+          { "@type": "ListItem", position: 2, name: "Livros", item: `${SEO_BASE_URL}/livros` },
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: FAQ.map((f) => ({
+          "@type": "Question",
+          name: f.question,
+          acceptedAnswer: { "@type": "Answer", text: f.answer },
+        })),
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Book",
+        name: "Emoções – Uma perspectiva biológica do sentir",
+        description:
+          "Aprenda a identificar os sinais do seu corpo, entender o que suas emoções querem te dizer e dar os primeiros passos rumo à cura integral. Um guia completo com teoria, prática e exercícios.",
+        author: [
+          { "@type": "Person", name: "Sérgio Bastos" },
+          { "@type": "Person", name: "Frésia J. Sá Bastos" },
+        ],
+        publisher: { "@type": "Organization", name: "Biointegral Saúde" },
+      },
+    ],
+    [],
+  );
+
   return (
-    <main className="flex flex-col gap-6 items-center min-h-screen bg-black text-white">
-      <img src={logo} alt="Logo" className="w-96 mb-4" />
+    <>
+      <SeoHead
+        title="Livros – Emoções: uma perspectiva biológica do sentir"
+        description="Livro Emoções da Biointegral Saúde: guia para autoconhecimento, equilíbrio emocional e saúde integral. Ebook e físico disponíveis."
+        canonical="/livros"
+        keywords="livro emoções, biointegral, saúde emocional, microfisioterapia, autoconhecimento, biodecodage"
+        jsonLd={jsonLd}
+      />
+      <main className="flex flex-col gap-6 items-center min-h-screen bg-black text-white">
+      <img src={logo} alt="Logo Biointegral Saúde" className="w-80 md:w-96 mb-4" loading="lazy" />
       <section className="w-full flex flex-col justify-center items-center mx-auto p-6 bg-gray-900">
-        <h1 className="text-3xl font-bold mb-6">Livros</h1>
+        <h1 className="text-3xl font-bold mb-6">
+          Livro Emoções – Uma perspectiva biológica do sentir
+        </h1>
         <div className="flex flex-wrap items-center justify-center-safe !p-4 gap-6">
           {livros.map((livro) => (
             <CardLivro
@@ -163,12 +210,17 @@ export default function LivroPage() {
         </div>
       </section>
       <section className="w-full flex flex-col justify-center items-center gap-5">
-        <h1 className="text-3xl font-bold">
+        <h2 className="text-3xl font-bold">
           CONHEÇA MELHOR QUEM CRIOU O CONTEÚDO
-        </h1>
+        </h2>
         <div className="border-[#ffed55] border-b-2 border-solid w-1/6"></div>
-        <div className="flex gap-6 w-1/2">
-          <img src={sergio} className="rounded-[100%] w-60 h-60" />
+        <div className="flex gap-6 w-full md:w-1/2 items-center justify-center">
+          <img
+            src={sergio}
+            className="rounded-[100%] w-40 h-40 md:w-60 md:h-60 object-cover"
+            alt="Foto do Dr. Sergio"
+            loading="lazy"
+          />
           <div className="flex flex-col items-start gap-10">
             <h2 className="flex flex-col items-center text-5xl">
               <strong>Frésia J. Sá Bastos</strong>&
@@ -183,7 +235,12 @@ export default function LivroPage() {
               público em forma de livro.
             </p>
           </div>
-          <img src={fresia} className="rounded-[100%] w-60 h-60" />
+          <img
+            src={fresia}
+            className="rounded-[100%] w-40 h-40 md:w-60 md:h-60 object-cover"
+            alt="Foto da Dra. Fresia"
+            loading="lazy"
+          />
         </div>
       </section>
       <section className="w-full flex flex-col justify-center items-center gap-6 p-10">
@@ -260,5 +317,6 @@ export default function LivroPage() {
         )}
       </>
     </main>
+    </>
   );
 }

@@ -6,6 +6,7 @@ import Services from "../components/services";
 import Maps from "../components/maps";
 import Footer from "../components/footer";
 import Voltar from "../components/voltar";
+import SeoHead from "../components/seo/SeoHead";
 import type { ModalState } from "../interfaces/interface";
 
 const ModalFooter = lazy(() => import("../components/modals/modalFooter"));
@@ -37,6 +38,12 @@ export default function Home() {
 
   return (
     <>
+      <SeoHead
+        title="Clínica integrativa em São Paulo e ABC"
+        description="Clínica integrativa em São Paulo e ABC especializada em Microfisioterapia, PSYCH-K® e Biodecodage, conduzida pelo Dr. Sergio e Dra. Fresia."
+        canonical="/"
+        keywords="biointegral saúde, microfisioterapia, psych-k, biodecodage, saúde integral, terapias complementares, bem-estar, saúde emocional, São Paulo, ABC"
+      />
       <main className="max-w-[100%] flex flex-col items-center overflow-y-hidden gap-10">
         <Apresentation />
         <KnowUs />

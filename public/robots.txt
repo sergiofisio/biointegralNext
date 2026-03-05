@@ -1,0 +1,7 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Disallow: /satisfacao
+
+# Sitemap (prioridade para indexação)
+Sitemap: https://www.biointegralsaude.com.br/sitemap.xml

@@ -1,4 +1,22 @@
+############################
+# Dependências / Builds
+############################
+node_modules
+.pnp
+.pnp.*
+
+# Next.js
+.next
+out
+next-env.d.ts
+
+# Outras builds
+dist
+dist-ssr
+
+############################
 # Logs
+############################
 logs
 *.log
 npm-debug.log*
@@ -7,19 +25,54 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
+############################
+# Ambiente / Configuração
+############################
 *.local
 
-*.env
+# Arquivos de ambiente (não versionar segredos)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
+############################
+# Ferramentas / Caches
+############################
+.turbo
+.vercel
+.eslintcache
+.stylelintcache
+.parcel-cache
+.webpack-cache
+.cache
 
-# Editor directories and files
+############################
+# Cobertura de testes
+############################
+coverage
+*.lcov
+
+############################
+# Editor / Sistema
+############################
+# VSCode
 .vscode/*
 !.vscode/extensions.json
+
+# JetBrains
 .idea
+
+# macOS
 .DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# VS / outros
 *.suo
 *.ntvs*
 *.njsproj

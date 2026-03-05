@@ -59,11 +59,11 @@ export default function Maps() {
   return (
     <div
       id="onde"
-      className="flex flex-col items-center font-main py-6 px-10 w-full gap-10"
+      className="flex flex-col items-center font-main py-6 px-4 md:px-10 w-full gap-10"
     >
-      <h1 className="max-md:text-3xl text-6xl font-bold text-center">
-        Locais de atendimento
-      </h1>
+      <h2 className="max-md:text-3xl text-6xl font-bold text-center">
+        Clínicas em São Paulo e ABC Paulista
+      </h2>
       <table className="max-md:flex-col flex items-center justify-center w-full gap-4">
         <tbody className="flex-col flex items-center justify-center gap-10 w-full ">
           {addresses.map(

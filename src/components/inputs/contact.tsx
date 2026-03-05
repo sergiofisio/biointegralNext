@@ -30,7 +30,7 @@ export default function InputContact({
 
   const maskRef = useMask({
     mask: mask ?? "",
-    replacement: { 9: /\d/ },
+    replacement: { _: /\d/ },
   });
 
   useEffect(() => {

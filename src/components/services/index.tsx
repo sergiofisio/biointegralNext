@@ -128,9 +128,9 @@ export default function Services({
       id="tecnica"
       className="px-10 max-md:px-4 w-full flex flex-col items-center font-manroge gap-14 py-10"
     >
-      <h1 className="text-6xl max-md:text-3xl font-bold text-center">
-        Técnicas Que Utilizamos
-      </h1>
+      <h2 className="text-6xl max-md:text-3xl font-bold text-center">
+        Técnicas integrativas que utilizamos
+      </h2>
       <p className="text-3xl max-md:text-xl text-gray text-center">
         Integramos diversas técnicas em cada sessão para maximizar os resultados
         com o menor número de atendimentos possível.

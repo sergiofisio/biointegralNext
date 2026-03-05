@@ -1,6 +1,7 @@
 import { useState } from "react";
-import hamburgerIcon from "../../../assets/site/nav/hamburguer.svg";
 import { Link } from "react-router-dom";
+import hamburgerIcon from "../../../assets/site/nav/hamburguer.svg";
+import { handleClick } from "../../../functions/functions";
 
 export default function Hamburger({
   nav,
@@ -11,17 +12,28 @@ export default function Hamburger({
 
   return (
     <>
-      <img src={hamburgerIcon} alt="icone menu mobile" />
+      <button
+        type="button"
+        aria-label="Abrir menu de navegação"
+        aria-expanded={open}
+        onClick={() => setOpen(prev => !prev)}
+        className="flex items-center justify-center w-10 h-10"
+      >
+        <img src={hamburgerIcon} alt="Ícone de menu" className="w-8 h-8" />
+      </button>
       <nav
-        className={`absolute top-0 right-0 bg-blue w-screen h-screen flex flex-col items-center gap-5 p-5 ${
+        className={`absolute top-0 right-0 z-20 bg-blue w-screen h-screen flex flex-col items-center gap-5 p-5 ${
           open ? "flex" : "hidden"
         }`}
+        aria-label="Navegação principal mobile"
       >
         <button
-          className="text-white w-10 h-10 border-white border-2 border-solid rounded-[100%] absolute top-2 right-2"
+          type="button"
+          className="text-white w-10 h-10 border-white border-2 border-solid rounded-full absolute top-2 right-2"
           onClick={() => {
             setOpen(false);
           }}
+          aria-label="Fechar menu"
         >
           X
         </button>
@@ -34,7 +46,10 @@ export default function Hamburger({
               <Link
                 key={item.name}
                 to={item.href}
-                onClick={() => setOpen(false)}
+                onClick={e => {
+                  handleClick(e, item.href);
+                  setOpen(false);
+                }}
               >
                 {item.name}
               </Link>
