@@ -48,6 +48,6 @@ jobs:
           port: 65002
           password: ${{ secrets.ftp_password }}
           local_path: './dist/*'
-          remote_path: '/domains/biointegralsaude.com.br/public_html/'
+          remote_path: 'domains/biointegralsaude.com.br/public_html/'
 
 
