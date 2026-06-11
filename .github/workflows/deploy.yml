@@ -25,7 +25,10 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Build estático (Next.js)
-        run: yarn build
+        env:
+          STATIC_EXPORT: "true"
+          NEXT_PUBLIC_CONTACT_API_URL: ${{ vars.CONTACT_API_URL }}
+        run: yarn build:static
 
       - name: Deploy via SFTP para Hostinger
         uses: wlixcc/SFTP-Deploy-Action@v1.2.6
