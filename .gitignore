@@ -8,8 +8,6 @@ node_modules
 # Next.js
 .next
 out
-next-env.d.ts
-
 # Outras builds
 dist
 dist-ssr
