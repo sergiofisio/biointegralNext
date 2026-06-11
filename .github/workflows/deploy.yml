@@ -12,42 +12,27 @@ jobs:
     environment: production
 
     steps:
-      - name: ⬇️ Clonar repositório
+      - name: Clonar repositório
         uses: actions/checkout@v4
 
-      - name: 🟢 Instalar Node.js
+      - name: Instalar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-          cache: 'yarn'
+          node-version: "22"
+          cache: "yarn"
 
-      - name: 📦 Instalar dependências
+      - name: Instalar dependências
         run: yarn install --frozen-lockfile
 
-      - name: 📝 Criar .env
-        run: |
-          echo "VITE_EMAILJS_SERVICE=${{ secrets.VITE_EMAILJS_SERVICE }}" >> .env
-          echo "VITE_EMAILJS_TEMPLATE_CONTATO=${{ secrets.VITE_EMAILJS_TEMPLATE_CONTATO }}" >> .env
-          echo "VITE_EMAILJS_TEMPLATE_SATISFACAO=${{ secrets.VITE_EMAILJS_TEMPLATE_SATISFACAO }}" >> .env
-          echo "VITE_EMAILJS_USER=${{ secrets.VITE_EMAILJS_USER }}" >> .env
-          echo "VITE_GOOGLE_MAPS_API_KEY=${{ secrets.VITE_GOOGLE_MAPS_API_KEY }}" >> .env
-
-      - name: 🏗️ Build e exportação
+      - name: Build estático (Next.js)
         run: yarn build
 
-      - name: 📄 Copiar .htaccess para dist
-        run: cp .htaccess dist/
-
-      # Erro "Timeout (control socket)" com FTP = servidor pode só aceitar SFTP. Hostinger shared usa porta 65002.
-      # No hPanel: Advanced → SSH Access → ativar e anotar host/porta. Se falhar, use secrets: SFTP_SERVER, SFTP_PORT.
-      - name: 📤 Deploy via SFTP para Hostinger
+      - name: Deploy via SFTP para Hostinger
         uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
           server: ftp.biointegralsaude.com.br
           username: u773096491
           port: 65002
           password: ${{ secrets.ftp_password }}
-          local_path: './dist/*'
-          remote_path: 'domains/biointegralsaude.com.br/public_html/'
-
-
+          local_path: "./out/*"
+          remote_path: "domains/biointegralsaude.com.br/public_html/"
