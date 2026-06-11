@@ -6,7 +6,7 @@ import { useContactForm } from "@/hooks/use-contact-form";
 import { PageHeader } from "@/components/ui/PageHeader";
 
 export function ContactForm() {
-  const { sent, handleSubmit } = useContactForm();
+  const { sent, loading, error, handleSubmit } = useContactForm();
 
   return (
     <div className="bg-canvas">
@@ -25,7 +25,7 @@ export function ContactForm() {
                 Mensagem enviada!
               </h2>
               <p className="text-zinc-600">
-                Continue a conversa pelo WhatsApp.
+                Recebemos sua mensagem e responderemos em breve.
               </p>
             </div>
           ) : (
@@ -64,10 +64,16 @@ export function ContactForm() {
               </div>
               <button
                 type="submit"
-                className="w-full bg-navy text-white py-4 rounded-full font-medium hover:bg-navy-soft transition-colors"
+                disabled={loading}
+                className="w-full bg-navy text-white py-4 rounded-full font-medium hover:bg-navy-soft transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Enviar mensagem
+                {loading ? "Enviando..." : "Enviar mensagem"}
               </button>
+              {error && (
+                <p className="text-sm text-red-600 text-center" role="alert">
+                  {error}
+                </p>
+              )}
             </form>
           )}
         </div>
