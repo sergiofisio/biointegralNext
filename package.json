@@ -2,8 +2,12 @@
   "name": "biointegralsaude",
   "private": true,
   "version": "1.0.0",
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "dev": "next dev",
+    "dev:clean": "rm -rf .next && next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

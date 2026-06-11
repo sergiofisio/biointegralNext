@@ -2,15 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight } from "lucide-react";
 import { TECHNIQUES, SITE } from "@/lib/site-data";
-import { SEO_BASE_URL } from "@/lib/seo";
-
-const techImages: Record<string, string> = {
-  microfisioterapia: "/images/tech-micro.jpg",
-  "psych-k": "/images/tech-psychk.jpg",
-  biodecodage: "/images/tech-biode.jpg",
-};
+import { IMAGES } from "@/lib/images";
+import { pageMetadata } from "@/lib/metadata";
+import { TechniqueCard } from "@/components/cards/TechniqueCard";
+import { BackToHome } from "@/components/ui/BackToHome";
+import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -23,17 +20,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tech = TECHNIQUES.find((t) => t.slug === slug);
   if (!tech) return { title: "Técnica não encontrada" };
 
-  return {
+  return pageMetadata({
     title: tech.name,
     description: tech.short,
-    alternates: { canonical: `/tecnicas/${tech.slug}` },
-    openGraph: {
-      title: `${tech.name} — Biointegral Saúde`,
-      description: tech.short,
-      type: "article",
-      url: `${SEO_BASE_URL}/tecnicas/${tech.slug}`,
-    },
-  };
+    path: `/tecnicas/${tech.slug}`,
+    ogType: "article",
+  });
 }
 
 export default async function TechniquePage({ params }: Props) {
@@ -46,12 +38,7 @@ export default async function TechniquePage({ params }: Props) {
   return (
     <div className="bg-canvas">
       <section className="px-6 pt-16 pb-12 max-w-5xl mx-auto">
-        <Link
-          href="/"
-          className="text-xs font-semibold text-gold uppercase tracking-widest mb-6 inline-block"
-        >
-          ← Técnicas
-        </Link>
+        <BackToHome className="mb-6" />
         <h1 className="font-display text-5xl md:text-7xl text-navy leading-[0.95] text-balance mb-8">
           {tech.name}
         </h1>
@@ -63,7 +50,7 @@ export default async function TechniquePage({ params }: Props) {
       <section className="px-6 max-w-5xl mx-auto">
         <div className="aspect-[21/9] rounded-3xl overflow-hidden ring-1 ring-black/5 relative">
           <Image
-            src={techImages[tech.slug]}
+            src={IMAGES.tech[tech.slug as keyof typeof IMAGES.tech]}
             alt={tech.name}
             fill
             className="object-cover"
@@ -78,17 +65,15 @@ export default async function TechniquePage({ params }: Props) {
           {tech.long}
         </p>
         <div className="mt-12 flex gap-4 flex-wrap">
-          <a
+          <WhatsAppButton
             href={SITE.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-navy text-white px-6 py-3 rounded-full font-medium text-sm hover:bg-navy-soft transition-colors"
+            className="px-6 py-3"
           >
             Agendar uma sessão
-          </a>
+          </WhatsAppButton>
           <Link
             href="/contato"
-            className="px-6 py-3 rounded-full font-medium text-sm ring-1 ring-zinc-950/10 text-navy"
+            className="px-6 py-3 rounded-full font-medium text-sm ring-1 ring-zinc-950/10 text-navy inline-flex items-center"
           >
             Fazer uma pergunta
           </Link>
@@ -102,19 +87,7 @@ export default async function TechniquePage({ params }: Props) {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {others.map((t) => (
-              <Link
-                key={t.slug}
-                href={`/tecnicas/${t.slug}`}
-                className="group bg-white rounded-2xl ring-1 ring-black/5 p-8 hover:shadow-md transition-shadow"
-              >
-                <h3 className="font-display text-2xl text-navy mb-2">
-                  {t.name}
-                </h3>
-                <p className="text-sm text-zinc-500 mb-4">{t.short}</p>
-                <span className="text-xs font-semibold text-gold uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all">
-                  Saiba mais <ArrowRight className="size-3" />
-                </span>
-              </Link>
+              <TechniqueCard key={t.slug} technique={t} variant="compact" />
             ))}
           </div>
         </div>

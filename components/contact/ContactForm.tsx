@@ -1,39 +1,21 @@
 "use client";
 
-import { useState } from "react";
 import { MessageCircle, Mail, MapPin } from "lucide-react";
 import { SITE, CLINICS } from "@/lib/site-data";
+import { useContactForm } from "@/hooks/use-contact-form";
+import { PageHeader } from "@/components/ui/PageHeader";
 
 export function ContactForm() {
-  const [sent, setSent] = useState(false);
-
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const name = data.get("name");
-    const message = data.get("message");
-    const text = `Olá! Meu nome é ${name}.\n\n${message}`;
-    window.open(
-      `https://wa.me/${SITE.whatsappNumber}?text=${encodeURIComponent(text)}`,
-      "_blank",
-    );
-    setSent(true);
-  }
+  const { sent, handleSubmit } = useContactForm();
 
   return (
     <div className="bg-canvas">
-      <section className="px-6 pt-16 pb-12 max-w-5xl mx-auto">
-        <span className="text-xs font-semibold text-gold uppercase tracking-widest mb-4 block">
-          Contato
-        </span>
-        <h1 className="font-display text-5xl md:text-6xl text-navy leading-[0.95] text-balance mb-6">
-          Estamos prontos para ouvir você.
-        </h1>
-        <p className="text-lg text-zinc-600 max-w-2xl">
-          Envie sua mensagem pelo formulário abaixo ou fale diretamente pelo
-          WhatsApp.
-        </p>
-      </section>
+      <PageHeader
+        label="Contato"
+        title="Estamos prontos para ouvir você."
+        description="Envie sua mensagem pelo formulário abaixo ou fale diretamente pelo WhatsApp."
+        showBackLink
+      />
 
       <section className="px-6 pb-24 max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-5 gap-12">
         <div className="lg:col-span-3 bg-white rounded-3xl ring-1 ring-black/5 p-10">

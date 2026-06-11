@@ -81,6 +81,91 @@ export const SYMPTOMS = [
   "Fibromialgia",
 ];
 
+export type IndicationIcon =
+  | "heart"
+  | "brain"
+  | "sparkles"
+  | "shield"
+  | "users";
+
+export const INDICATIONS: {
+  icon: IndicationIcon;
+  title: string;
+  desc: string;
+}[] = [
+  {
+    icon: "heart",
+    title: "Dores Crônicas",
+    desc: "Lombalgia, cervicalgia, enxaqueca e dores sem causa aparente.",
+  },
+  {
+    icon: "brain",
+    title: "Ansiedade e Pânico",
+    desc: "Crises recorrentes, fobias e bloqueios emocionais.",
+  },
+  {
+    icon: "sparkles",
+    title: "Traumas Emocionais",
+    desc: "Perdas, lutos, abusos e memórias dolorosas.",
+  },
+  {
+    icon: "shield",
+    title: "Alergias e Imunidade",
+    desc: "Rinites, dermatites e quadros alérgicos persistentes.",
+  },
+  {
+    icon: "users",
+    title: "Relacionamentos",
+    desc: "Padrões repetitivos em relações afetivas e profissionais.",
+  },
+  {
+    icon: "heart",
+    title: "Distúrbios do Sono",
+    desc: "Insônia, pesadelos e dificuldade para relaxar.",
+  },
+];
+
+export const TESTIMONIALS = [
+  {
+    initial: "M",
+    name: "Mariana Silva, 34",
+    location: "São Paulo · paciente desde 2022",
+    quote:
+      "A Biointegral mudou minha percepção sobre saúde. Pela primeira vez, senti que alguém olhou para a causa, não apenas para o sintoma. Em poucas sessões minha enxaqueca crônica simplesmente parou.",
+  },
+  {
+    initial: "R",
+    name: "Ricardo Menezes, 42",
+    location: "Santo André",
+    quote:
+      "Cheguei com dores nas costas há anos. Em poucas sessões senti uma leveza que não experimentava desde a adolescência. A abordagem integrativa fez toda a diferença.",
+  },
+  {
+    initial: "C",
+    name: "Carla Tavares, 51",
+    location: "São Paulo",
+    quote:
+      "O acolhimento da equipe e a combinação das técnicas me ajudaram a superar a ansiedade que carregava há muito tempo. Recomendo de coração.",
+  },
+];
+
+export const PROFESSIONALS = [
+  {
+    name: "Dra. Fresia Jorge de Sá Bastos",
+    crefito: "CREFITO-3 · 118.225-F",
+    image: "draFresia" as const,
+    bio: "Especialista em Microfisioterapia, Biodécodage e PSYCH-K®. Atua há mais de uma década integrando ciência fisioterapêutica e abordagens emocionais para tratar a raiz das queixas.",
+    offset: false,
+  },
+  {
+    name: "Dr. Sergio A. M. Bastos Jr.",
+    crefito: "CREFITO-3 · 111.132-F",
+    image: "drSergio" as const,
+    bio: "Pioneiro no Brasil de diversas técnicas integrativas. Formado pelos próprios criadores das técnicas que pratica, é referência em Microfisioterapia e BIOdécodage no país.",
+    offset: true,
+  },
+];
+
 export const FAQS = [
   {
     q: "As técnicas são reconhecidas pela fisioterapia?",
