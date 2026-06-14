@@ -84,7 +84,7 @@ export function TestimonialsSection() {
                   >
                     {t.name}
                   </div>
-                  <div className="text-gold/70 text-xs">{t.location}</div>
+                  <div className="text-champagne/80 text-xs">{t.location}</div>
                 </div>
               </button>
             );
