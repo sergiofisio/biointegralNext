@@ -1,69 +1,73 @@
-# React + TypeScript + Vite
+# Biointegral Saúde
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Site institucional da clínica Biointegral Saúde — Next.js 15 + Tailwind CSS v4.
 
-Currently, two official plugins are available:
+## Pré-requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Node.js 24+** (recomendado via [nvm](https://github.com/nvm-sh/nvm))
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+nvm use   # lê .nvmrc automaticamente
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Next.js 15** (App Router, export estático)
+- **Tailwind CSS v4**
+- **TypeScript**
+- Deploy: Hostinger (SFTP) + Vercel
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Desenvolvimento
+
+```bash
+yarn install
+yarn dev
+```
+
+Abra [http://localhost:3000](http://localhost:3000).
+
+## Build
+
+```bash
+yarn build         # Vercel (com API de contato via MailerSend)
+yarn build:static  # Hostinger — gera pasta out/
+```
+
+### Contato (MailerSend)
+
+Configure no **Vercel** (Environment Variables):
+
+| Variável | Descrição |
+|----------|-----------|
+| `MAILERSEND_API_KEY` | Token da API no painel MailerSend |
+| `MAILERSEND_FROM_EMAIL` | Remetente verificado no MailerSend |
+| `MAILERSEND_FROM_NAME` | Nome exibido (ex.: Biointegral Saúde) |
+| `MAILERSEND_TO_EMAIL` | Caixa que recebe os formulários |
+| `CONTACT_CORS_ORIGIN` | Origens do site estático (Hostinger), separadas por vírgula |
+
+No **GitHub** (environment `production`):
+
+| Config | Nome | Descrição |
+|--------|------|-----------|
+| Variable | `CONTACT_API_URL` | URL da API na Vercel, ex.: `https://www.biointegralsaude.com.br/api/contact` |
+| Secret | `FTP_HOST` | Host SFTP da Hostinger |
+| Secret | `FTP_USERNAME` | Usuário SFTP |
+| Secret | `FTP_PASSWORD` | Senha FTP/SSH |
+
+Os secrets legados `VITE_EMAILJS_*` não são mais usados neste projeto.
+
+Copie `.env.example` para `.env` local para testar o formulário em desenvolvimento.
+
+## Estrutura
+
+```
+app/              → rotas e páginas
+components/
+  ui/             → primitivos (PageHeader, SectionHeader, etc.)
+  sections/       → seções da home
+  cards/          → TechniqueCard, ClinicCard, ProfessionalCard
+  site/           → Nav, Footer, WhatsAppFloat
+hooks/            → useContactForm, useMobileMenu, useWhatsApp
+lib/              → site-data, seo, metadata, images
+public/images/    → assets do site
 ```
