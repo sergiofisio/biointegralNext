@@ -33,9 +33,12 @@ jobs:
       - name: Deploy via SFTP para Hostinger
         uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
-          server: ftp.biointegralsaude.com.br
-          username: u773096491
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
           port: 65002
-          password: ${{ secrets.ftp_password }}
+          password: ${{ secrets.FTP_PASSWORD }}
           local_path: "./out/*"
           remote_path: "domains/biointegralsaude.com.br/public_html/"
+          sftp_only: true
+          delete_remote_files: true
+          sftpArgs: "-o ConnectTimeout=30"
