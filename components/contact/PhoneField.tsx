@@ -10,9 +10,16 @@ import { FieldError } from "@/components/contact/FieldError";
 type PhoneFieldProps = {
   error?: string;
   onClearError?: () => void;
+  required?: boolean;
+  disabled?: boolean;
 };
 
-export function PhoneField({ error, onClearError }: PhoneFieldProps) {
+export function PhoneField({
+  error,
+  onClearError,
+  required = true,
+  disabled = false,
+}: PhoneFieldProps) {
   const id = useId();
   const errorId = `${id}-error`;
   const [phone, setPhone] = useState<string | undefined>();
@@ -36,13 +43,15 @@ export function PhoneField({ error, onClearError }: PhoneFieldProps) {
           setPhone(value);
           onClearError?.();
         }}
+        disabled={disabled}
         countryCallingCodeEditable={false}
         className={cn("contact-phone-input", error && "contact-phone-input--error")}
         numberInputProps={{
-          required: true,
-          "aria-required": true,
+          required,
+          "aria-required": required,
           "aria-invalid": Boolean(error),
           "aria-describedby": error ? errorId : undefined,
+          disabled,
         }}
       />
       <input type="hidden" name="telefone" value={phone ?? ""} />

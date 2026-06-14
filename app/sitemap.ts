@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { TECHNIQUES } from "@/lib/site-data";
-import { SEO_BASE_URL } from "@/lib/seo";
+import { canonicalUrl } from "@/lib/seo";
 
 export const dynamic = "force-static";
 
@@ -20,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   return [...staticRoutes, ...techniqueRoutes].map((route) => ({
-    url: `${SEO_BASE_URL}${route.path}`,
+    url: canonicalUrl(route.path || "/"),
     lastModified: new Date(),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
