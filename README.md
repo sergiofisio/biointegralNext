@@ -45,18 +45,25 @@ O formulário envia e-mail direto do navegador via [EmailJS](https://www.emailjs
 
 O template **contato home site** usa: `{{nome}}`, `{{email}}`, `{{telefone}}`, `{{mensagem}}` e `{{reply_to}}`.
 
-No **GitHub** (environment `production`), configure as **Variables** do EmailJS e os **Secrets** de deploy:
+No **GitHub** (environment `production`), configure as **Variables**:
 
-| Tipo | Nome | Descrição |
-|------|------|-----------|
-| Variable | `EMAILJS_SERVICE_ID` | ID do serviço EmailJS |
-| Variable | `EMAILJS_TEMPLATE_ID` | ID do template de contato |
-| Variable | `EMAILJS_PUBLIC_KEY` | Public Key EmailJS |
-| Secret | `FTP_HOST` | **IP do servidor** (hPanel → FTP Accounts), ex.: `185.245.180.163` — não use o domínio |
-| Secret | `FTP_USERNAME` | Usuário FTP (ex.: `u123456789`) |
-| Secret | `FTP_PASSWORD` | Senha FTP |
+| Variable | Valor (exemplo) |
+|----------|-----------------|
+| `EMAILJS_SERVICE_ID` | `service_2mocdp6` |
+| `EMAILJS_TEMPLATE_ID` | `4wi09hd` |
+| `EMAILJS_PUBLIC_KEY` | sua Public Key do EmailJS |
 
-O deploy usa **FTP/FTPS na porta 21** (padrão Hostinger). Se falhar com FTPS, altere `protocol: ftps` para `protocol: ftp` em `.github/workflows/deploy.yml`.
+Sem essas variáveis, o build de produção **falha** — o formulário não funciona no site estático porque as credenciais são embutidas no build.
+
+Secrets de deploy FTP:
+
+| Secret | Descrição |
+|--------|-----------|
+| `FTP_HOST` | **IP do servidor** (hPanel → FTP Accounts), ex.: `185.245.180.163` |
+| `FTP_USERNAME` | Usuário FTP |
+| `FTP_PASSWORD` | Senha FTP |
+
+O deploy usa **FTP/FTPS na porta 21** (padrão Hostinger).
 
 ### Deploy falhou com timeout?
 

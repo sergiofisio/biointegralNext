@@ -5,9 +5,19 @@ import { SITE, CLINICS } from "@/lib/site-data";
 import { useContactForm } from "@/hooks/use-contact-form";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { PhoneField } from "@/components/contact/PhoneField";
+import { FieldError } from "@/components/contact/FieldError";
+import { cn } from "@/lib/utils";
+
+const fieldClass = (hasError: boolean) =>
+  cn(
+    "w-full bg-transparent border-b py-2 outline-none transition-colors",
+    hasError
+      ? "border-red-400 focus:border-red-500"
+      : "border-zinc-300 focus:border-gold",
+  );
 
 export function ContactForm() {
-  const { sent, loading, error, handleSubmit } = useContactForm();
+  const { sent, loading, errors, clearFieldError, handleSubmit } = useContactForm();
 
   return (
     <div className="bg-canvas">
@@ -30,40 +40,88 @@ export function ContactForm() {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+              {errors.form && (
+                <div
+                  className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-800"
+                  role="alert"
+                >
+                  <p className="font-medium">Não foi possível enviar</p>
+                  <p className="mt-1">{errors.form}</p>
+                  <a
+                    href={SITE.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block mt-2 font-medium underline underline-offset-2"
+                  >
+                    Falar pelo WhatsApp
+                  </a>
+                </div>
+              )}
+
               <div>
-                <label className="text-xs font-semibold uppercase tracking-widest text-navy block mb-2">
+                <label
+                  htmlFor="contact-nome"
+                  className="text-xs font-semibold uppercase tracking-widest text-navy block mb-2"
+                >
                   Nome
                 </label>
                 <input
+                  id="contact-nome"
                   name="nome"
-                  required
-                  className="w-full bg-transparent border-b border-zinc-300 py-2 outline-none focus:border-gold transition-colors"
+                  aria-invalid={Boolean(errors.nome)}
+                  aria-describedby={errors.nome ? "contact-nome-error" : undefined}
+                  onChange={() => clearFieldError("nome")}
+                  className={fieldClass(Boolean(errors.nome))}
                 />
+                <FieldError id="contact-nome-error" message={errors.nome} />
               </div>
+
               <div>
-                <label className="text-xs font-semibold uppercase tracking-widest text-navy block mb-2">
+                <label
+                  htmlFor="contact-email"
+                  className="text-xs font-semibold uppercase tracking-widest text-navy block mb-2"
+                >
                   E-mail
                 </label>
                 <input
+                  id="contact-email"
                   name="email"
                   type="email"
-                  required
-                  className="w-full bg-transparent border-b border-zinc-300 py-2 outline-none focus:border-gold transition-colors"
+                  aria-invalid={Boolean(errors.email)}
+                  aria-describedby={errors.email ? "contact-email-error" : undefined}
+                  onChange={() => clearFieldError("email")}
+                  className={fieldClass(Boolean(errors.email))}
                 />
+                <FieldError id="contact-email-error" message={errors.email} />
               </div>
-              <PhoneField />
+
+              <PhoneField
+                error={errors.telefone}
+                onClearError={() => clearFieldError("telefone")}
+              />
+
               <div>
-                <label className="text-xs font-semibold uppercase tracking-widest text-navy block mb-2">
+                <label
+                  htmlFor="contact-mensagem"
+                  className="text-xs font-semibold uppercase tracking-widest text-navy block mb-2"
+                >
                   Mensagem
                 </label>
                 <textarea
+                  id="contact-mensagem"
                   name="mensagem"
-                  required
                   rows={4}
-                  className="w-full bg-transparent border-b border-zinc-300 py-2 outline-none focus:border-gold transition-colors resize-none"
+                  aria-invalid={Boolean(errors.mensagem)}
+                  aria-describedby={
+                    errors.mensagem ? "contact-mensagem-error" : undefined
+                  }
+                  onChange={() => clearFieldError("mensagem")}
+                  className={cn(fieldClass(Boolean(errors.mensagem)), "resize-none")}
                 />
+                <FieldError id="contact-mensagem-error" message={errors.mensagem} />
               </div>
+
               <input type="hidden" name="reply_to" defaultValue="" />
               <button
                 type="submit"
@@ -72,11 +130,6 @@ export function ContactForm() {
               >
                 {loading ? "Enviando..." : "Enviar mensagem"}
               </button>
-              {error && (
-                <p className="text-sm text-red-600 text-center" role="alert">
-                  {error}
-                </p>
-              )}
             </form>
           )}
         </div>
