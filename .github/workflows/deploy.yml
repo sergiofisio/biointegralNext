@@ -11,6 +11,12 @@ jobs:
     name: Build e Deploy
     runs-on: ubuntu-latest
     environment: production
+    timeout-minutes: 20
+
+    env:
+      FTP_SERVER: ${{ secrets.FTP_HOST }}
+      FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+      FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
 
     steps:
       - name: Clonar repositório
@@ -54,14 +60,47 @@ jobs:
           NEXT_PUBLIC_EMAILJS_PUBLIC_KEY: ${{ vars.EMAILJS_PUBLIC_KEY || vars.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }}
         run: yarn build:static
 
-      - name: Deploy via FTP para Hostinger
+      # Hostinger pode demorar na 1ª conexão FTPS a partir dos runners do GitHub.
+      - name: Aguardar servidor FTP
+        run: sleep 15
+
+      - name: Deploy via FTP para Hostinger (tentativa 1)
+        id: ftp_deploy
+        continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          server: ${{ env.FTP_SERVER }}
+          username: ${{ env.FTP_USERNAME }}
+          password: ${{ env.FTP_PASSWORD }}
           protocol: ftps
           port: 21
           local-dir: ./out/
           server-dir: ./domains/biointegralsaude.com.br/public_html/
           log-level: verbose
+          timeout: 120000
+
+      - name: Aguardar antes de nova tentativa
+        if: steps.ftp_deploy.outcome == 'failure'
+        run: sleep 30
+
+      - name: Deploy via FTP para Hostinger (tentativa 2)
+        id: ftp_deploy_retry
+        if: steps.ftp_deploy.outcome == 'failure'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ env.FTP_SERVER }}
+          username: ${{ env.FTP_USERNAME }}
+          password: ${{ env.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          local-dir: ./out/
+          server-dir: ./domains/biointegralsaude.com.br/public_html/
+          log-level: verbose
+          timeout: 180000
+
+      - name: Falhar se deploy FTP não concluiu
+        if: steps.ftp_deploy.outcome != 'success' && steps.ftp_deploy_retry.outcome != 'success'
+        run: |
+          echo "::error::Deploy FTP falhou após 2 tentativas (timeout ou conexão recusada)."
+          echo "Confira se FTP_HOST usa o IP do servidor (ex.: 185.245.180.163) e se a porta 21 FTPS está liberada."
+          exit 1
