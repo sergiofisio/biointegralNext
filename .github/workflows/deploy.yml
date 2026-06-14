@@ -11,12 +11,14 @@ jobs:
     name: Build e Deploy
     runs-on: ubuntu-latest
     environment: production
-    timeout-minutes: 20
+    timeout-minutes: 35
 
     env:
       FTP_SERVER: ${{ secrets.FTP_HOST }}
       FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
       FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      FTP_SERVER_DIR: ./domains/biointegralsaude.com.br/public_html/
+      SFTP_REMOTE_PATH: ${{ vars.SFTP_REMOTE_PATH || 'domains/biointegralsaude.com.br/public_html' }}
 
     steps:
       - name: Clonar repositório
@@ -61,12 +63,49 @@ jobs:
           NEXT_PUBLIC_EMAILJS_PUBLIC_KEY: ${{ vars.EMAILJS_PUBLIC_KEY || vars.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }}
         run: yarn build:static
 
-      # Hostinger pode demorar na 1ª conexão FTPS a partir dos runners do GitHub.
+      - name: Testar conectividade com Hostinger
+        continue-on-error: true
+        run: |
+          HOST="${FTP_SERVER#ftp://}"
+          HOST="${HOST#ftps://}"
+          HOST="${HOST#sftp://}"
+          HOST="${HOST%%/*}"
+          echo "Servidor configurado: $HOST"
+          for PORT in 21 65002; do
+            echo -n "Porta $PORT: "
+            if timeout 20 bash -c "echo > /dev/tcp/$HOST/$PORT" 2>/dev/null; then
+              echo "acessível"
+            else
+              echo "sem resposta (timeout ou bloqueada)"
+            fi
+          done
+
       - name: Aguardar servidor FTP
         run: sleep 15
 
-      - name: Deploy via FTP para Hostinger (tentativa 1)
-        id: ftp_deploy
+      # FTP simples costuma ser mais estável que FTPS a partir dos runners do GitHub.
+      - name: Deploy FTP — tentativa 1 (FTP simples, porta 21)
+        id: ftp_plain
+        continue-on-error: true
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ env.FTP_SERVER }}
+          username: ${{ env.FTP_USERNAME }}
+          password: ${{ env.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./out/
+          server-dir: ${{ env.FTP_SERVER_DIR }}
+          log-level: verbose
+          timeout: 180000
+
+      - name: Aguardar antes da tentativa 2
+        if: steps.ftp_plain.outcome == 'failure'
+        run: sleep 30
+
+      - name: Deploy FTP — tentativa 2 (FTPS explícito)
+        id: ftp_ftps
+        if: steps.ftp_plain.outcome == 'failure'
         continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -74,34 +113,80 @@ jobs:
           username: ${{ env.FTP_USERNAME }}
           password: ${{ env.FTP_PASSWORD }}
           protocol: ftps
+          security: loose
           port: 21
           local-dir: ./out/
-          server-dir: ./domains/biointegralsaude.com.br/public_html/
+          server-dir: ${{ env.FTP_SERVER_DIR }}
           log-level: verbose
-          timeout: 120000
+          timeout: 180000
 
-      - name: Aguardar antes de nova tentativa
-        if: steps.ftp_deploy.outcome == 'failure'
+      - name: Aguardar antes da tentativa 3
+        if: steps.ftp_plain.outcome == 'failure' && steps.ftp_ftps.outcome == 'failure'
         run: sleep 30
 
-      - name: Deploy via FTP para Hostinger (tentativa 2)
-        id: ftp_deploy_retry
-        if: steps.ftp_deploy.outcome == 'failure'
+      - name: Deploy FTP — tentativa 3 (FTPS legacy)
+        id: ftp_ftps_legacy
+        if: steps.ftp_plain.outcome == 'failure' && steps.ftp_ftps.outcome == 'failure'
+        continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ env.FTP_SERVER }}
           username: ${{ env.FTP_USERNAME }}
           password: ${{ env.FTP_PASSWORD }}
-          protocol: ftps
+          protocol: ftps-legacy
+          security: loose
           port: 21
           local-dir: ./out/
-          server-dir: ./domains/biointegralsaude.com.br/public_html/
+          server-dir: ${{ env.FTP_SERVER_DIR }}
           log-level: verbose
           timeout: 180000
 
-      - name: Falhar se deploy FTP não concluiu
-        if: steps.ftp_deploy.outcome != 'success' && steps.ftp_deploy_retry.outcome != 'success'
+      - name: Aguardar antes do SFTP
+        if: steps.ftp_plain.outcome == 'failure' && steps.ftp_ftps.outcome == 'failure' && steps.ftp_ftps_legacy.outcome == 'failure'
+        run: sleep 30
+
+      # SFTP (porta 65002) — requer SSH/SFTP ativo no hPanel → Advanced → SSH Access.
+      - name: Deploy SFTP — tentativa 4 (porta 65002)
+        id: sftp_deploy
+        if: steps.ftp_plain.outcome == 'failure' && steps.ftp_ftps.outcome == 'failure' && steps.ftp_ftps_legacy.outcome == 'failure'
+        continue-on-error: true
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        with:
+          username: ${{ env.FTP_USERNAME }}
+          server: ${{ env.FTP_SERVER }}
+          port: 65002
+          password: ${{ env.FTP_PASSWORD }}
+          local_path: "./out/*"
+          remote_path: ${{ env.SFTP_REMOTE_PATH }}
+          sftp_only: true
+          sftpArgs: "-o ConnectTimeout=60 -o ServerAliveInterval=30 -o StrictHostKeyChecking=no"
+
+      - name: Resumo e falha se deploy não concluiu
+        if: always()
         run: |
-          echo "::error::Deploy FTP falhou após 2 tentativas (timeout ou conexão recusada)."
-          echo "Confira se FTP_HOST usa o IP do servidor (ex.: 185.245.180.163) e se a porta 21 FTPS está liberada."
+          if [ "${{ steps.ftp_plain.outcome }}" = "success" ]; then
+            echo "Deploy concluído via FTP simples (porta 21)."
+            exit 0
+          fi
+          if [ "${{ steps.ftp_ftps.outcome }}" = "success" ]; then
+            echo "Deploy concluído via FTPS (porta 21)."
+            exit 0
+          fi
+          if [ "${{ steps.ftp_ftps_legacy.outcome }}" = "success" ]; then
+            echo "Deploy concluído via FTPS legacy (porta 21)."
+            exit 0
+          fi
+          if [ "${{ steps.sftp_deploy.outcome }}" = "success" ]; then
+            echo "Deploy concluído via SFTP (porta 65002)."
+            exit 0
+          fi
+
+          echo "::error::Deploy falhou após 4 tentativas (FTP, FTPS, FTPS legacy e SFTP)."
+          echo ""
+          echo "Checklist:"
+          echo "  1. FTP_HOST = IP do hPanel (FTP Accounts), sem ftp:// na frente"
+          echo "  2. Usuário/senha corretos (mesma conta usada no FileZilla)"
+          echo "  3. hPanel → Advanced → SSH Access → ativar SFTP (porta 65002)"
+          echo "  4. Se SFTP usar outro caminho, defina a variable SFTP_REMOTE_PATH no environment production"
+          echo "     (ex.: domains/biointegralsaude.com.br/public_html)"
           exit 1

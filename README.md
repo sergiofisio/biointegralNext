@@ -63,14 +63,22 @@ Secrets de deploy FTP:
 | `FTP_USERNAME` | Usuário FTP |
 | `FTP_PASSWORD` | Senha FTP |
 
-O deploy usa **FTP/FTPS na porta 21** (padrão Hostinger).
+Variable opcional (environment production):
+
+| Variable | Descrição |
+|----------|-----------|
+| `SFTP_REMOTE_PATH` | Pasta remota para SFTP (padrão: `domains/biointegralsaude.com.br/public_html`) |
+
+O deploy tenta, em ordem: **FTP (21)** → **FTPS (21)** → **FTPS legacy (21)** → **SFTP (65002)**.
 
 ### Deploy falhou com timeout?
 
-1. Confirme que `FTP_HOST` é o **IP** do hPanel, não `biointegralsaude.com.br`
+1. Confirme que `FTP_HOST` é o **IP** do hPanel, sem `ftp://` — não use o domínio
 2. Verifique usuário/senha no hPanel → **FTP Accounts**
-3. Se FTPS falhar, troque para `protocol: ftp` no workflow
-4. A Hostinger pode bloquear IPs de datacenter; nesse caso use um [self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners) ou faça deploy manual com `yarn build:static` + FileZilla
+3. Ative **SSH/SFTP** em hPanel → **Advanced → SSH Access** (porta **65002**)
+4. Veja o passo **Testar conectividade** no log do GitHub Actions (portas 21 e 65002)
+5. Se o SFTP usar caminho diferente, configure `SFTP_REMOTE_PATH` nas Variables do environment production
+6. Deploy manual temporário: `yarn build:static` + enviar pasta `out/` via FileZilla
 
 ## Estrutura
 
