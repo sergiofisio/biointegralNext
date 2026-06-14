@@ -1,9 +1,10 @@
-name: Deploy para Hostinger via SFTP
+name: Deploy para Hostinger via FTP
 
 on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -27,18 +28,19 @@ jobs:
       - name: Build estático (Next.js)
         env:
           STATIC_EXPORT: "true"
-          NEXT_PUBLIC_CONTACT_API_URL: ${{ vars.CONTACT_API_URL }}
+          NEXT_PUBLIC_EMAILJS_SERVICE_ID: ${{ vars.EMAILJS_SERVICE_ID }}
+          NEXT_PUBLIC_EMAILJS_TEMPLATE_ID: ${{ vars.EMAILJS_TEMPLATE_ID }}
+          NEXT_PUBLIC_EMAILJS_PUBLIC_KEY: ${{ vars.EMAILJS_PUBLIC_KEY }}
         run: yarn build:static
 
-      - name: Deploy via SFTP para Hostinger
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+      - name: Deploy via FTP para Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
-          port: 65002
           password: ${{ secrets.FTP_PASSWORD }}
-          local_path: "./out/*"
-          remote_path: "domains/biointegralsaude.com.br/public_html"
-          sftp_only: false
-          delete_remote_files: false
-          sftpArgs: "-o ConnectTimeout=30"
+          protocol: ftps
+          port: 21
+          local-dir: ./out/
+          server-dir: ./domains/biointegralsaude.com.br/public_html/
+          log-level: verbose

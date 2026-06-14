@@ -1,11 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { sendContactEmail, validateContactForm } from "@/lib/emailjs";
 
 type FormStatus = "idle" | "loading" | "sent" | "error";
-
-const contactApiUrl =
-  process.env.NEXT_PUBLIC_CONTACT_API_URL ?? "/api/contact";
 
 export function useContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -23,21 +21,15 @@ export function useContactForm() {
       message: String(data.get("message") ?? ""),
     };
 
+    const validationError = validateContactForm(payload);
+    if (validationError) {
+      setStatus("error");
+      setError(validationError);
+      return;
+    }
+
     try {
-      const response = await fetch(contactApiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      const result = (await response.json().catch(() => null)) as {
-        error?: string;
-      } | null;
-
-      if (!response.ok) {
-        throw new Error(result?.error ?? "Falha ao enviar.");
-      }
-
+      await sendContactEmail(payload);
       setStatus("sent");
       e.currentTarget.reset();
     } catch (err) {
