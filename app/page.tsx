@@ -1,3 +1,4 @@
+import { preload } from "react-dom";
 import type { Metadata } from "next";
 import { HashScroll } from "@/components/HashScroll";
 import { HeroSection } from "@/components/sections/HeroSection";
@@ -13,13 +14,18 @@ import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
   title: "Microfisioterapia, PSYCH-K® e Biodécodage",
-    description:
-      "Trate a causa das suas dores. Microfisioterapia, PSYCH-K® e Biodécodage em São Paulo e Santo André.",
+  description:
+    "Trate a causa das suas dores. Microfisioterapia, PSYCH-K® e Biodécodage em São Paulo e Santo André.",
   path: "/",
   ogTitle: "Biointegral Saúde — Fisioterapia Integrativa",
 });
 
 export default function HomePage() {
+  preload("/images/hero-professionals.webp", {
+    as: "image",
+    fetchPriority: "high",
+  });
+
   return (
     <div className="bg-canvas text-zinc-900">
       <HashScroll />

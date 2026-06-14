@@ -1,5 +1,5 @@
 export const IMAGES = {
-  hero: "/images/hero-professionals.svg",
+  hero: "/images/hero-professionals.webp",
   draFresia: "/images/dra-fresia.svg",
   drSergio: "/images/dr-sergio.svg",
   tech: {
