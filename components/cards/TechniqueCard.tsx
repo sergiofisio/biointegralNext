@@ -24,8 +24,6 @@ export function TechniqueCard({
     return (
       <Link
         href={`/tecnicas/${technique.slug}`}
-        target="_blank"
-        rel="noopener noreferrer"
         className="group bg-white rounded-2xl ring-1 ring-black/5 p-8 hover:shadow-md transition-shadow"
       >
         <h3 className="font-display text-2xl text-navy mb-2">
@@ -42,8 +40,6 @@ export function TechniqueCard({
   return (
     <Link
       href={`/tecnicas/${technique.slug}`}
-      target="_blank"
-      rel="noopener noreferrer"
       className="group block"
     >
       <div className="w-full aspect-video bg-zinc-100 rounded-2xl mb-6 overflow-hidden ring-1 ring-black/5 relative">

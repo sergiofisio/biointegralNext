@@ -1,7 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Link as ScrollLink } from "react-scroll";
+import { useRouter, usePathname } from "next/navigation";
+import { isHomePath, sectionHref } from "@/lib/nav";
+import {
+  queueHomeSectionScroll,
+  SCROLL_DURATION,
+  SCROLL_OFFSET,
+} from "@/lib/scroll-to-section";
 
 type SectionScrollLinkProps = {
   section: string;
@@ -10,13 +16,14 @@ type SectionScrollLinkProps = {
   onNavigate?: () => void;
 };
 
-function scrollToSection(section: string) {
-  document.getElementById(section)?.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  });
-  window.history.pushState(null, "", `#${section}`);
-}
+const scrollLinkProps = {
+  spy: false,
+  smooth: true,
+  duration: SCROLL_DURATION,
+  offset: SCROLL_OFFSET,
+  isDynamic: true,
+  href: "",
+};
 
 export function SectionScrollLink({
   section,
@@ -25,18 +32,31 @@ export function SectionScrollLink({
   onNavigate,
 }: SectionScrollLinkProps) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  if (isHomePath(pathname)) {
+    return (
+      <ScrollLink
+        to={section}
+        {...scrollLinkProps}
+        className={className}
+        onClick={() => onNavigate?.()}
+      >
+        {children}
+      </ScrollLink>
+    );
+  }
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (pathname === "/") {
-      e.preventDefault();
-      scrollToSection(section);
-      onNavigate?.();
-    }
+    e.preventDefault();
+    onNavigate?.();
+    queueHomeSectionScroll(section);
+    router.push("/", { scroll: false });
   };
 
   return (
-    <Link href={`/#${section}`} onClick={handleClick} className={className}>
+    <a href={sectionHref(section)} onClick={handleClick} className={className}>
       {children}
-    </Link>
+    </a>
   );
 }

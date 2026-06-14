@@ -9,6 +9,19 @@ export const SITE = {
   email: "contato@biointegralsaude.com.br",
 };
 
+export const SOCIAL_LINKS = [
+  {
+    name: "Instagram",
+    handle: "@biointegralsaude",
+    href: SITE.instagram,
+  },
+  {
+    name: "Facebook",
+    handle: "Biointegral Saúde",
+    href: SITE.facebook,
+  },
+] as const;
+
 export const CLINICS = [
   {
     slug: "livance-brigadeiro",

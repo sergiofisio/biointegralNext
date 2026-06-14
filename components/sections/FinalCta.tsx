@@ -20,8 +20,6 @@ export function FinalCta() {
           </WhatsAppButton>
           <Link
             href="/contato"
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-navy ring-1 ring-navy/20 hover:bg-navy/5 transition-colors"
           >
             Enviar mensagem <ArrowRight className="size-4" />

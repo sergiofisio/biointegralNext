@@ -1,6 +1,5 @@
 import { preload } from "react-dom";
 import type { Metadata } from "next";
-import { HashScroll } from "@/components/HashScroll";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { SymptomMarquee } from "@/components/sections/SymptomMarquee";
 import { IndicationsGrid } from "@/components/sections/IndicationsGrid";
@@ -28,7 +27,6 @@ export default function HomePage() {
 
   return (
     <div className="bg-canvas text-zinc-900">
-      <HashScroll />
       <HeroSection />
       <SymptomMarquee />
       <IndicationsGrid />

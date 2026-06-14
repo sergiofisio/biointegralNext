@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { Instagram, Facebook } from "lucide-react";
 import { SITE, CLINICS } from "@/lib/site-data";
+import { SocialLinks } from "@/components/site/SocialLinks";
 
 export function Footer() {
   return (
@@ -10,10 +10,11 @@ export function Footer() {
           <span className="font-display text-3xl italic text-navy block mb-3">
             Biointegral
           </span>
-          <p className="text-sm text-zinc-500 max-w-xs leading-relaxed mb-4">
+          <p className="text-sm text-zinc-500 max-w-xs leading-relaxed mb-6">
             Pioneiros no Brasil em Microfisioterapia, PSYCH-K® e Biodécodage.
             Fisioterapia integrativa em São Paulo e ABC Paulista.
           </p>
+          <SocialLinks variant="footer" className="mb-6" />
           <p className="text-xs text-zinc-400">
             Dra. Fresia Jorge de Sá Bastos · CREFITO-3 118.225-F
           </p>
@@ -82,26 +83,6 @@ export function Footer() {
           © {new Date().getFullYear()} Biointegral Saúde. Todos os direitos
           reservados.
         </p>
-        <div className="flex gap-4">
-          <a
-            href={SITE.instagram}
-            aria-label="Instagram"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-zinc-400 hover:text-gold"
-          >
-            <Instagram className="size-5" />
-          </a>
-          <a
-            href={SITE.facebook}
-            aria-label="Facebook"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-zinc-400 hover:text-gold"
-          >
-            <Facebook className="size-5" />
-          </a>
-        </div>
       </div>
     </footer>
   );

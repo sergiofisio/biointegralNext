@@ -35,8 +35,6 @@ export function FaqList({ variant = "home" }: FaqListProps) {
         <div className="mt-10 text-center">
           <Link
             href="/faq"
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-navy font-semibold border-b border-gold pb-1 hover:gap-3 transition-all"
           >
             Ver todas as perguntas <ArrowRight className="size-4" />

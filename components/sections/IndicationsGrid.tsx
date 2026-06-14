@@ -4,7 +4,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 
 export function IndicationsGrid() {
   return (
-    <section className="py-24 px-6 max-w-7xl mx-auto">
+    <section id="indicacoes" className="py-24 px-6 max-w-7xl mx-auto">
       <SectionHeader
         label="Para quem é indicado"
         title="Quando o sintoma é apenas a ponta do iceberg."
