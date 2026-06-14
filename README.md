@@ -45,7 +45,16 @@ Configure no **Vercel** (Environment Variables):
 | `MAILERSEND_TO_EMAIL` | Caixa que recebe os formulários |
 | `CONTACT_CORS_ORIGIN` | Origens do site estático (Hostinger), separadas por vírgula |
 
-No **GitHub Actions** (Hostinger), crie a variable `CONTACT_API_URL` apontando para a API na Vercel, ex.: `https://www.biointegralsaude.com.br/api/contact`.
+No **GitHub** (environment `production`):
+
+| Config | Nome | Descrição |
+|--------|------|-----------|
+| Variable | `CONTACT_API_URL` | URL da API na Vercel, ex.: `https://www.biointegralsaude.com.br/api/contact` |
+| Secret | `FTP_HOST` | Host SFTP da Hostinger |
+| Secret | `FTP_USERNAME` | Usuário SFTP |
+| Secret | `FTP_PASSWORD` | Senha FTP/SSH |
+
+Os secrets legados `VITE_EMAILJS_*` não são mais usados neste projeto.
 
 Copie `.env.example` para `.env` local para testar o formulário em desenvolvimento.
 
