@@ -13,8 +13,8 @@ import { pageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMetadata({
   title: "Microfisioterapia, PSYCH-K® e Biodécodage",
-  description:
-    "Trate a causa primária das suas dores. Clínica pioneira no Brasil em Microfisioterapia, PSYCH-K® e Biodécodage. Atendimento em São Paulo e Santo André.",
+    description:
+      "Trate a causa das suas dores. Microfisioterapia, PSYCH-K® e Biodécodage em São Paulo e Santo André.",
   path: "/",
   ogTitle: "Biointegral Saúde — Fisioterapia Integrativa",
 });
