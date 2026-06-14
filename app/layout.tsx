@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Inter } from "next/font/google";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
+import { SiteVersionGuard } from "@/components/SiteVersionGuard";
 import { HashScroll } from "@/components/HashScroll";
 import { WhatsAppFloat } from "@/components/site/WhatsAppFloat";
 import { SocialRail } from "@/components/site/SocialRail";
@@ -112,6 +113,7 @@ export default function RootLayout({
             __html: JSON.stringify(medicalBusinessJsonLd),
           }}
         />
+        <SiteVersionGuard />
         <Nav />
         <HashScroll />
         <main className="min-h-[60vh]">{children}</main>
