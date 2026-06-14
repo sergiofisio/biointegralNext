@@ -2,7 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Inter } from "next/font/google";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
+import { HashScroll } from "@/components/HashScroll";
 import { WhatsAppFloat } from "@/components/site/WhatsAppFloat";
+import { SocialRail } from "@/components/site/SocialRail";
 import { CLINICS, SITE } from "@/lib/site-data";
 import {
   SEO_BASE_URL,
@@ -111,8 +113,10 @@ export default function RootLayout({
           }}
         />
         <Nav />
+        <HashScroll />
         <main className="min-h-[60vh]">{children}</main>
         <Footer />
+        <SocialRail />
         <WhatsAppFloat />
       </body>
     </html>

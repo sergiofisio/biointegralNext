@@ -47,8 +47,6 @@ export function AboutPreview() {
           </p>
           <Link
             href="/quem-somos"
-            target="_blank"
-            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-navy font-semibold border-b border-gold pb-1 hover:gap-3 transition-all"
           >
             Conheça nossa trajetória <ArrowRight className="size-4" />

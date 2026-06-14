@@ -1,10 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-html {
-  scroll-behavior: smooth;
-}
-
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -169,4 +165,30 @@ html {
 
 .contact-phone-input .PhoneInputInput::placeholder {
   color: rgb(161 161 170);
+}
+
+/* Nav — underline expands from center on hover */
+.nav-link-underline {
+  position: relative;
+  display: inline-block;
+  padding-block: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.nav-link-underline::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--gold);
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.nav-link-underline:hover::after,
+.nav-link-underline:focus-visible::after {
+  transform: translateX(-50%) scaleX(1);
 }

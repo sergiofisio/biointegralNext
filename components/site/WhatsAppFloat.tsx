@@ -5,8 +5,6 @@ export function WhatsAppFloat() {
   return (
     <a
       href={SITE.whatsappUrl}
-      target="_blank"
-      rel="noopener noreferrer"
       aria-label="Agendar pelo WhatsApp"
       className="group fixed bottom-6 right-6 z-50 flex items-center rounded-full bg-emerald-600 text-white shadow-xl ring-4 ring-white/30 hover:scale-105 active:scale-95 transition-transform duration-300 overflow-hidden"
     >

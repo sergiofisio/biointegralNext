@@ -7,6 +7,8 @@ import { NAV_SECTIONS } from "@/lib/nav";
 import { useMobileMenu } from "@/hooks/use-mobile-menu";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 import { SectionScrollLink } from "@/components/ui/SectionScrollLink";
+import { SocialLinks } from "@/components/site/SocialLinks";
+import { cn } from "@/lib/utils";
 
 export function Nav() {
   const { open, toggle, close } = useMobileMenu();
@@ -22,11 +24,12 @@ export function Nav() {
             <SectionScrollLink
               key={l.section}
               section={l.section}
-              className="hover:text-navy transition-colors"
+              className={cn("nav-link-underline hover:text-navy")}
             >
               {l.label}
             </SectionScrollLink>
           ))}
+          <SocialLinks variant="nav" />
           <WhatsAppButton variant="nav">Agendar Consulta</WhatsAppButton>
         </div>
         <button
@@ -50,10 +53,9 @@ export function Nav() {
                 {l.label}
               </SectionScrollLink>
             ))}
+            <SocialLinks variant="menu" onNavigate={close} />
             <a
               href={SITE.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               className="bg-navy text-white px-5 py-3 rounded-full text-sm font-medium text-center"
             >
               Agendar Consulta

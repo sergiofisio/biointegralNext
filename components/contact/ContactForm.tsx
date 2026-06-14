@@ -6,6 +6,7 @@ import { useContactForm } from "@/hooks/use-contact-form";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { PhoneField } from "@/components/contact/PhoneField";
 import { FieldError } from "@/components/contact/FieldError";
+import { SocialLinks } from "@/components/site/SocialLinks";
 import { cn } from "@/lib/utils";
 
 const fieldClass = (hasError: boolean) =>
@@ -50,8 +51,6 @@ export function ContactForm() {
                   <p className="mt-1">{errors.form}</p>
                   <a
                     href={SITE.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="inline-block mt-2 font-medium underline underline-offset-2"
                   >
                     Falar pelo WhatsApp
@@ -136,8 +135,6 @@ export function ContactForm() {
         <div className="lg:col-span-2 space-y-6">
           <a
             href={SITE.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
             className="block p-8 rounded-3xl bg-gold text-navy hover:bg-gold-soft transition-colors"
           >
             <MessageCircle className="size-6 mb-3" />
@@ -152,6 +149,16 @@ export function ContactForm() {
             <div className="font-display text-2xl text-navy mb-1">E-mail</div>
             <div className="text-sm text-zinc-500">{SITE.email}</div>
           </a>
+          <div className="p-8 rounded-3xl bg-navy text-white">
+            <div className="font-display text-2xl mb-2">Redes sociais</div>
+            <p className="text-sm text-white/70 mb-5">
+              Acompanhe dicas, novidades e depoimentos.
+            </p>
+            <SocialLinks
+              variant="menu"
+              className="[&_a]:bg-white/10 [&_a]:text-white [&_a]:hover:bg-white/20"
+            />
+          </div>
           <div className="p-8 rounded-3xl bg-white ring-1 ring-black/5">
             <MapPin className="size-6 mb-3 text-gold" />
             <div className="font-display text-2xl text-navy mb-3">

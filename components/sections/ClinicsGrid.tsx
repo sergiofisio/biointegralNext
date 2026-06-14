@@ -19,8 +19,6 @@ export function ClinicsGrid() {
       <div className="mt-10">
         <Link
           href="/clinicas"
-          target="_blank"
-          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-navy font-semibold border-b border-gold pb-1 hover:gap-3 transition-all"
         >
           Ver todas as unidades <ArrowRight className="size-4" />
