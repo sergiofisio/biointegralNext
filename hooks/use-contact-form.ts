@@ -1,7 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { sendContactEmail, validateContactForm } from "@/lib/emailjs";
+import {
+  readContactFormPayload,
+  sendContactForm,
+  validateContactForm,
+} from "@/lib/emailjs";
 
 type FormStatus = "idle" | "loading" | "sent" | "error";
 
@@ -11,16 +15,12 @@ export function useContactForm() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+
     setStatus("loading");
     setError("");
 
-    const data = new FormData(e.currentTarget);
-    const payload = {
-      name: String(data.get("name") ?? ""),
-      email: String(data.get("email") ?? ""),
-      message: String(data.get("message") ?? ""),
-    };
-
+    const payload = readContactFormPayload(form);
     const validationError = validateContactForm(payload);
     if (validationError) {
       setStatus("error");
@@ -29,9 +29,8 @@ export function useContactForm() {
     }
 
     try {
-      await sendContactEmail(payload);
+      await sendContactForm(form);
       setStatus("sent");
-      e.currentTarget.reset();
     } catch (err) {
       setStatus("error");
       setError(

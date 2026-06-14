@@ -119,3 +119,46 @@ html {
 .animate-fade-up {
   animation: fade-up 0.8s cubic-bezier(0.19, 1, 0.22, 1) both;
 }
+
+/* Contact form — international phone input */
+.contact-phone-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgb(212 212 216);
+  padding-bottom: 0.5rem;
+  transition: border-color 0.2s;
+}
+
+.contact-phone-input:focus-within {
+  border-color: var(--color-gold);
+}
+
+.contact-phone-input .PhoneInputCountry {
+  margin-right: 0.25rem;
+}
+
+.contact-phone-input .PhoneInputCountrySelect {
+  font-size: 0.875rem;
+}
+
+.contact-phone-input .PhoneInputCountrySelectArrow {
+  opacity: 0.45;
+  margin-left: 0.25rem;
+}
+
+.contact-phone-input .PhoneInputInput {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0.25rem 0;
+  color: inherit;
+}
+
+.contact-phone-input .PhoneInputInput::placeholder {
+  color: rgb(161 161 170);
+}

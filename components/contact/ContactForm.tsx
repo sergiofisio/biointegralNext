@@ -4,6 +4,7 @@ import { MessageCircle, Mail, MapPin } from "lucide-react";
 import { SITE, CLINICS } from "@/lib/site-data";
 import { useContactForm } from "@/hooks/use-contact-form";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { PhoneField } from "@/components/contact/PhoneField";
 
 export function ContactForm() {
   const { sent, loading, error, handleSubmit } = useContactForm();
@@ -35,7 +36,7 @@ export function ContactForm() {
                   Nome
                 </label>
                 <input
-                  name="name"
+                  name="nome"
                   required
                   className="w-full bg-transparent border-b border-zinc-300 py-2 outline-none focus:border-gold transition-colors"
                 />
@@ -51,17 +52,19 @@ export function ContactForm() {
                   className="w-full bg-transparent border-b border-zinc-300 py-2 outline-none focus:border-gold transition-colors"
                 />
               </div>
+              <PhoneField />
               <div>
                 <label className="text-xs font-semibold uppercase tracking-widest text-navy block mb-2">
                   Mensagem
                 </label>
                 <textarea
-                  name="message"
+                  name="mensagem"
                   required
                   rows={4}
                   className="w-full bg-transparent border-b border-zinc-300 py-2 outline-none focus:border-gold transition-colors resize-none"
                 />
               </div>
+              <input type="hidden" name="reply_to" defaultValue="" />
               <button
                 type="submit"
                 disabled={loading}

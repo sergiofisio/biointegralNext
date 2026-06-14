@@ -43,7 +43,7 @@ O formulário envia e-mail direto do navegador via [EmailJS](https://www.emailjs
 | `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` | ID do template de contato |
 | `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` | Public Key da conta EmailJS |
 
-O template deve usar variáveis como `{{name}}`, `{{email}}` e `{{message}}` (ou `{{from_name}}` / `{{reply_to}}` — ambos são enviados).
+O template **contato home site** usa: `{{nome}}`, `{{email}}`, `{{telefone}}`, `{{mensagem}}` e `{{reply_to}}`.
 
 No **GitHub** (environment `production`), configure as **Variables** do EmailJS e os **Secrets** de deploy:
 
