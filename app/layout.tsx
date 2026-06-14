@@ -68,9 +68,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR">
+    <html lang="pt-BR" suppressHydrationWarning>
       <body
         className={`${instrumentSerif.variable} ${inter.variable} antialiased`}
+        suppressHydrationWarning
       >
         <script
           type="application/ld+json"
