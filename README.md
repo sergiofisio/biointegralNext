@@ -29,34 +29,41 @@ Abra [http://localhost:3000](http://localhost:3000).
 ## Build
 
 ```bash
-yarn build         # Vercel (com API de contato via MailerSend)
+yarn build         # Next.js (SSR)
 yarn build:static  # Hostinger — gera pasta out/
 ```
 
-### Contato (MailerSend)
+### Contato (EmailJS)
 
-Configure no **Vercel** (Environment Variables):
+O formulário envia e-mail direto do navegador via [EmailJS](https://www.emailjs.com/). Copie `.env.example` para `.env` e preencha:
 
 | Variável | Descrição |
 |----------|-----------|
-| `MAILERSEND_API_KEY` | Token da API no painel MailerSend |
-| `MAILERSEND_FROM_EMAIL` | Remetente verificado no MailerSend |
-| `MAILERSEND_FROM_NAME` | Nome exibido (ex.: Biointegral Saúde) |
-| `MAILERSEND_TO_EMAIL` | Caixa que recebe os formulários |
-| `CONTACT_CORS_ORIGIN` | Origens do site estático (Hostinger), separadas por vírgula |
+| `NEXT_PUBLIC_EMAILJS_SERVICE_ID` | ID do serviço no painel EmailJS |
+| `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` | ID do template de contato |
+| `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` | Public Key da conta EmailJS |
 
-No **GitHub** (environment `production`):
+O template deve usar variáveis como `{{name}}`, `{{email}}` e `{{message}}` (ou `{{from_name}}` / `{{reply_to}}` — ambos são enviados).
 
-| Config | Nome | Descrição |
-|--------|------|-----------|
-| Variable | `CONTACT_API_URL` | URL da API na Vercel, ex.: `https://www.biointegralsaude.com.br/api/contact` |
-| Secret | `FTP_HOST` | Host SFTP da Hostinger |
-| Secret | `FTP_USERNAME` | Usuário SFTP |
-| Secret | `FTP_PASSWORD` | Senha FTP/SSH |
+No **GitHub** (environment `production`), configure as **Variables** do EmailJS e os **Secrets** de deploy:
 
-Os secrets legados `VITE_EMAILJS_*` não são mais usados neste projeto.
+| Tipo | Nome | Descrição |
+|------|------|-----------|
+| Variable | `EMAILJS_SERVICE_ID` | ID do serviço EmailJS |
+| Variable | `EMAILJS_TEMPLATE_ID` | ID do template de contato |
+| Variable | `EMAILJS_PUBLIC_KEY` | Public Key EmailJS |
+| Secret | `FTP_HOST` | **IP do servidor** (hPanel → FTP Accounts), ex.: `185.245.180.163` — não use o domínio |
+| Secret | `FTP_USERNAME` | Usuário FTP (ex.: `u123456789`) |
+| Secret | `FTP_PASSWORD` | Senha FTP |
 
-Copie `.env.example` para `.env` local para testar o formulário em desenvolvimento.
+O deploy usa **FTP/FTPS na porta 21** (padrão Hostinger). Se falhar com FTPS, altere `protocol: ftps` para `protocol: ftp` em `.github/workflows/deploy.yml`.
+
+### Deploy falhou com timeout?
+
+1. Confirme que `FTP_HOST` é o **IP** do hPanel, não `biointegralsaude.com.br`
+2. Verifique usuário/senha no hPanel → **FTP Accounts**
+3. Se FTPS falhar, troque para `protocol: ftp` no workflow
+4. A Hostinger pode bloquear IPs de datacenter; nesse caso use um [self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners) ou faça deploy manual com `yarn build:static` + FileZilla
 
 ## Estrutura
 
