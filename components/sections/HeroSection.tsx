@@ -16,10 +16,10 @@ export function HeroSection() {
             <span className="italic text-gold">equilíbrio vital.</span>
           </h1>
           <p className="text-lg text-zinc-600 max-w-[52ch] text-pretty mb-10 leading-relaxed">
-            Sob a coordenação do Dr. Sergio e Dra. Fresia, unimos a precisão da
-            Microfisioterapia ao reequilíbrio emocional do PSYCH-K® e
-            Biodécodage para tratar a causa primária das suas dores físicas e
-            emocionais.
+            Com ciência e sensibilidade, sob a coordenação do Dr. Sergio e Dra.
+            Fresia, unimos a precisão da Microfisioterapia ao reequilíbrio
+            emocional do PSYCH-K® e Biodécodage para tratar a causa primária das
+            suas dores físicas e emocionais.
           </p>
           <div className="flex flex-wrap gap-4">
             <WhatsAppButton>Agende sua consulta</WhatsAppButton>

@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     template: "%s · Biointegral Saúde",
   },
   description:
-    "Clínica de fisioterapia integrativa em São Paulo e ABC Paulista. Pioneiros em Microfisioterapia, PSYCH-K® e Biodécodage com Dr. Sergio e Dra. Fresia.",
+    "Clínica de fisioterapia integrativa em São Paulo e ABC. Microfisioterapia, PSYCH-K® e Biodécodage com Dr. Sergio e Dra. Fresia.",
   keywords: SEO_KEYWORDS,
   authors: [{ name: SEO_SITE_NAME, url: SEO_BASE_URL }],
   creator: SEO_SITE_NAME,
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     ...rootOpenGraph,
     title: "Biointegral Saúde — Fisioterapia Integrativa em São Paulo",
     description:
-      "Trate a causa primária das suas dores. Pioneiros em Microfisioterapia, PSYCH-K® e Biodécodage.",
+      "Trate a causa das suas dores. Microfisioterapia, PSYCH-K® e Biodécodage em São Paulo e ABC.",
   },
   twitter: {
     card: "summary_large_image",

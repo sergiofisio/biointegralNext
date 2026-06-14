@@ -1,2 +1,12 @@
 RewriteEngine On
+
+# HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# www (canonical: https://www.biointegralsaude.com.br)
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^ https://www.biointegralsaude.com.br%{REQUEST_URI} [R=301,L]
+
+# Rotas legadas
 RewriteRule ^livros/?$ / [R=301,L]
