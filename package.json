@@ -5,6 +5,9 @@
   "engines": {
     "node": ">=24"
   },
+  "resolutions": {
+    "postcss": ">=8.5.10"
+  },
   "scripts": {
     "dev": "next dev",
     "dev:clean": "rm -rf .next && next dev",
@@ -17,7 +20,7 @@
     "@emailjs/browser": "^4.4.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.575.0",
-    "next": "^15.3.3",
+    "next": "^15.5.19",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-phone-number-input": "^3.4.17",
@@ -32,7 +35,7 @@
     "@types/react-scroll": "^1.8.10",
     "cross-env": "^10.1.0",
     "eslint": "^9.30.1",
-    "eslint-config-next": "^15.3.3",
+    "eslint-config-next": "^15.5.19",
     "tailwindcss": "^4.2.1",
     "tw-animate-css": "^1.3.4",
     "typescript": "~5.8.3"

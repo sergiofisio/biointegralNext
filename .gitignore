@@ -2,6 +2,7 @@
 # Dependências / Builds
 ############################
 node_modules
+package-lock.json
 .pnp
 .pnp.*
 
