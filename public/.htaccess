@@ -24,7 +24,8 @@ RewriteRule ^ https://www.biointegralsaude.com.br%{REQUEST_URI} [R=301,L]
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
   Header always set X-Frame-Options "SAMEORIGIN"
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.emailjs.com https://challenges.cloudflare.com; frame-src https://www.google.com https://maps.google.com https://challenges.cloudflare.com;"
+  # Cloudflare Insights (Web Analytics) + Turnstile + EmailJS + Maps
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.emailjs.com https://challenges.cloudflare.com https://cloudflareinsights.com; frame-src https://www.google.com https://maps.google.com https://challenges.cloudflare.com;"
 
   # HTML e dados dinâmicos — sempre buscar versão nova no servidor
   <FilesMatch "\.(html?|json|xml|txt)$">
