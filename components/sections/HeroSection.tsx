@@ -32,7 +32,7 @@ export function HeroSection() {
             </a>
           </div>
         </div>
-        <div className="lg:col-span-5 animate-fade-up">
+        <div className="lg:col-span-5">
           <div className="w-full aspect-[4/5] bg-champagne outline outline-1 -outline-offset-1 outline-black/5 rounded-3xl overflow-hidden relative">
             <StaticPicture
               src={IMAGES.hero.src}

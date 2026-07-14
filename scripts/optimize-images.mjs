@@ -2,7 +2,7 @@
  * Gera WebP otimizados em public/images a partir dos assets-fonte.
  * Uso: npm run optimize:images
  *
- * - Hero: variantes 640 / 960 / 1280 a partir de hero-professionals.webp
+ * - Hero: variantes 480 / 640 / 960 / 1280 a partir de hero-professionals.webp
  * - Fotos SVG (PNG embutido): WebP na resolução intrínseca do SVG
  *   (sem upscale — a fonte é ~240px)
  */
@@ -15,12 +15,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const imagesDir = path.join(__dirname, "..", "public", "images");
 
 const WEBP_QUALITY = 80;
+/** Qualidade um pouco menor na variante LCP mobile. */
+const WEBP_QUALITY_MOBILE = 75;
 
-async function writeWebp(inputPath, outputName, width) {
+async function writeWebp(inputPath, outputName, width, quality = WEBP_QUALITY) {
   const outputPath = path.join(imagesDir, outputName);
   await sharp(inputPath)
     .resize({ width, withoutEnlargement: true })
-    .webp({ quality: WEBP_QUALITY })
+    .webp({ quality })
     .toFile(outputPath);
 
   const meta = await sharp(outputPath).metadata();
@@ -34,6 +36,12 @@ async function main() {
 
   const heroSource = path.join(imagesDir, "hero-professionals.webp");
   console.log("Hero variants:");
+  await writeWebp(
+    heroSource,
+    "hero-professionals-480.webp",
+    480,
+    WEBP_QUALITY_MOBILE,
+  );
   for (const width of [640, 960, 1280]) {
     await writeWebp(heroSource, `hero-professionals-${width}.webp`, width);
   }
