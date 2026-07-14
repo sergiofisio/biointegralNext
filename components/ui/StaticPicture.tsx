@@ -27,7 +27,7 @@ export function StaticPicture({
       sizes={sizes}
       alt={alt}
       className={className}
-      decoding="async"
+      decoding={priority ? "sync" : "async"}
       fetchPriority={priority ? "high" : "auto"}
       loading={priority ? "eager" : "lazy"}
     />
