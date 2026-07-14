@@ -10,6 +10,7 @@ import {
   type SatisfactionFormErrors,
   type SatisfactionFormField,
 } from "@/lib/satisfaction-emailjs";
+import { logEmailJsFailure } from "@/lib/emailjs";
 
 type FormStatus = "idle" | "loading" | "sent" | "error";
 
@@ -38,9 +39,9 @@ export function useSatisfactionForm() {
     const payload = readSatisfactionFormPayload(form);
     const validationErrors = validateSatisfactionForm(payload);
     if (validationErrors) {
+      console.warn("[Biointegral/satisfacao] Validação falhou", validationErrors);
       setStatus("error");
       setErrors(validationErrors);
-      // Garante feedback visível: erros de campo ficam fora da viewport do botão.
       requestAnimationFrame(() => {
         const firstInvalid =
           form.querySelector<HTMLElement>("[aria-invalid='true']") ??
@@ -51,10 +52,13 @@ export function useSatisfactionForm() {
     }
 
     if (!isSatisfactionEmailJsConfigured()) {
+      const configError = Object.assign(
+        new Error("Missing EmailJS configuration"),
+        { status: 503, text: "Missing EmailJS configuration" },
+      );
+      logEmailJsFailure("satisfacao", configError);
       setStatus("error");
-      setErrors({
-        form: "Variáveis do EmailJS não carregadas. Confira o arquivo .env e reinicie o servidor com yarn dev.",
-      });
+      setErrors(mapEmailJsError(configError));
       return;
     }
 
@@ -62,9 +66,7 @@ export function useSatisfactionForm() {
       await sendSatisfactionForm(form);
       setStatus("sent");
     } catch (err) {
-      if (process.env.NODE_ENV === "development") {
-        console.error("[satisfacao] EmailJS:", err);
-      }
+      logEmailJsFailure("satisfacao", err);
       setStatus("error");
       setErrors(mapEmailJsError(err));
     }

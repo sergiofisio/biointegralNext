@@ -4,13 +4,26 @@ import {
   EMAILJS_PUBLIC_KEY,
   EMAILJS_SERVICE_ID,
   EMAILJS_CONTATO_TEMPLATE_ID,
+  getEmailJsConfigSnapshot,
   isEmailJsConfigured,
   isContatoEmailJsConfigured,
 } from "@/lib/emailjs-config";
 
-export { isEmailJsConfigured } from "@/lib/emailjs-config";
+export { isEmailJsConfigured, isContatoEmailJsConfigured } from "@/lib/emailjs-config";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const USER_GENERIC_ERROR =
+  "Não conseguimos enviar sua mensagem agora. Tente novamente em instantes ou fale conosco pelo WhatsApp.";
+
+const USER_NETWORK_ERROR =
+  "Sem conexão com a internet. Verifique sua rede e tente novamente.";
+
+const USER_RATE_LIMIT_ERROR =
+  "Você enviou várias mensagens seguidas. Aguarde cerca de 1 minuto e tente novamente.";
+
+const USER_CONFIG_ERROR =
+  "O envio automático está temporariamente indisponível. Por favor, fale conosco pelo WhatsApp.";
 
 export type ContactFormField = "nome" | "email" | "telefone" | "mensagem";
 
@@ -74,7 +87,7 @@ function getErrorText(error: unknown): string {
   if (error instanceof Error) {
     return error.message.toLowerCase();
   }
-  return "";
+  return String(error ?? "").toLowerCase();
 }
 
 function getErrorStatus(error: unknown): number | null {
@@ -85,44 +98,60 @@ function getErrorStatus(error: unknown): number | null {
   return null;
 }
 
+/** Log técnico no console (produção e desenvolvimento) para facilitar diagnóstico. */
+export function logEmailJsFailure(context: string, error: unknown) {
+  const text = getErrorText(error);
+  const status = getErrorStatus(error);
+  const config = getEmailJsConfigSnapshot();
+
+  console.error(`[Biointegral/${context}] Falha no envio EmailJS`, {
+    status,
+    message: text || "(sem mensagem)",
+    error,
+    config,
+    dica: [
+      !config.contatoReady && context === "contato"
+        ? "Config de contato incompleta (service / template / public key)."
+        : null,
+      !config.satisfactionReady && context === "satisfacao"
+        ? "Config de satisfação incompleta (service / satisfaction template / public key)."
+        : null,
+      text.includes("public key") || text.includes("user id")
+        ? "Public Key inválida — confira Account → General → Public Key no EmailJS e a variável NEXT_PUBLIC_EMAILJS_PUBLIC_KEY no GitHub (Variables)."
+        : null,
+      text.includes("template")
+        ? "Template ID inválido — confira o ID na aba Settings do template no EmailJS."
+        : null,
+      text.includes("service")
+        ? "Service ID inválido — confira Email Services no EmailJS."
+        : null,
+    ].filter(Boolean),
+  });
+}
+
 export function mapEmailJsError(error: unknown): ContactFormErrors {
   const text = getErrorText(error);
   const status = getErrorStatus(error);
 
-  if (text.includes("network") || text.includes("fetch")) {
-    return {
-      form: "Sem conexão com a internet. Verifique sua rede e tente novamente.",
-    };
+  if (text.includes("network") || text.includes("fetch") || text.includes("failed to fetch")) {
+    return { form: USER_NETWORK_ERROR };
   }
 
   if (status === 429 || text.includes("rate limit")) {
-    return {
-      form: "Você enviou várias mensagens seguidas. Aguarde cerca de 1 minuto e tente novamente.",
-    };
+    return { form: USER_RATE_LIMIT_ERROR };
   }
 
-  if (text.includes("template")) {
-    return {
-      form: "O template de e-mail não foi encontrado. Confira o Template ID no painel EmailJS (aba Settings) e atualize o .env.",
-    };
-  }
-
-  if (text.includes("service")) {
-    return {
-      form: "O serviço de e-mail não foi encontrado. Confira o Service ID no painel EmailJS e atualize o .env.",
-    };
-  }
-
-  if (text.includes("user id") || text.includes("public key")) {
-    return {
-      form: "A chave pública do EmailJS está incorreta. Confira a Public Key no painel EmailJS.",
-    };
-  }
-
-  if (status === 403 || text.includes("non-browser")) {
-    return {
-      form: "O EmailJS bloqueou o envio. Ative 'Allow EmailJS API for non-browser applications' em Account → Security no painel EmailJS.",
-    };
+  if (
+    status === 503 ||
+    text.includes("missing emailjs") ||
+    text.includes("public key") ||
+    text.includes("user id") ||
+    text.includes("template") ||
+    text.includes("service") ||
+    status === 403 ||
+    text.includes("non-browser")
+  ) {
+    return { form: USER_CONFIG_ERROR };
   }
 
   if (status === 400 || status === 422) {
@@ -131,15 +160,7 @@ export function mapEmailJsError(error: unknown): ContactFormErrors {
     };
   }
 
-  if (status === 503 || text.includes("missing emailjs")) {
-    return {
-      form: "Variáveis do EmailJS não carregadas. Reinicie o servidor com yarn dev após configurar o .env.",
-    };
-  }
-
-  return {
-    form: "Não conseguimos enviar sua mensagem agora. Tente novamente em instantes ou fale conosco pelo WhatsApp.",
-  };
+  return { form: USER_GENERIC_ERROR };
 }
 
 export async function sendContactForm(form: HTMLFormElement) {
