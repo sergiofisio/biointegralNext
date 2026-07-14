@@ -12,7 +12,7 @@
     "dev": "next dev",
     "dev:clean": "rm -rf .next && next dev",
     "build": "next build",
-    "build:static": "cross-env STATIC_EXPORT=true next build && node scripts/write-version.mjs",
+    "build:static": "node scripts/build-static.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
     "start": "next start",
     "lint": "next lint"

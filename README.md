@@ -78,9 +78,11 @@ Os IDs são obtidos no painel do [EmailJS](https://www.emailjs.com/). O Turnstil
 | `yarn dev` | Servidor de desenvolvimento |
 | `yarn dev:clean` | Limpa cache `.next` e inicia o dev server |
 | `yarn build` | Build padrão do Next.js |
-| `yarn build:static` | Build estático para produção (gera `out/`) |
+| `yarn build:static` | Build estático para produção (gera `out/` + `version.json`) |
 | `yarn start` | Servidor de produção (após `yarn build`) |
 | `yarn lint` | ESLint |
+
+Cada `build:static` gera um `NEXT_PUBLIC_BUILD_ID` (no CI = `github.sha`). O cliente compara com `/version.json` e, se o deploy for novo, limpa caches e força reload automático (`SiteVersionGuard`).
 
 ## Deploy
 
