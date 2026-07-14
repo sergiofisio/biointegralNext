@@ -259,10 +259,21 @@ export function SatisfactionForm() {
                 </div>
 
                 <div>
-                  <span className="block text-sm text-zinc-600 mb-3">
+                  <span
+                    id="autoriza-label"
+                    className="block text-sm text-zinc-600 mb-3"
+                  >
                     Autoriza a publicação deste depoimento no site? *
                   </span>
-                  <div className="space-y-3">
+                  <div
+                    className="space-y-3"
+                    role="radiogroup"
+                    aria-labelledby="autoriza-label"
+                    aria-invalid={Boolean(errors.autoriza_publicacao)}
+                    aria-describedby={
+                      errors.autoriza_publicacao ? "autoriza-error" : undefined
+                    }
+                  >
                     <label className="flex items-start gap-3 cursor-pointer">
                       <input
                         type="radio"
