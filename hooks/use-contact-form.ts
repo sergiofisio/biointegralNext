@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import {
-  isEmailJsConfigured,
+  isContatoEmailJsConfigured,
+  logEmailJsFailure,
   mapEmailJsError,
   readContactFormPayload,
   sendContactForm,
@@ -38,16 +39,26 @@ export function useContactForm() {
     const payload = readContactFormPayload(form);
     const validationErrors = validateContactForm(payload);
     if (validationErrors) {
+      console.warn("[Biointegral/contato] Validação falhou", validationErrors);
       setStatus("error");
       setErrors(validationErrors);
+      requestAnimationFrame(() => {
+        const firstInvalid =
+          form.querySelector<HTMLElement>("[aria-invalid='true']") ??
+          form.querySelector<HTMLElement>("[role='alert']");
+        firstInvalid?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
       return;
     }
 
-    if (!isEmailJsConfigured()) {
+    if (!isContatoEmailJsConfigured()) {
+      const configError = Object.assign(
+        new Error("Missing EmailJS configuration"),
+        { status: 503, text: "Missing EmailJS configuration" },
+      );
+      logEmailJsFailure("contato", configError);
       setStatus("error");
-      setErrors({
-        form: "Variáveis do EmailJS não carregadas. Confira o arquivo .env e reinicie o servidor com yarn dev.",
-      });
+      setErrors(mapEmailJsError(configError));
       return;
     }
 
@@ -55,9 +66,7 @@ export function useContactForm() {
       await sendContactForm(form);
       setStatus("sent");
     } catch (err) {
-      if (process.env.NODE_ENV === "development") {
-        console.error("[contato] EmailJS:", err);
-      }
+      logEmailJsFailure("contato", err);
       setStatus("error");
       setErrors(mapEmailJsError(err));
     }
