@@ -22,6 +22,8 @@ export function ClinicCard({ clinic }: { clinic: Clinic }) {
       </p>
       <a
         href={clinic.mapsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         className="inline-flex items-center gap-2 text-xs font-semibold text-navy uppercase tracking-wider"
       >
         <MapPin className="size-4" /> Ver no Google Maps

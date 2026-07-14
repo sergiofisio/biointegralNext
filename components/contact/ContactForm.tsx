@@ -7,6 +7,8 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { PhoneField } from "@/components/contact/PhoneField";
 import { FieldError } from "@/components/contact/FieldError";
 import { SocialLinks } from "@/components/site/SocialLinks";
+import { HoneypotField } from "@/components/forms/HoneypotField";
+import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
 import { cn } from "@/lib/utils";
 
 const fieldClass = (hasError: boolean) =>
@@ -18,7 +20,14 @@ const fieldClass = (hasError: boolean) =>
   );
 
 export function ContactForm() {
-  const { sent, loading, errors, clearFieldError, handleSubmit } = useContactForm();
+  const {
+    sent,
+    loading,
+    errors,
+    clearFieldError,
+    handleSubmit,
+    onTurnstileTokenChange,
+  } = useContactForm();
 
   return (
     <div className="bg-canvas">
@@ -41,7 +50,8 @@ export function ContactForm() {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+            <form onSubmit={handleSubmit} className="relative space-y-6" noValidate>
+              <HoneypotField />
               {errors.form && (
                 <div
                   className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-800"
@@ -51,6 +61,8 @@ export function ContactForm() {
                   <p className="mt-1">{errors.form}</p>
                   <a
                     href={SITE.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-block mt-2 font-medium underline underline-offset-2"
                   >
                     Falar pelo WhatsApp
@@ -122,6 +134,7 @@ export function ContactForm() {
               </div>
 
               <input type="hidden" name="reply_to" defaultValue="" />
+              <TurnstileWidget onTokenChange={onTurnstileTokenChange} />
               <button
                 type="submit"
                 disabled={loading}
@@ -135,6 +148,8 @@ export function ContactForm() {
         <div className="lg:col-span-2 space-y-6">
           <a
             href={SITE.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="block p-8 rounded-3xl bg-gold text-navy hover:bg-gold-soft transition-colors"
           >
             <MessageCircle className="size-6 mb-3" />

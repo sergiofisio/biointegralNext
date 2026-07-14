@@ -22,6 +22,8 @@ export function ClinicDetailCard({ clinic }: { clinic: Clinic }) {
           loading="lazy"
           className="w-full h-full border-0"
           referrerPolicy="no-referrer-when-downgrade"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+          allowFullScreen
         />
       </div>
       <div className="p-10 flex flex-col justify-center">
@@ -38,12 +40,16 @@ export function ClinicDetailCard({ clinic }: { clinic: Clinic }) {
         <div className="flex flex-wrap gap-3">
           <a
             href={clinic.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-navy text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-navy-soft transition-colors"
           >
             Mostrar no Google Maps <ArrowRight className="size-4" />
           </a>
           <a
             href={SITE.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium ring-1 ring-zinc-950/10 text-navy"
           >
             Agendar aqui

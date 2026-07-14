@@ -2,9 +2,16 @@ import { Facebook, Instagram, type LucideIcon } from "lucide-react";
 import { SOCIAL_LINKS } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
-const ICONS: Record<(typeof SOCIAL_LINKS)[number]["name"], LucideIcon> = {
+type SocialName = (typeof SOCIAL_LINKS)[number]["name"];
+
+const ICONS: Record<SocialName, LucideIcon> = {
   Instagram,
   Facebook,
+};
+
+const EXTERNAL_LINK_PROPS = {
+  target: "_blank" as const,
+  rel: "noopener noreferrer",
 };
 
 type SocialLinksProps = {
@@ -27,8 +34,7 @@ export function SocialLinks({
             <a
               key={social.name}
               href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              {...EXTERNAL_LINK_PROPS}
               aria-label={`${social.name} — ${social.handle}`}
               onClick={onNavigate}
               className="size-10 rounded-full grid place-items-center text-zinc-500 hover:text-navy hover:bg-zinc-950/5 transition-colors"
@@ -50,6 +56,7 @@ export function SocialLinks({
             <a
               key={social.name}
               href={social.href}
+              {...EXTERNAL_LINK_PROPS}
               onClick={onNavigate}
               className="flex-1 flex items-center justify-center gap-2 py-3 rounded-full bg-navy/5 text-navy text-sm font-medium hover:bg-navy/10 transition-colors"
             >
@@ -71,6 +78,7 @@ export function SocialLinks({
             <a
               key={social.name}
               href={social.href}
+              {...EXTERNAL_LINK_PROPS}
               className="flex items-center gap-4 p-5 rounded-2xl bg-white ring-1 ring-black/5 hover:ring-gold/40 transition-colors"
             >
               <span className="size-11 rounded-full bg-navy/5 grid place-items-center text-navy shrink-0">
@@ -103,6 +111,7 @@ export function SocialLinks({
             <a
               key={social.name}
               href={social.href}
+              {...EXTERNAL_LINK_PROPS}
               className="inline-flex items-center gap-2.5 pl-3 pr-4 py-2.5 rounded-full bg-navy text-white text-sm font-medium hover:bg-navy-soft transition-colors"
             >
               <Icon className="size-4" />

@@ -56,6 +56,8 @@ export function Nav() {
             <SocialLinks variant="menu" onNavigate={close} />
             <a
               href={SITE.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-navy text-white px-5 py-3 rounded-full text-sm font-medium text-center"
             >
               Agendar Consulta

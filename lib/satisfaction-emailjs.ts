@@ -7,6 +7,7 @@ import {
   isSatisfactionEmailJsConfigured,
 } from "@/lib/emailjs-config";
 import { mapEmailJsError } from "@/lib/emailjs";
+import { HONEYPOT_FIELD_NAME } from "@/lib/form-guard";
 
 export { isSatisfactionEmailJsConfigured, mapEmailJsError };
 
@@ -266,10 +267,21 @@ export async function sendSatisfactionForm(form: HTMLFormElement) {
     optionalText(getFormValue(form, "comentarios_melhoria")),
   );
 
-  await emailjs.sendForm(
-    EMAILJS_SERVICE_ID,
-    EMAILJS_SATISFACTION_TEMPLATE_ID,
-    form,
-    { publicKey: EMAILJS_PUBLIC_KEY },
-  );
+  const honeypot = form.elements.namedItem(HONEYPOT_FIELD_NAME);
+  if (honeypot instanceof HTMLInputElement) {
+    honeypot.disabled = true;
+  }
+
+  try {
+    await emailjs.sendForm(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_SATISFACTION_TEMPLATE_ID,
+      form,
+      { publicKey: EMAILJS_PUBLIC_KEY },
+    );
+  } finally {
+    if (honeypot instanceof HTMLInputElement) {
+      honeypot.disabled = false;
+    }
+  }
 }

@@ -7,6 +7,8 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { PhoneField } from "@/components/contact/PhoneField";
 import { FieldError } from "@/components/contact/FieldError";
 import { StarRating } from "@/components/satisfaction/StarRating";
+import { HoneypotField } from "@/components/forms/HoneypotField";
+import { TurnstileWidget } from "@/components/forms/TurnstileWidget";
 import { cn } from "@/lib/utils";
 
 const fieldClass = (hasError: boolean) =>
@@ -34,8 +36,14 @@ const textareaClass = (hasError: boolean) =>
   );
 
 export function SatisfactionForm() {
-  const { sent, loading, errors, clearFieldError, handleSubmit } =
-    useSatisfactionForm();
+  const {
+    sent,
+    loading,
+    errors,
+    clearFieldError,
+    handleSubmit,
+    onTurnstileTokenChange,
+  } = useSatisfactionForm();
   const [nota, setNota] = useState(0);
 
   return (
@@ -59,7 +67,8 @@ export function SatisfactionForm() {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-8" noValidate>
+            <form onSubmit={handleSubmit} className="relative space-y-8" noValidate>
+              <HoneypotField />
               {errors.form && (
                 <div
                   className="rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-800"
@@ -458,6 +467,7 @@ export function SatisfactionForm() {
                 </div>
               </fieldset>
 
+              <TurnstileWidget onTokenChange={onTurnstileTokenChange} />
               <button
                 type="submit"
                 disabled={loading}
