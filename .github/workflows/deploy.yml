@@ -14,10 +14,12 @@ jobs:
     timeout-minutes: 35
 
     env:
-      FTP_SERVER: ${{ secrets.FTP_HOST }}
+      FTP_HOST_RAW: ${{ secrets.FTP_HOST }}
       FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
       FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-      FTP_SERVER_DIR: ./domains/biointegralsaude.com.br/public_html/
+      # Em Hostinger, a pasta do site costuma ser domains/<dominio>/public_html
+      # (a home FTP às vezes tem um atalho public_html → esse caminho).
+      FTP_SERVER_DIR: ${{ vars.FTP_SERVER_DIR || './domains/biointegralsaude.com.br/public_html/' }}
       SFTP_REMOTE_PATH: ${{ vars.SFTP_REMOTE_PATH || 'domains/biointegralsaude.com.br/public_html' }}
 
     steps:
@@ -32,6 +34,31 @@ jobs:
 
       - name: Instalar dependências
         run: yarn install --frozen-lockfile
+
+      - name: Normalizar e validar credenciais FTP
+        run: |
+          if [ -z "$FTP_HOST_RAW" ] || [ -z "$FTP_USERNAME" ] || [ -z "$FTP_PASSWORD" ]; then
+            echo "::error::Secrets FTP ausentes. Em Settings → Environments → production → Environment secrets, configure:"
+            echo "  FTP_HOST, FTP_USERNAME, FTP_PASSWORD"
+            echo "Não use Environment variables para senha/host — o workflow lê secrets.*"
+            exit 1
+          fi
+
+          # Aceita "ftp://IP", "IP" ou host com path; a action exige só hostname/IP.
+          HOST="$FTP_HOST_RAW"
+          HOST="${HOST#ftp://}"
+          HOST="${HOST#ftps://}"
+          HOST="${HOST#sftp://}"
+          HOST="${HOST%%/*}"
+          HOST="${HOST%%:*}"
+
+          if [ -z "$HOST" ]; then
+            echo "::error::FTP_HOST inválido após normalização."
+            exit 1
+          fi
+
+          echo "FTP_HOST normalizado: $HOST"
+          echo "FTP_SERVER=$HOST" >> "$GITHUB_ENV"
 
       - name: Verificar variáveis EmailJS
         env:
@@ -67,14 +94,10 @@ jobs:
       - name: Testar conectividade com Hostinger
         continue-on-error: true
         run: |
-          HOST="${FTP_SERVER#ftp://}"
-          HOST="${HOST#ftps://}"
-          HOST="${HOST#sftp://}"
-          HOST="${HOST%%/*}"
-          echo "Servidor configurado: $HOST"
+          echo "Servidor configurado: $FTP_SERVER"
           for PORT in 21 65002; do
             echo -n "Porta $PORT: "
-            if timeout 20 bash -c "echo > /dev/tcp/$HOST/$PORT" 2>/dev/null; then
+            if timeout 20 bash -c "echo > /dev/tcp/$FTP_SERVER/$PORT" 2>/dev/null; then
               echo "acessível"
             else
               echo "sem resposta (timeout ou bloqueada)"
