@@ -26,6 +26,8 @@ export function WhatsAppButton({
   return (
     <a
       href={href}
+      target="_blank"
+      rel="noopener noreferrer"
       className={cn(variants[variant], className)}
     >
       {variant !== "nav" && <Calendar className="size-4 shrink-0" />}

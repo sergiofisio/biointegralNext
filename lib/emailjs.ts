@@ -8,6 +8,7 @@ import {
   isEmailJsConfigured,
   isContatoEmailJsConfigured,
 } from "@/lib/emailjs-config";
+import { HONEYPOT_FIELD_NAME } from "@/lib/form-guard";
 
 export { isEmailJsConfigured, isContatoEmailJsConfigured } from "@/lib/emailjs-config";
 
@@ -186,12 +187,23 @@ export async function sendContactForm(form: HTMLFormElement) {
     }
   }
 
-  await emailjs.sendForm(
-    EMAILJS_SERVICE_ID,
-    EMAILJS_CONTATO_TEMPLATE_ID,
-    form,
-    { publicKey: EMAILJS_PUBLIC_KEY },
-  );
+  const honeypot = form.elements.namedItem(HONEYPOT_FIELD_NAME);
+  if (honeypot instanceof HTMLInputElement) {
+    honeypot.disabled = true;
+  }
+
+  try {
+    await emailjs.sendForm(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_CONTATO_TEMPLATE_ID,
+      form,
+      { publicKey: EMAILJS_PUBLIC_KEY },
+    );
+  } finally {
+    if (honeypot instanceof HTMLInputElement) {
+      honeypot.disabled = false;
+    }
+  }
 }
 
 export function readContactFormPayload(form: HTMLFormElement): ContactFormPayload {

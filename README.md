@@ -56,8 +56,9 @@ As credenciais do EmailJS ficam em `.env` (não versionado). Consulte [`.env.exa
 | `NEXT_PUBLIC_EMAILJS_CONTATO_TEMPLATE_ID` | Template do formulário `/contato` |
 | `NEXT_PUBLIC_EMAILJS_SATISFACTION_TEMPLATE_ID` | Template da pesquisa `/satisfacao` |
 | `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` | Fallback legado para contato (se CONTATO não existir) |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Site key do Cloudflare Turnstile (anti-bot) |
 
-Os IDs são obtidos no painel do [EmailJS](https://www.emailjs.com/).
+Os IDs são obtidos no painel do [EmailJS](https://www.emailjs.com/). O Turnstile em [dash.cloudflare.com](https://dash.cloudflare.com) → Turnstile.
 
 ## Scripts
 
@@ -77,31 +78,39 @@ O deploy é automatizado pelo workflow [`.github/workflows/deploy.yml`](.github/
 1. Instala dependências com `yarn install --frozen-lockfile`
 2. Valida variáveis do EmailJS
 3. Executa `yarn build:static`
-4. Publica a pasta `out/` no servidor via FTP ou SFTP
+4. Publica a pasta `out/` no servidor — **SFTP primeiro**, depois FTP/FTPS como fallback
 
 ### Configuração no GitHub
 
 No environment **production**, configure:
 
-**Secrets** (credenciais de acesso ao servidor):
+**Secrets** (nunca use Environment variables para isto):
 
 | Secret | Descrição |
 |--------|-----------|
-| `FTP_HOST` | Host ou IP do servidor |
+| `FTP_HOST` | IP do servidor (**sem** `ftp://`) |
 | `FTP_USERNAME` | Usuário FTP/SFTP |
 | `FTP_PASSWORD` | Senha FTP/SFTP |
+| `SFTP_KNOWN_HOSTS` | *(opcional)* Linha `known_hosts` do servidor para verificar o host no SFTP |
 
-**Variables** (configuração do build):
+**Variables** (configuração embutida no build estático):
 
 | Variable | Descrição |
 |----------|-----------|
-| `EMAILJS_SERVICE_ID` ou `NEXT_PUBLIC_EMAILJS_SERVICE_ID` | ID do serviço EmailJS |
-| `EMAILJS_PUBLIC_KEY` ou `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` | Chave pública EmailJS |
-| `EMAILJS_CONTATO_TEMPLATE_ID` ou `NEXT_PUBLIC_EMAILJS_CONTATO_TEMPLATE_ID` | Template do formulário de contato |
-| `EMAILJS_SATISFACTION_TEMPLATE_ID` ou `NEXT_PUBLIC_EMAILJS_SATISFACTION_TEMPLATE_ID` | Template da pesquisa de satisfação |
-| `SFTP_REMOTE_PATH` | *(opcional)* Caminho remoto para upload SFTP |
+| `NEXT_PUBLIC_EMAILJS_SERVICE_ID` | ID do serviço EmailJS |
+| `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` | Chave pública EmailJS |
+| `NEXT_PUBLIC_EMAILJS_CONTATO_TEMPLATE_ID` | Template do formulário de contato |
+| `NEXT_PUBLIC_EMAILJS_SATISFACTION_TEMPLATE_ID` | Template da pesquisa de satisfação |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Site key Turnstile (recomendado) |
+| `SFTP_REMOTE_PATH` | *(opcional)* Caminho remoto SFTP |
 
 O build de produção **falha** se as variáveis do EmailJS não estiverem configuradas.
+
+### Checklist Hostinger / EmailJS
+
+1. hPanel → **Advanced → SSH Access** → ativar SFTP (porta **65002**)
+2. EmailJS → restringir domínio a `www.biointegralsaude.com.br` (+ `localhost` em teste)
+3. Se a senha FTP já apareceu em Variables ou prints, **troque no hPanel** e atualize o secret
 
 ### Deploy manual
 
@@ -118,18 +127,21 @@ components/
   ui/                 → componentes reutilizáveis
   sections/           → seções da home
   cards/              → cards de técnicas, clínicas e profissionais
+  forms/              → honeypot e Turnstile
   site/               → Nav, Footer, WhatsApp, redes sociais
 hooks/                → formulários e interações do cliente
-lib/                  → dados do site, SEO e metadados
-public/images/        → imagens e assets estáticos
+lib/                  → dados do site, SEO, form-guard, EmailJS
+public/               → assets + .htaccess (headers de segurança)
 scripts/              → utilitários de build (ex.: version.json)
 ```
 
 ## Segurança e dependências
 
-- Use **apenas Yarn** (`yarn install`) — o projeto não utiliza `package-lock.json`
-- Alertas de dependências são monitorados via [Dependabot](.github/dependabot.yml)
-- Nunca commite arquivos `.env` com credenciais reais
+- Headers HTTP (HSTS, CSP, nosniff, frame, referrer) em [`public/.htaccess`](public/.htaccess)
+- Formulários: honeypot + cooldown (60s) + Cloudflare Turnstile (quando a site key existir)
+- Deploy: secrets FTP apenas; SFTP preferencial; Dependabot para `npm` e `github-actions`
+- Use **apenas Yarn** (`yarn install`) — o projeto ignora `package-lock.json`
+- Nunca versione `.env` com credenciais reais
 
 ## Licença
 

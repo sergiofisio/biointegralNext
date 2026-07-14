@@ -17,8 +17,9 @@ jobs:
       FTP_HOST_RAW: ${{ secrets.FTP_HOST }}
       FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
       FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      # Preferir secret; variable aceita como fallback de leitura (não armazene senha em Variables).
+      SFTP_KNOWN_HOSTS: ${{ secrets.SFTP_KNOWN_HOSTS || vars.SFTP_KNOWN_HOSTS }}
       # Em Hostinger, a pasta do site costuma ser domains/<dominio>/public_html
-      # (a home FTP às vezes tem um atalho public_html → esse caminho).
       FTP_SERVER_DIR: ${{ vars.FTP_SERVER_DIR || './domains/biointegralsaude.com.br/public_html/' }}
       SFTP_REMOTE_PATH: ${{ vars.SFTP_REMOTE_PATH || 'domains/biointegralsaude.com.br/public_html' }}
 
@@ -41,6 +42,7 @@ jobs:
             echo "::error::Secrets FTP ausentes. Em Settings → Environments → production → Environment secrets, configure:"
             echo "  FTP_HOST, FTP_USERNAME, FTP_PASSWORD"
             echo "Não use Environment variables para senha/host — o workflow lê secrets.*"
+            echo "Opcional: SFTP_KNOWN_HOSTS (linha known_hosts do servidor) para SFTP sem StrictHostKeyChecking=no"
             exit 1
           fi
 
@@ -60,6 +62,18 @@ jobs:
           echo "FTP_HOST normalizado: $HOST"
           echo "FTP_SERVER=$HOST" >> "$GITHUB_ENV"
 
+          if [ -n "$SFTP_KNOWN_HOSTS" ]; then
+            mkdir -p ~/.ssh
+            chmod 700 ~/.ssh
+            echo "$SFTP_KNOWN_HOSTS" > ~/.ssh/known_hosts
+            chmod 600 ~/.ssh/known_hosts
+            echo "SFTP_ARGS=-o ConnectTimeout=60 -o ServerAliveInterval=30 -o UserKnownHostsFile=$HOME/.ssh/known_hosts -o StrictHostKeyChecking=yes" >> "$GITHUB_ENV"
+            echo "SFTP com verificação de host (known_hosts) ativada."
+          else
+            echo "SFTP_ARGS=-o ConnectTimeout=60 -o ServerAliveInterval=30 -o StrictHostKeyChecking=accept-new" >> "$GITHUB_ENV"
+            echo "::warning::SFTP_KNOWN_HOSTS não definido — usando StrictHostKeyChecking=accept-new. Prefira cadastrar o fingerprint em secrets."
+          fi
+
       - name: Verificar variáveis EmailJS
         env:
           NEXT_PUBLIC_EMAILJS_SERVICE_ID: ${{ vars.EMAILJS_SERVICE_ID || vars.NEXT_PUBLIC_EMAILJS_SERVICE_ID }}
@@ -67,6 +81,7 @@ jobs:
           NEXT_PUBLIC_EMAILJS_CONTATO_TEMPLATE_ID: ${{ vars.EMAILJS_CONTATO_TEMPLATE_ID || vars.NEXT_PUBLIC_EMAILJS_CONTATO_TEMPLATE_ID }}
           NEXT_PUBLIC_EMAILJS_SATISFACTION_TEMPLATE_ID: ${{ vars.EMAILJS_SATISFACTION_TEMPLATE_ID || vars.NEXT_PUBLIC_EMAILJS_SATISFACTION_TEMPLATE_ID }}
           NEXT_PUBLIC_EMAILJS_PUBLIC_KEY: ${{ vars.EMAILJS_PUBLIC_KEY || vars.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }}
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY || vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
         run: |
           missing=0
           for var in NEXT_PUBLIC_EMAILJS_SERVICE_ID NEXT_PUBLIC_EMAILJS_PUBLIC_KEY NEXT_PUBLIC_EMAILJS_SATISFACTION_TEMPLATE_ID; do
@@ -75,17 +90,21 @@ jobs:
               missing=1
             fi
           done
-          # Contato: CONTATO_TEMPLATE_ID ou fallback TEMPLATE_ID
           if [ -z "$NEXT_PUBLIC_EMAILJS_CONTATO_TEMPLATE_ID" ] && [ -z "$NEXT_PUBLIC_EMAILJS_TEMPLATE_ID" ]; then
             echo "::error::Defina NEXT_PUBLIC_EMAILJS_CONTATO_TEMPLATE_ID (ou NEXT_PUBLIC_EMAILJS_TEMPLATE_ID) nas Variables"
             missing=1
+          fi
+          if [ -z "$NEXT_PUBLIC_TURNSTILE_SITE_KEY" ]; then
+            echo "::warning::NEXT_PUBLIC_TURNSTILE_SITE_KEY ausente — formulários sem Turnstile (honeypot/cooldown ainda ativos)."
           fi
           if [ "$missing" -eq 1 ]; then
             echo "Configure em Settings → Environments → production → Environment variables:"
             echo "  NEXT_PUBLIC_EMAILJS_SERVICE_ID"
             echo "  NEXT_PUBLIC_EMAILJS_PUBLIC_KEY"
-            echo "  NEXT_PUBLIC_EMAILJS_CONTATO_TEMPLATE_ID  (template do formulário /contato)"
-            echo "  NEXT_PUBLIC_EMAILJS_SATISFACTION_TEMPLATE_ID  (template de /satisfacao)"
+            echo "  NEXT_PUBLIC_EMAILJS_CONTATO_TEMPLATE_ID"
+            echo "  NEXT_PUBLIC_EMAILJS_SATISFACTION_TEMPLATE_ID"
+            echo "  NEXT_PUBLIC_TURNSTILE_SITE_KEY (recomendado)"
+            echo "Secrets (nunca Variables): FTP_HOST, FTP_USERNAME, FTP_PASSWORD [, SFTP_KNOWN_HOSTS]"
             exit 1
           fi
 
@@ -98,13 +117,14 @@ jobs:
           NEXT_PUBLIC_EMAILJS_CONTATO_TEMPLATE_ID: ${{ vars.EMAILJS_CONTATO_TEMPLATE_ID || vars.NEXT_PUBLIC_EMAILJS_CONTATO_TEMPLATE_ID || vars.EMAILJS_TEMPLATE_ID || vars.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID }}
           NEXT_PUBLIC_EMAILJS_SATISFACTION_TEMPLATE_ID: ${{ vars.EMAILJS_SATISFACTION_TEMPLATE_ID || vars.NEXT_PUBLIC_EMAILJS_SATISFACTION_TEMPLATE_ID }}
           NEXT_PUBLIC_EMAILJS_PUBLIC_KEY: ${{ vars.EMAILJS_PUBLIC_KEY || vars.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }}
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ vars.TURNSTILE_SITE_KEY || vars.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
         run: yarn build:static
 
       - name: Testar conectividade com Hostinger
         continue-on-error: true
         run: |
           echo "Servidor configurado: $FTP_SERVER"
-          for PORT in 21 65002; do
+          for PORT in 65002 21; do
             echo -n "Porta $PORT: "
             if timeout 20 bash -c "echo > /dev/tcp/$FTP_SERVER/$PORT" 2>/dev/null; then
               echo "acessível"
@@ -113,12 +133,31 @@ jobs:
             fi
           done
 
-      - name: Aguardar servidor FTP
-        run: sleep 15
+      - name: Aguardar servidor FTP/SFTP
+        run: sleep 10
 
-      # FTP simples costuma ser mais estável que FTPS a partir dos runners do GitHub.
-      - name: Deploy FTP — tentativa 1 (FTP simples, porta 21)
+      # Preferir SFTP (criptografado) quando SSH estiver ativo no hPanel.
+      - name: Deploy SFTP — tentativa 1 (porta 65002)
+        id: sftp_deploy
+        continue-on-error: true
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        with:
+          username: ${{ env.FTP_USERNAME }}
+          server: ${{ env.FTP_SERVER }}
+          port: 65002
+          password: ${{ env.FTP_PASSWORD }}
+          local_path: "./out/*"
+          remote_path: ${{ env.SFTP_REMOTE_PATH }}
+          sftp_only: true
+          sftpArgs: ${{ env.SFTP_ARGS }}
+
+      - name: Aguardar antes da tentativa 2
+        if: steps.sftp_deploy.outcome == 'failure'
+        run: sleep 20
+
+      - name: Deploy FTP — tentativa 2 (FTP simples, porta 21)
         id: ftp_plain
+        if: steps.sftp_deploy.outcome == 'failure'
         continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -132,13 +171,13 @@ jobs:
           log-level: verbose
           timeout: 180000
 
-      - name: Aguardar antes da tentativa 2
-        if: steps.ftp_plain.outcome == 'failure'
-        run: sleep 30
+      - name: Aguardar antes da tentativa 3
+        if: steps.sftp_deploy.outcome == 'failure' && steps.ftp_plain.outcome == 'failure'
+        run: sleep 20
 
-      - name: Deploy FTP — tentativa 2 (FTPS explícito)
+      - name: Deploy FTP — tentativa 3 (FTPS explícito)
         id: ftp_ftps
-        if: steps.ftp_plain.outcome == 'failure'
+        if: steps.sftp_deploy.outcome == 'failure' && steps.ftp_plain.outcome == 'failure'
         continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -153,13 +192,13 @@ jobs:
           log-level: verbose
           timeout: 180000
 
-      - name: Aguardar antes da tentativa 3
-        if: steps.ftp_plain.outcome == 'failure' && steps.ftp_ftps.outcome == 'failure'
-        run: sleep 30
+      - name: Aguardar antes da tentativa 4
+        if: steps.sftp_deploy.outcome == 'failure' && steps.ftp_plain.outcome == 'failure' && steps.ftp_ftps.outcome == 'failure'
+        run: sleep 20
 
-      - name: Deploy FTP — tentativa 3 (FTPS legacy)
+      - name: Deploy FTP — tentativa 4 (FTPS legacy)
         id: ftp_ftps_legacy
-        if: steps.ftp_plain.outcome == 'failure' && steps.ftp_ftps.outcome == 'failure'
+        if: steps.sftp_deploy.outcome == 'failure' && steps.ftp_plain.outcome == 'failure' && steps.ftp_ftps.outcome == 'failure'
         continue-on-error: true
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
@@ -174,29 +213,13 @@ jobs:
           log-level: verbose
           timeout: 180000
 
-      - name: Aguardar antes do SFTP
-        if: steps.ftp_plain.outcome == 'failure' && steps.ftp_ftps.outcome == 'failure' && steps.ftp_ftps_legacy.outcome == 'failure'
-        run: sleep 30
-
-      # SFTP (porta 65002) — requer SSH/SFTP ativo no hPanel → Advanced → SSH Access.
-      - name: Deploy SFTP — tentativa 4 (porta 65002)
-        id: sftp_deploy
-        if: steps.ftp_plain.outcome == 'failure' && steps.ftp_ftps.outcome == 'failure' && steps.ftp_ftps_legacy.outcome == 'failure'
-        continue-on-error: true
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
-        with:
-          username: ${{ env.FTP_USERNAME }}
-          server: ${{ env.FTP_SERVER }}
-          port: 65002
-          password: ${{ env.FTP_PASSWORD }}
-          local_path: "./out/*"
-          remote_path: ${{ env.SFTP_REMOTE_PATH }}
-          sftp_only: true
-          sftpArgs: "-o ConnectTimeout=60 -o ServerAliveInterval=30 -o StrictHostKeyChecking=no"
-
       - name: Resumo e falha se deploy não concluiu
         if: always()
         run: |
+          if [ "${{ steps.sftp_deploy.outcome }}" = "success" ]; then
+            echo "Deploy concluído via SFTP (porta 65002)."
+            exit 0
+          fi
           if [ "${{ steps.ftp_plain.outcome }}" = "success" ]; then
             echo "Deploy concluído via FTP simples (porta 21)."
             exit 0
@@ -209,17 +232,12 @@ jobs:
             echo "Deploy concluído via FTPS legacy (porta 21)."
             exit 0
           fi
-          if [ "${{ steps.sftp_deploy.outcome }}" = "success" ]; then
-            echo "Deploy concluído via SFTP (porta 65002)."
-            exit 0
-          fi
 
-          echo "::error::Deploy falhou após 4 tentativas (FTP, FTPS, FTPS legacy e SFTP)."
+          echo "::error::Deploy falhou após 4 tentativas (SFTP, FTP, FTPS e FTPS legacy)."
           echo ""
           echo "Checklist:"
-          echo "  1. FTP_HOST = IP do hPanel (FTP Accounts), sem ftp:// na frente"
-          echo "  2. Usuário/senha corretos (mesma conta usada no FileZilla)"
-          echo "  3. hPanel → Advanced → SSH Access → ativar SFTP (porta 65002)"
-          echo "  4. Se SFTP usar outro caminho, defina a variable SFTP_REMOTE_PATH no environment production"
-          echo "     (ex.: domains/biointegralsaude.com.br/public_html)"
+          echo "  1. Secrets: FTP_HOST (IP sem ftp://), FTP_USERNAME, FTP_PASSWORD — NÃO use Variables"
+          echo "  2. hPanel → Advanced → SSH Access → ativar SFTP (porta 65002) — preferencial"
+          echo "  3. Opcional: secret SFTP_KNOWN_HOSTS com a linha known_hosts do servidor"
+          echo "  4. Variable SFTP_REMOTE_PATH se o caminho remoto for diferente"
           exit 1

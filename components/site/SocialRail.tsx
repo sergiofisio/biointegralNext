@@ -18,6 +18,8 @@ export function SocialRail() {
           <a
             key={social.name}
             href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label={`${social.name} — ${social.handle}`}
             title={social.name}
             className="group/item flex items-center rounded-full bg-white text-navy shadow-lg ring-1 ring-black/5 hover:bg-navy hover:text-white transition-colors overflow-hidden"
