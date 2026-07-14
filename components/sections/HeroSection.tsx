@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { IMAGES } from "@/lib/images";
+import { StaticPicture } from "@/components/ui/StaticPicture";
 import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 
 export function HeroSection() {
@@ -34,14 +34,13 @@ export function HeroSection() {
         </div>
         <div className="lg:col-span-5 animate-fade-up">
           <div className="w-full aspect-[4/5] bg-champagne outline outline-1 -outline-offset-1 outline-black/5 rounded-3xl overflow-hidden relative">
-            <Image
-              src={IMAGES.hero}
+            <StaticPicture
+              src={IMAGES.hero.src}
+              srcSet={IMAGES.hero.srcSet}
+              sizes={IMAGES.hero.sizes}
               alt="Dr. Sergio e Dra. Fresia, fisioterapeutas integrativos"
-              fill
               priority
-              fetchPriority="high"
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 40vw"
+              className="absolute inset-0 size-full object-cover"
             />
           </div>
         </div>
