@@ -3,8 +3,9 @@ import { isValidPhoneNumber, parsePhoneNumber } from "libphonenumber-js";
 import {
   EMAILJS_PUBLIC_KEY,
   EMAILJS_SERVICE_ID,
-  EMAILJS_TEMPLATE_ID,
+  EMAILJS_CONTATO_TEMPLATE_ID,
   isEmailJsConfigured,
+  isContatoEmailJsConfigured,
 } from "@/lib/emailjs-config";
 
 export { isEmailJsConfigured } from "@/lib/emailjs-config";
@@ -142,7 +143,7 @@ export function mapEmailJsError(error: unknown): ContactFormErrors {
 }
 
 export async function sendContactForm(form: HTMLFormElement) {
-  if (!isEmailJsConfigured()) {
+  if (!isContatoEmailJsConfigured()) {
     throw Object.assign(new Error("Missing EmailJS configuration"), {
       status: 503,
       text: "Missing EmailJS configuration",
@@ -166,7 +167,7 @@ export async function sendContactForm(form: HTMLFormElement) {
 
   await emailjs.sendForm(
     EMAILJS_SERVICE_ID,
-    EMAILJS_TEMPLATE_ID,
+    EMAILJS_CONTATO_TEMPLATE_ID,
     form,
     { publicKey: EMAILJS_PUBLIC_KEY },
   );

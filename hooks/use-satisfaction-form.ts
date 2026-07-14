@@ -40,6 +40,13 @@ export function useSatisfactionForm() {
     if (validationErrors) {
       setStatus("error");
       setErrors(validationErrors);
+      // Garante feedback visível: erros de campo ficam fora da viewport do botão.
+      requestAnimationFrame(() => {
+        const firstInvalid =
+          form.querySelector<HTMLElement>("[aria-invalid='true']") ??
+          form.querySelector<HTMLElement>("[role='alert']");
+        firstInvalid?.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
       return;
     }
 

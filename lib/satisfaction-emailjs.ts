@@ -86,23 +86,9 @@ function optionalChoice(
 }
 
 function getFormValue(form: HTMLFormElement, name: string): string {
-  const field = form.elements.namedItem(name);
-  if (field instanceof HTMLInputElement) {
-    if (field.type === "radio") {
-      const selected = form.querySelector<HTMLInputElement>(
-        `input[name="${name}"]:checked`,
-      );
-      return selected?.value ?? "";
-    }
-    return field.value;
-  }
-  if (
-    field instanceof HTMLTextAreaElement ||
-    field instanceof HTMLSelectElement
-  ) {
-    return field.value;
-  }
-  return "";
+  // FormData lê corretamente grupos de radio (namedItem retorna RadioNodeList).
+  const value = new FormData(form).get(name);
+  return typeof value === "string" ? value : "";
 }
 
 export function readSatisfactionFormPayload(

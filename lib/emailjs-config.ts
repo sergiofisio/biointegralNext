@@ -6,6 +6,8 @@ export const EMAILJS_SATISFACTION_TEMPLATE_ID =
   process.env.NEXT_PUBLIC_EMAILJS_SATISFACTION_TEMPLATE_ID ?? "";
 export const EMAILJS_PUBLIC_KEY =
   process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? "";
+export const EMAILJS_CONTATO_TEMPLATE_ID =
+  process.env.NEXT_PUBLIC_EMAILJS_CONTATO_TEMPLATE_ID ?? "";
 
 export function isEmailJsConfigured(): boolean {
   return (
@@ -19,6 +21,14 @@ export function isSatisfactionEmailJsConfigured(): boolean {
   return (
     EMAILJS_SERVICE_ID.length > 0 &&
     EMAILJS_SATISFACTION_TEMPLATE_ID.length > 0 &&
+    EMAILJS_PUBLIC_KEY.length > 0
+  );
+}
+
+export function isContatoEmailJsConfigured(): boolean {
+  return (
+    EMAILJS_SERVICE_ID.length > 0 &&
+    EMAILJS_CONTATO_TEMPLATE_ID.length > 0 &&
     EMAILJS_PUBLIC_KEY.length > 0
   );
 }
