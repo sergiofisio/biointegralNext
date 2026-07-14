@@ -159,7 +159,7 @@ jobs:
         id: ftp_plain
         if: steps.sftp_deploy.outcome == 'failure'
         continue-on-error: true
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ env.FTP_SERVER }}
           username: ${{ env.FTP_USERNAME }}
@@ -179,7 +179,7 @@ jobs:
         id: ftp_ftps
         if: steps.sftp_deploy.outcome == 'failure' && steps.ftp_plain.outcome == 'failure'
         continue-on-error: true
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ env.FTP_SERVER }}
           username: ${{ env.FTP_USERNAME }}
@@ -200,7 +200,7 @@ jobs:
         id: ftp_ftps_legacy
         if: steps.sftp_deploy.outcome == 'failure' && steps.ftp_plain.outcome == 'failure' && steps.ftp_ftps.outcome == 'failure'
         continue-on-error: true
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ env.FTP_SERVER }}
           username: ${{ env.FTP_USERNAME }}
