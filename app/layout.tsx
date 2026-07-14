@@ -6,15 +6,15 @@ import { SiteVersionGuard } from "@/components/SiteVersionGuard";
 import { HashScroll } from "@/components/HashScroll";
 import { WhatsAppFloat } from "@/components/site/WhatsAppFloat";
 import { SocialRail } from "@/components/site/SocialRail";
-import { CLINICS, SITE } from "@/lib/site-data";
 import {
   SEO_BASE_URL,
   SEO_DEFAULT_IMAGE,
   SEO_KEYWORDS,
-  SEO_LOGO_URL,
   SEO_SITE_NAME,
 } from "@/lib/seo";
 import { rootOpenGraph } from "@/lib/metadata";
+import { buildOrganizationGraph } from "@/lib/json-ld";
+import { JsonLd } from "@/components/ui/JsonLd";
 import "./globals.css";
 
 const instrumentSerif = Instrument_Serif({
@@ -72,30 +72,6 @@ export const viewport: Viewport = {
   themeColor: "#0f172a",
 };
 
-const medicalBusinessJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
-  "@id": `${SEO_BASE_URL}/#organization`,
-  name: SEO_SITE_NAME,
-  url: `${SEO_BASE_URL}/`,
-  logo: SEO_LOGO_URL,
-  image: SEO_DEFAULT_IMAGE,
-  description:
-    "Clínica de fisioterapia integrativa especializada em Microfisioterapia, PSYCH-K® e Biodécodage.",
-  medicalSpecialty: "PhysicalTherapy",
-  email: SITE.email,
-  telephone: `+${SITE.whatsappNumber}`,
-  areaServed: ["São Paulo", "Santo André", "ABC Paulista"],
-  sameAs: [SITE.instagram, SITE.facebook],
-  address: CLINICS.map((c) => ({
-    "@type": "PostalAddress",
-    streetAddress: c.address,
-    addressLocality: c.city,
-    addressRegion: "SP",
-    addressCountry: "BR",
-  })),
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -107,12 +83,7 @@ export default function RootLayout({
         className={`${instrumentSerif.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(medicalBusinessJsonLd),
-          }}
-        />
+        <JsonLd data={buildOrganizationGraph()} />
         <SiteVersionGuard />
         <Nav />
         <HashScroll />

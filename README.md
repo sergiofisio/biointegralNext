@@ -17,6 +17,17 @@ Apresenta os serviços de fisioterapia integrativa — Microfisioterapia, PSYCH-
 | `/faq` | Perguntas frequentes |
 | `/tecnicas/[slug]` | Páginas das técnicas (microfisioterapia, psych-k, biodecodage) |
 | `/satisfacao` | Pesquisa de satisfação (página não indexada) |
+| `/llms.txt` | Resumo factual para agentes de IA / citação |
+
+## SEO e descoberta
+
+Após o deploy, no [Google Search Console](https://search.google.com/search-console):
+
+1. Cadastre a propriedade `https://www.biointegralsaude.com.br/`
+2. Envie o sitemap `https://www.biointegralsaude.com.br/sitemap.xml`
+3. Peça inspeção/indexação das URLs-pilar: home, `/tecnicas/microfisioterapia/`, `/faq/`, `/clinicas/`, `/quem-somos/`
+
+O arquivo `/llms.txt` resume a clínica, profissionais, unidades e URLs canônicas para crawlers e assistentes de IA.
 
 ## Stack
 
