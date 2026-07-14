@@ -69,10 +69,22 @@ export function SiteVersionGuard() {
       window.location.reload();
     }
 
-    verifyVersion();
+    const useIdle = typeof requestIdleCallback === "function";
+    const idleId = useIdle
+      ? requestIdleCallback(() => {
+          if (!cancelled) void verifyVersion();
+        })
+      : window.setTimeout(() => {
+          if (!cancelled) void verifyVersion();
+        }, 1);
 
     return () => {
       cancelled = true;
+      if (useIdle) {
+        cancelIdleCallback(idleId as number);
+      } else {
+        window.clearTimeout(idleId as number);
+      }
     };
   }, []);
 
