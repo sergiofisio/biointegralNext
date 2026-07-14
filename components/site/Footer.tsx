@@ -71,8 +71,10 @@ export function Footer() {
           <ul className="space-y-3 text-sm text-zinc-500">
             {CLINICS.map((c) => (
               <li key={c.slug}>
-                <div className="font-medium text-zinc-700">{c.name}</div>
-                <div className="text-xs">{c.address}</div>
+                <Link href="/clinicas" className="hover:text-gold">
+                  <div className="font-medium text-zinc-700">{c.name}</div>
+                  <div className="text-xs">{c.address}</div>
+                </Link>
               </li>
             ))}
           </ul>

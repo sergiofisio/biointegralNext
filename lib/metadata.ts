@@ -13,6 +13,7 @@ type PageMetaInput = {
   path: string;
   ogTitle?: string;
   ogType?: "website" | "article";
+  keywords?: string[];
 };
 
 export function pageMetadata({
@@ -21,6 +22,7 @@ export function pageMetadata({
   path,
   ogTitle,
   ogType = "website",
+  keywords,
 }: PageMetaInput): Metadata {
   const url = canonicalUrl(path);
   const ogImageTitle = ogTitle ?? `${title} · ${SEO_SITE_NAME}`;
@@ -28,7 +30,7 @@ export function pageMetadata({
   return {
     title,
     description,
-    keywords: SEO_KEYWORDS,
+    keywords: keywords?.length ? [...keywords, ...SEO_KEYWORDS] : SEO_KEYWORDS,
     alternates: { canonical: url },
     robots: { index: true, follow: true },
     openGraph: {

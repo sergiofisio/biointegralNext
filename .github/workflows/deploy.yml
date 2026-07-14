@@ -136,7 +136,20 @@ jobs:
       - name: Aguardar servidor FTP/SFTP
         run: sleep 10
 
+      - name: Confirmar .htaccess no artefato de build
+        run: |
+          if [ ! -f ./out/.htaccess ]; then
+            echo "::error::out/.htaccess ausente — public/.htaccess não foi copiado no export."
+            exit 1
+          fi
+          if ! grep -q "static.cloudflareinsights.com" ./out/.htaccess; then
+            echo "::error::CSP sem cloudflareinsights — beacon será bloqueado no browser."
+            exit 1
+          fi
+          echo "out/.htaccess OK (CSP inclui Cloudflare Insights)."
+
       # Preferir SFTP (criptografado) quando SSH estiver ativo no hPanel.
+      # Usar "./out" (sem /*) para incluir arquivos ocultos como .htaccess (CSP, redirects).
       - name: Deploy SFTP — tentativa 1 (porta 65002)
         id: sftp_deploy
         continue-on-error: true
@@ -146,7 +159,21 @@ jobs:
           server: ${{ env.FTP_SERVER }}
           port: 65002
           password: ${{ env.FTP_PASSWORD }}
-          local_path: "./out/*"
+          local_path: "./out"
+          remote_path: ${{ env.SFTP_REMOTE_PATH }}
+          sftp_only: true
+          sftpArgs: ${{ env.SFTP_ARGS }}
+
+      # Arquivo oculto: segundo put explícito garante CSP no Apache mesmo se o glob anterior falhar.
+      - name: Deploy SFTP — .htaccess explícito
+        if: steps.sftp_deploy.outcome == 'success'
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        with:
+          username: ${{ env.FTP_USERNAME }}
+          server: ${{ env.FTP_SERVER }}
+          port: 65002
+          password: ${{ env.FTP_PASSWORD }}
+          local_path: "./out/.htaccess"
           remote_path: ${{ env.SFTP_REMOTE_PATH }}
           sftp_only: true
           sftpArgs: ${{ env.SFTP_ARGS }}
