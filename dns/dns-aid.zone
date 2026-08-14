@@ -1,0 +1,23 @@
+; DNS for AI Discovery (DNS-AID) — publish at the DNS host (Cloudflare / registrar).
+; Scanner looks up SVCB/HTTPS under _agents.<apex> (and possibly www).
+; Sign the zone with DNSSEC.
+;
+; Names (relative to biointegralsaude.com.br):
+;   _index._agents
+;   _a2a._agents
+;
+; Cloudflare: DNS → Add record → type SVCB (or HTTPS).
+; Name: _index._agents
+; Priority: 1
+; Target: www.biointegralsaude.com.br
+; Value: alpn="h2,h3,http/1.1" port=443
+;
+; Repeat for _a2a._agents with alpn="a2a,h2,h3" port=443
+; Repeat both names under www if the scanned host is www.biointegralsaude.com.br:
+;   _index._agents.www
+;   _a2a._agents.www
+
+_index._agents.biointegralsaude.com.br. 3600 IN SVCB 1 www.biointegralsaude.com.br. alpn="h2,h3,http/1.1" port=443 mandatory=alpn,port
+_a2a._agents.biointegralsaude.com.br. 3600 IN SVCB 1 www.biointegralsaude.com.br. alpn="a2a,h2,h3" port=443 mandatory=alpn,port
+_index._agents.www.biointegralsaude.com.br. 3600 IN SVCB 1 www.biointegralsaude.com.br. alpn="h2,h3,http/1.1" port=443 mandatory=alpn,port
+_a2a._agents.www.biointegralsaude.com.br. 3600 IN SVCB 1 www.biointegralsaude.com.br. alpn="a2a,h2,h3" port=443 mandatory=alpn,port

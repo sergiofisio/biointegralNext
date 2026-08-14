@@ -1,0 +1,12 @@
+{
+  "issuer": "https://www.biointegralsaude.com.br",
+  "authorization_endpoint": "https://www.biointegralsaude.com.br/agent/register/",
+  "token_endpoint": "https://www.biointegralsaude.com.br/agent/register/",
+  "jwks_uri": "https://www.biointegralsaude.com.br/jwks.json",
+  "grant_types_supported": ["client_credentials"],
+  "response_types_supported": ["token"],
+  "subject_types_supported": ["public"],
+  "id_token_signing_alg_values_supported": ["none"],
+  "scopes_supported": ["clinic.read", "agent.register"],
+  "token_endpoint_auth_methods_supported": ["none"]
+}

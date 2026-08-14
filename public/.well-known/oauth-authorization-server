@@ -1,0 +1,26 @@
+{
+  "issuer": "https://www.biointegralsaude.com.br",
+  "authorization_endpoint": "https://www.biointegralsaude.com.br/agent/register/",
+  "token_endpoint": "https://www.biointegralsaude.com.br/agent/register/",
+  "jwks_uri": "https://www.biointegralsaude.com.br/jwks.json",
+  "registration_endpoint": "https://www.biointegralsaude.com.br/agent/register/",
+  "grant_types_supported": ["client_credentials"],
+  "response_types_supported": ["token"],
+  "token_endpoint_auth_methods_supported": ["none"],
+  "scopes_supported": ["clinic.read", "agent.register"],
+  "service_documentation": "https://www.biointegralsaude.com.br/auth.md",
+  "agent_auth": {
+    "skill": "https://www.biointegralsaude.com.br/.well-known/agent-skills/biointegral-clinic/SKILL.md",
+    "register_uri": "https://www.biointegralsaude.com.br/agent/register/",
+    "identity_types_supported": ["anonymous", "identity_assertion"],
+    "anonymous": {
+      "credential_types_supported": ["none"],
+      "claim_uri": "https://www.biointegralsaude.com.br/auth.md"
+    },
+    "identity_assertion": {
+      "assertion_types_supported": ["verified_email"],
+      "credential_types_supported": ["email"],
+      "claim_uri": "https://www.biointegralsaude.com.br/auth.md"
+    }
+  }
+}

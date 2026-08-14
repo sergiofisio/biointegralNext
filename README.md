@@ -29,6 +29,8 @@ Após o deploy, no [Google Search Console](https://search.google.com/search-cons
 
 O arquivo `/llms.txt` resume a clínica, profissionais, unidades e URLs canônicas para crawlers e assistentes de IA.
 
+Descoberta para agentes (RFC 8288 / RFC 9727 e arquivos `.well-known/`): `Link` headers, catálogo de API, OAuth/OIDC metadata, `auth.md`, MCP Server Card, índice de skills e WebMCP. DNS-AID **não** entra no deploy FTP — publique os registros SVCB do arquivo [`dns/dns-aid.zone`](dns/dns-aid.zone) no DNS (Cloudflare) e ative DNSSEC.
+
 ## Stack
 
 - **Next.js 15** — App Router, export estático (`out/`)

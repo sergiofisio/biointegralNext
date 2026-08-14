@@ -11,6 +11,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/clinicas", priority: 0.9, changeFrequency: "monthly" as const },
     { path: "/contato", priority: 0.8, changeFrequency: "monthly" as const },
     { path: "/faq", priority: 0.7, changeFrequency: "monthly" as const },
+    { path: "/docs/api", priority: 0.3, changeFrequency: "yearly" as const },
+    { path: "/agent/register", priority: 0.2, changeFrequency: "yearly" as const },
   ];
 
   const techniqueRoutes = TECHNIQUES.map((t) => ({

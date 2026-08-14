@@ -1,0 +1,22 @@
+{
+  "serverInfo": {
+    "name": "biointegral-saude",
+    "version": "1.0.0",
+    "title": "Biointegral Saúde",
+    "description": "Public clinic facts for AI agents (locations, techniques, contact)."
+  },
+  "endpoint": "https://www.biointegralsaude.com.br/mcp.json",
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://www.biointegralsaude.com.br/mcp.json"
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {
+      "listChanged": false
+    },
+    "prompts": {}
+  }
+}

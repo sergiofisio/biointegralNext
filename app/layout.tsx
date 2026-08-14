@@ -6,6 +6,7 @@ import { SiteVersionGuard } from "@/components/SiteVersionGuard";
 import { HashScroll } from "@/components/HashScroll";
 import { WhatsAppFloat } from "@/components/site/WhatsAppFloat";
 import { SocialRail } from "@/components/site/SocialRail";
+import { WebMcpProvider } from "@/components/WebMcpProvider";
 import {
   SEO_BASE_URL,
   SEO_DEFAULT_IMAGE,
@@ -84,6 +85,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <JsonLd data={buildOrganizationGraph()} />
+        <WebMcpProvider />
         <SiteVersionGuard />
         <Nav />
         <HashScroll />

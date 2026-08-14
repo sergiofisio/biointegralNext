@@ -1,0 +1,58 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Biointegral Saúde public site",
+    "version": "1.0.0",
+    "description": "Public HTTP resources for the Biointegral Saúde clinic website. The origin is a static site; agents should prefer /llms.txt, Markdown negotiation, and WebMCP."
+  },
+  "servers": [
+    {
+      "url": "https://www.biointegralsaude.com.br"
+    }
+  ],
+  "paths": {
+    "/status.json": {
+      "get": {
+        "summary": "Health status",
+        "operationId": "getStatus",
+        "responses": {
+          "200": {
+            "description": "Service is up",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/llms.txt": {
+      "get": {
+        "summary": "Factual clinic summary for language models",
+        "operationId": "getLlmsTxt",
+        "responses": {
+          "200": {
+            "description": "Plain-text clinic facts"
+          }
+        }
+      }
+    },
+    "/auth.md": {
+      "get": {
+        "summary": "Agent registration instructions",
+        "operationId": "getAuthMd",
+        "responses": {
+          "200": {
+            "description": "Markdown registration guide"
+          }
+        }
+      }
+    }
+  }
+}
