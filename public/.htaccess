@@ -1,4 +1,5 @@
 RewriteEngine On
+DirectoryIndex home.php index.html
 
 # HTTPS
 RewriteCond %{HTTPS} off
@@ -11,8 +12,8 @@ RewriteRule ^ https://www.biointegralsaude.com.br%{REQUEST_URI} [R=301,L]
 # Pasta visível (SFTP ignora .well-known)
 RewriteRule ^\.well-known/api-catalog/?$ /agent-well-known/api-catalog.json [L]
 RewriteRule ^\.well-known/openid-configuration/?$ /agent-well-known/openid-configuration.json [L]
-RewriteRule ^\.well-known/oauth-authorization-server/?$ /agent-well-known/oauth-authorization-server.json [L]
-RewriteRule ^\.well-known/oauth-protected-resource/?$ /agent-well-known/oauth-protected-resource.json [L]
+RewriteRule ^\.well-known/oauth-authorization-server/?$ /agent-well-known/oauth-as-v2.json [L]
+RewriteRule ^\.well-known/oauth-protected-resource/?$ /agent-well-known/oauth-prm-v2.json [L]
 RewriteRule ^\.well-known/mcp/server-card\.json$ /agent-well-known/mcp/server-card.json [L]
 RewriteRule ^\.well-known/agent-skills/index\.json$ /agent-well-known/agent-skills/index.json [L]
 RewriteRule ^\.well-known/agent-skills/biointegral-clinic/SKILL\.md$ /agent-well-known/agent-skills/biointegral-clinic/SKILL.md [L]
@@ -23,7 +24,7 @@ RewriteRule ^openapi\.json$ /agent-root/openapi.json [L]
 RewriteRule ^status\.json$ /agent-root/status.json [L]
 RewriteRule ^jwks\.json$ /agent-root/jwks.json [L]
 RewriteRule ^mcp\.json$ /agent-root/mcp.json [L]
-RewriteRule ^webmcp\.js$ /agent-root/webmcp.js [L]
+RewriteRule ^webmcp\.js$ /agent-root/webmcp-v2.js [L]
 
 # Markdown for Agents — homepage
 RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
@@ -34,7 +35,7 @@ RewriteRule ^index\.html$ /agent-root/index.md [T=text/markdown,E=MARKDOWN_AGENT
 # Injeta WebMCP no HTML antigo se o SFTP não sobrescrever index.html
 <IfModule mod_substitute.c>
   AddOutputFilterByType SUBSTITUTE text/html
-  Substitute "s|</body>|<script src=/agent-root/webmcp.js></script></body>|ni"
+  Substitute "s|</body>|<script src=/agent-root/webmcp-v2.js></script></body>|ni"
 </IfModule>
 
 # Compressão (texto) — reduz TTFB de HTML/CSS/JS/SVG/JSON

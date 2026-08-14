@@ -85,7 +85,7 @@ export default function RootLayout({
         className={`${instrumentSerif.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
-        <script src="/agent-root/webmcp.js" />
+        <script src="/agent-root/webmcp-v2.js" />
         <script dangerouslySetInnerHTML={{ __html: WEB_MCP_INLINE_SCRIPT }} />
         <JsonLd data={buildOrganizationGraph()} />
         <WebMcpProvider />
