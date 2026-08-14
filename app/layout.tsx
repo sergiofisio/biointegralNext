@@ -7,6 +7,7 @@ import { HashScroll } from "@/components/HashScroll";
 import { WhatsAppFloat } from "@/components/site/WhatsAppFloat";
 import { SocialRail } from "@/components/site/SocialRail";
 import { WebMcpProvider } from "@/components/WebMcpProvider";
+import { WEB_MCP_INLINE_SCRIPT } from "@/lib/webmcp-inline";
 import {
   SEO_BASE_URL,
   SEO_DEFAULT_IMAGE,
@@ -84,6 +85,7 @@ export default function RootLayout({
         className={`${instrumentSerif.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
+        <script dangerouslySetInnerHTML={{ __html: WEB_MCP_INLINE_SCRIPT }} />
         <JsonLd data={buildOrganizationGraph()} />
         <WebMcpProvider />
         <SiteVersionGuard />

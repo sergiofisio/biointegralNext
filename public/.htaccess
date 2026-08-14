@@ -8,11 +8,27 @@ RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 RewriteCond %{HTTP_HOST} !^www\. [NC]
 RewriteRule ^ https://www.biointegralsaude.com.br%{REQUEST_URI} [R=301,L]
 
+# Pasta visível (SFTP ignora .well-known)
+RewriteRule ^\.well-known/api-catalog/?$ /agent-well-known/api-catalog.json [L]
+RewriteRule ^\.well-known/openid-configuration/?$ /agent-well-known/openid-configuration.json [L]
+RewriteRule ^\.well-known/oauth-authorization-server/?$ /agent-well-known/oauth-authorization-server.json [L]
+RewriteRule ^\.well-known/oauth-protected-resource/?$ /agent-well-known/oauth-protected-resource.json [L]
+RewriteRule ^\.well-known/mcp/server-card\.json$ /agent-well-known/mcp/server-card.json [L]
+RewriteRule ^\.well-known/agent-skills/index\.json$ /agent-well-known/agent-skills/index.json [L]
+RewriteRule ^\.well-known/agent-skills/biointegral-clinic/SKILL\.md$ /agent-well-known/agent-skills/biointegral-clinic/SKILL.md [L]
+RewriteRule ^auth\.md$ /agent-root/auth.md [L]
+RewriteRule ^llms\.txt$ /agent-root/llms.txt [L]
+RewriteRule ^index\.md$ /agent-root/index.md [L]
+RewriteRule ^openapi\.json$ /agent-root/openapi.json [L]
+RewriteRule ^status\.json$ /agent-root/status.json [L]
+RewriteRule ^jwks\.json$ /agent-root/jwks.json [L]
+RewriteRule ^mcp\.json$ /agent-root/mcp.json [L]
+
 # Markdown for Agents — homepage
 RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
-RewriteRule ^$ /llms.txt [T=text/markdown,E=MARKDOWN_AGENTS:1,L]
+RewriteRule ^$ /agent-root/index.md [T=text/markdown,E=MARKDOWN_AGENTS:1,L]
 RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
-RewriteRule ^index\.html$ /llms.txt [T=text/markdown,E=MARKDOWN_AGENTS:1,L]
+RewriteRule ^index\.html$ /agent-root/index.md [T=text/markdown,E=MARKDOWN_AGENTS:1,L]
 
 # Compressão (texto) — reduz TTFB de HTML/CSS/JS/SVG/JSON
 <IfModule mod_brotli.c>
@@ -23,7 +39,7 @@ RewriteRule ^index\.html$ /llms.txt [T=text/markdown,E=MARKDOWN_AGENTS:1,L]
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml image/svg+xml font/woff2
 </IfModule>
 
-<Files "api-catalog">
+<Files "api-catalog.json">
   ForceType application/linkset+json
 </Files>
 <Files "oauth-authorization-server">
@@ -40,11 +56,11 @@ RewriteRule ^index\.html$ /llms.txt [T=text/markdown,E=MARKDOWN_AGENTS:1,L]
 </Files>
 
 <IfModule mod_headers.c>
-  Header always set Link "</.well-known/api-catalog>; rel=\"api-catalog\", </openapi.json>; rel=\"service-desc\"; type=\"application/vnd.oai.openapi+json;version=3.1\", </docs/api/>; rel=\"service-doc\", </llms.txt>; rel=\"describedby\""
+  Header always set Link "</.well-known/api-catalog>; rel=api-catalog, </openapi.json>; rel=service-desc, </docs/api/>; rel=service-doc, </llms.txt>; rel=describedby"
   Header always set x-markdown-tokens "350" env=MARKDOWN_AGENTS
   Header always set Content-Type "text/markdown; charset=utf-8" env=MARKDOWN_AGENTS
 
-  <Files "api-catalog">
+  <Files "api-catalog.json">
     Header set Content-Type "application/linkset+json"
   </Files>
   <Files "oauth-authorization-server">

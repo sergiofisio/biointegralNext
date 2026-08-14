@@ -1,0 +1,13 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "biointegral-clinic",
+      "type": "skill-md",
+      "description": "Facts and preferred URLs for Biointegral Saúde (clinics, techniques, contact) for AI agents.",
+      "url": "https://www.biointegralsaude.com.br/.well-known/agent-skills/biointegral-clinic/SKILL.md",
+      "digest": "sha256:67551e3b12ff70a3f01661a1795a7b11aa38f8af1ab805838aefb2bc18c06b88",
+      "sha256": "67551e3b12ff70a3f01661a1795a7b11aa38f8af1ab805838aefb2bc18c06b88"
+    }
+  ]
+}

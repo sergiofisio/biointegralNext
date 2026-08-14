@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const isStaticExport = process.env.STATIC_EXPORT === "true";
 
 const agentLinkHeader =
-  '</.well-known/api-catalog>; rel="api-catalog", </openapi.json>; rel="service-desc"; type="application/vnd.oai.openapi+json;version=3.1", </docs/api/>; rel="service-doc", </llms.txt>; rel="describedby"';
+  "</.well-known/api-catalog>; rel=api-catalog, </openapi.json>; rel=service-desc, </docs/api/>; rel=service-doc, </llms.txt>; rel=describedby";
 
 const nextConfig: NextConfig = {
   ...(isStaticExport ? { output: "export" as const } : {}),

@@ -1,0 +1,9 @@
+{
+  "protocol": "mcp",
+  "transport": "streamable-http",
+  "note": "This origin is a static site. Prefer WebMCP in the browser and /.well-known/mcp/server-card.json.",
+  "resources": [
+    "https://www.biointegralsaude.com.br/llms.txt",
+    "https://www.biointegralsaude.com.br/auth.md"
+  ]
+}
