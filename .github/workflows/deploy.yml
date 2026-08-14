@@ -147,7 +147,7 @@ jobs:
             exit 1
           fi
           echo "out/.htaccess OK (CSP inclui Cloudflare Insights)."
-          for f in ./out/home2.php ./out/BingSiteAuth.xml ./out/404.html ./out/ad2/oauth-as.json ./out/ad2/oauth-prm.json ./out/ad2/webmcp.js ./out/ad3/register.php ./out/ad3/oauth-as.json ./out/agent-well-known/api-catalog.json; do
+          for f in ./out/home2.php ./out/BingSiteAuth.xml ./out/404.html ./out/6cd8186094864c288b7b2318f1a9efc0.txt ./out/ad2/oauth-as.json ./out/ad2/oauth-prm.json ./out/ad2/webmcp.js ./out/ad3/register.php ./out/ad3/oauth-as.json ./out/agent-well-known/api-catalog.json; do
             if [ ! -f "$f" ]; then
               echo "::error::$f ausente no artefato de build."
               exit 1
@@ -194,6 +194,19 @@ jobs:
           port: 65002
           password: ${{ env.FTP_PASSWORD }}
           local_path: "./out/BingSiteAuth.xml"
+          remote_path: ${{ env.SFTP_REMOTE_PATH }}
+          sftp_only: true
+          sftpArgs: ${{ env.SFTP_ARGS }}
+
+      - name: Deploy SFTP — IndexNow key
+        if: steps.sftp_deploy.outcome == 'success'
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        with:
+          username: ${{ env.FTP_USERNAME }}
+          server: ${{ env.FTP_SERVER }}
+          port: 65002
+          password: ${{ env.FTP_PASSWORD }}
+          local_path: "./out/6cd8186094864c288b7b2318f1a9efc0.txt"
           remote_path: ${{ env.SFTP_REMOTE_PATH }}
           sftp_only: true
           sftpArgs: ${{ env.SFTP_ARGS }}
@@ -353,3 +366,40 @@ jobs:
           echo "  3. Opcional: secret SFTP_KNOWN_HOSTS com a linha known_hosts do servidor"
           echo "  4. Variable SFTP_REMOTE_PATH se o caminho remoto for diferente"
           exit 1
+
+      - name: Notificar IndexNow (Bing e parceiros)
+        if: success()
+        continue-on-error: true
+        run: |
+          KEY="6cd8186094864c288b7b2318f1a9efc0"
+          HOST="www.biointegralsaude.com.br"
+          KEY_URL="https://${HOST}/${KEY}.txt"
+          sleep 15
+          KEY_BODY="$(curl -fsS "$KEY_URL" | tr -d '\r\n')"
+          if [ "$KEY_BODY" != "$KEY" ]; then
+            echo "::warning::Chave IndexNow ainda não está no ar ($KEY_URL). Pulando ping."
+            exit 0
+          fi
+          URLS="$(curl -fsS "https://${HOST}/sitemap.xml" | grep -oE '<loc>[^<]+</loc>' | sed 's/<[^>]*>//g' || true)"
+          if [ -z "$URLS" ]; then
+            echo "::warning::Sitemap sem <loc>. Pulando IndexNow."
+            exit 0
+          fi
+          JSON="$(printf '%s\n' "$URLS" | jq -R -s --arg host "$HOST" --arg key "$KEY" --arg keyLocation "$KEY_URL" '
+            {
+              host: $host,
+              key: $key,
+              keyLocation: $keyLocation,
+              urlList: (split("\n") | map(select(length > 0)))
+            }
+          ')"
+          echo "Enviando $(printf '%s\n' "$URLS" | grep -c . || true) URLs ao IndexNow."
+          HTTP="$(curl -sS -o /tmp/indexnow-body.txt -w "%{http_code}" -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d "$JSON")"
+          echo "IndexNow HTTP $HTTP"
+          cat /tmp/indexnow-body.txt || true
+          case "$HTTP" in
+            200|202) echo "IndexNow aceitou as URLs." ;;
+            *) echo "::warning::IndexNow retornou $HTTP (não falha o deploy)." ;;
+          esac
