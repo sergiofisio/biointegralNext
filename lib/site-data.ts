@@ -372,6 +372,8 @@ export const FAQS: FaqEntry[] = [
     a: "Você pode fazer microfisioterapia na Biointegral Saúde nas unidades Livance Paulista e Livance Brigadeiro, na capital, e também em Santo André (ABC). Agende pelo WhatsApp ou formulário de contato.",
     related: [
       { href: "/clinicas/", label: "Ver unidades" },
+      { href: "/microfisioterapia-sao-paulo/", label: "Microfisioterapia em São Paulo" },
+      { href: "/microfisioterapia-santo-andre/", label: "Microfisioterapia em Santo André" },
       { href: "/contato/", label: "Contato" },
     ],
   },

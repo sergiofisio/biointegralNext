@@ -33,8 +33,23 @@ export function Footer() {
               </Link>
             </li>
             <li>
+              <Link href="/tecnicas" className="hover:text-gold">
+                Técnicas
+              </Link>
+            </li>
+            <li>
               <Link href="/tecnicas/microfisioterapia" className="hover:text-gold">
                 Microfisioterapia
+              </Link>
+            </li>
+            <li>
+              <Link href="/microfisioterapia-sao-paulo" className="hover:text-gold">
+                Microfisioterapia em São Paulo
+              </Link>
+            </li>
+            <li>
+              <Link href="/microfisioterapia-santo-andre" className="hover:text-gold">
+                Microfisioterapia em Santo André
               </Link>
             </li>
             <li>

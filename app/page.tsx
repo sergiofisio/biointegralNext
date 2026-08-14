@@ -29,11 +29,16 @@ const TestimonialsSection = dynamic(
 );
 
 export const metadata: Metadata = pageMetadata({
-  title: "Microfisioterapia, PSYCH-K® e Biodécodage",
+  title: "Microfisioterapia em São Paulo e Santo André",
   description:
-    "Trate a causa das suas dores. Microfisioterapia, PSYCH-K® e Biodécodage em São Paulo e Santo André.",
+    "Clínica de fisioterapia integrativa na capital e no ABC. Microfisioterapia, PSYCH-K® e Biodécodage com Dr. Sergio e Dra. Fresia (CREFITO-3).",
   path: "/",
-  ogTitle: "Biointegral Saúde — Fisioterapia Integrativa",
+  ogTitle: "Biointegral Saúde — Microfisioterapia em SP e ABC",
+  keywords: [
+    "microfisioterapia São Paulo",
+    "microfisioterapia Santo André",
+    "fisioterapia integrativa",
+  ],
 });
 
 export default function HomePage() {

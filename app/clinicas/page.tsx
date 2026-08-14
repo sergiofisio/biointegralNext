@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { pageMetadata } from "@/lib/metadata";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ClinicDetailList } from "@/components/sections/ClinicDetailList";
@@ -38,6 +39,23 @@ export default function ClinicsPage() {
         className="pt-4"
         showBackLink
       />
+      <p className="px-6 pb-8 max-w-5xl mx-auto text-zinc-600 leading-relaxed">
+        Páginas por cidade:{" "}
+        <Link
+          href="/microfisioterapia-sao-paulo/"
+          className="text-gold font-medium hover:underline"
+        >
+          microfisioterapia em São Paulo
+        </Link>{" "}
+        e{" "}
+        <Link
+          href="/microfisioterapia-santo-andre/"
+          className="text-gold font-medium hover:underline"
+        >
+          microfisioterapia em Santo André
+        </Link>
+        .
+      </p>
       <ClinicDetailList />
     </div>
   );
