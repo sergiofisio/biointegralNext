@@ -1,26 +1,42 @@
 {
+  "resource": "https://www.biointegralsaude.com.br/",
+  "authorization_servers": ["https://www.biointegralsaude.com.br"],
+  "scopes_supported": ["clinic.read", "agent.register"],
+  "bearer_methods_supported": ["header"],
   "issuer": "https://www.biointegralsaude.com.br",
   "authorization_endpoint": "https://www.biointegralsaude.com.br/agent/register/",
   "token_endpoint": "https://www.biointegralsaude.com.br/agent/register/",
+  "revocation_endpoint": "https://www.biointegralsaude.com.br/agent/register/",
   "jwks_uri": "https://www.biointegralsaude.com.br/jwks.json",
   "registration_endpoint": "https://www.biointegralsaude.com.br/agent/register/",
-  "grant_types_supported": ["authorization_code", "client_credentials"],
-  "response_types_supported": ["code", "token"],
+  "grant_types_supported": [
+    "authorization_code",
+    "urn:ietf:params:oauth:grant-type:jwt-bearer",
+    "urn:workos:agent-auth:grant-type:claim"
+  ],
+  "response_types_supported": ["code"],
   "token_endpoint_auth_methods_supported": ["none"],
-  "scopes_supported": ["clinic.read", "agent.register"],
-  "service_documentation": "https://www.biointegralsaude.com.br/auth.md",
   "agent_auth": {
-    "skill": "https://www.biointegralsaude.com.br/.well-known/agent-skills/biointegral-clinic/SKILL.md",
+    "skill": "https://www.biointegralsaude.com.br/auth.md",
     "register_uri": "https://www.biointegralsaude.com.br/agent/register/",
+    "identity_endpoint": "https://www.biointegralsaude.com.br/agent/register/",
+    "claim_endpoint": "https://www.biointegralsaude.com.br/agent/register/",
+    "events_endpoint": "https://www.biointegralsaude.com.br/agent/register/",
     "identity_types_supported": ["anonymous", "identity_assertion"],
     "anonymous": {
-      "credential_types_supported": ["none"],
+      "credential_types_supported": ["api_key"],
       "claim_uri": "https://www.biointegralsaude.com.br/auth.md"
     },
     "identity_assertion": {
-      "assertion_types_supported": ["verified_email"],
+      "assertion_types_supported": [
+        "verified_email",
+        "urn:ietf:params:oauth:token-type:id-jag"
+      ],
       "credential_types_supported": ["email"],
       "claim_uri": "https://www.biointegralsaude.com.br/auth.md"
-    }
+    },
+    "events_supported": [
+      "https://schemas.workos.com/events/agent/auth/identity/assertion/revoked"
+    ]
   }
 }

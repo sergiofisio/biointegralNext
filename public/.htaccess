@@ -23,12 +23,19 @@ RewriteRule ^openapi\.json$ /agent-root/openapi.json [L]
 RewriteRule ^status\.json$ /agent-root/status.json [L]
 RewriteRule ^jwks\.json$ /agent-root/jwks.json [L]
 RewriteRule ^mcp\.json$ /agent-root/mcp.json [L]
+RewriteRule ^webmcp\.js$ /agent-root/webmcp.js [L]
 
 # Markdown for Agents — homepage
 RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
 RewriteRule ^$ /agent-root/index.md [T=text/markdown,E=MARKDOWN_AGENTS:1,L]
 RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
 RewriteRule ^index\.html$ /agent-root/index.md [T=text/markdown,E=MARKDOWN_AGENTS:1,L]
+
+# Injeta WebMCP no HTML antigo se o SFTP não sobrescrever index.html
+<IfModule mod_substitute.c>
+  AddOutputFilterByType SUBSTITUTE text/html
+  Substitute "s|</body>|<script src=/agent-root/webmcp.js></script></body>|ni"
+</IfModule>
 
 # Compressão (texto) — reduz TTFB de HTML/CSS/JS/SVG/JSON
 <IfModule mod_brotli.c>
