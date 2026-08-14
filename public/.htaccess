@@ -1,6 +1,9 @@
 RewriteEngine On
 DirectoryIndex home2.php home.php index.html
 
+# Página 404 do Next (out/404.html) em vez da página padrão da Hostinger
+ErrorDocument 404 /404.html
+
 # HTTPS
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
