@@ -1,0 +1,6 @@
+{
+  "resource": "https://www.biointegralsaude.com.br/",
+  "authorization_servers": ["https://www.biointegralsaude.com.br"],
+  "scopes_supported": ["clinic.read", "agent.register"],
+  "bearer_methods_supported": ["header"]
+}

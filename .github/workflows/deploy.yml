@@ -147,7 +147,7 @@ jobs:
             exit 1
           fi
           echo "out/.htaccess OK (CSP inclui Cloudflare Insights)."
-          for f in ./out/home.php ./out/agent-root/webmcp-v2.js ./out/agent-well-known/oauth-as-v2.json ./out/agent-root/llms.txt ./out/agent-root/index.md ./out/agent-root/auth.md ./out/agent-root/openapi.json ./out/agent-well-known/api-catalog.json ./out/agent-well-known/openid-configuration.json ./out/agent-well-known/mcp/server-card.json; do
+          for f in ./out/home2.php ./out/ad2/oauth-as.json ./out/ad2/oauth-prm.json ./out/ad2/webmcp.js ./out/agent-well-known/api-catalog.json; do
             if [ ! -f "$f" ]; then
               echo "::error::$f ausente no artefato de build."
               exit 1
@@ -198,7 +198,7 @@ jobs:
           sftp_only: true
           sftpArgs: ${{ env.SFTP_ARGS }}
 
-      - name: Deploy SFTP — agent-root
+      - name: Deploy SFTP — ad2
         if: steps.sftp_deploy.outcome == 'success'
         uses: wlixcc/SFTP-Deploy-Action@v1.2.6
         with:
@@ -206,8 +206,21 @@ jobs:
           server: ${{ env.FTP_SERVER }}
           port: 65002
           password: ${{ env.FTP_PASSWORD }}
-          local_path: "./out/agent-root"
-          remote_path: ${{ env.SFTP_REMOTE_PATH }}/agent-root
+          local_path: "./out/ad2"
+          remote_path: ${{ env.SFTP_REMOTE_PATH }}/ad2
+          sftp_only: true
+          sftpArgs: ${{ env.SFTP_ARGS }}
+
+      - name: Deploy SFTP — home2.php
+        if: steps.sftp_deploy.outcome == 'success'
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        with:
+          username: ${{ env.FTP_USERNAME }}
+          server: ${{ env.FTP_SERVER }}
+          port: 65002
+          password: ${{ env.FTP_PASSWORD }}
+          local_path: "./out/home2.php"
+          remote_path: ${{ env.SFTP_REMOTE_PATH }}
           sftp_only: true
           sftpArgs: ${{ env.SFTP_ARGS }}
 
