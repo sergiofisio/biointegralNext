@@ -42,7 +42,7 @@ export default async function TechniquePage({ params }: Props) {
   const others = TECHNIQUES.filter((t) => t.slug !== tech.slug);
   const breadcrumbItems = [
     { name: "Início", path: "/" },
-    { name: "Técnicas", path: "/#tecnicas" },
+    { name: "Técnicas", path: "/tecnicas" },
     { name: tech.name, path: `/tecnicas/${tech.slug}` },
   ];
 
@@ -111,6 +111,22 @@ export default async function TechniquePage({ params }: Props) {
           >
             Ver unidades
           </Link>
+          {tech.slug === "microfisioterapia" && (
+            <>
+              <Link
+                href="/microfisioterapia-sao-paulo"
+                className="px-6 py-3 rounded-full font-medium text-sm ring-1 ring-zinc-950/10 text-navy inline-flex items-center"
+              >
+                Em São Paulo
+              </Link>
+              <Link
+                href="/microfisioterapia-santo-andre"
+                className="px-6 py-3 rounded-full font-medium text-sm ring-1 ring-zinc-950/10 text-navy inline-flex items-center"
+              >
+                Em Santo André
+              </Link>
+            </>
+          )}
         </div>
       </article>
 
