@@ -4,12 +4,9 @@ DirectoryIndex home2.php home.php index.html
 # Página 404 do Next (out/404.html) em vez da página padrão da Hostinger
 ErrorDocument 404 /404.html
 
-# HTTPS
-RewriteCond %{HTTPS} off
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
-
-# www (canonical: https://www.biointegralsaude.com.br)
-RewriteCond %{HTTP_HOST} !^www\. [NC]
+# Canonical em um único 301 (evita HTTP→HTTPS sem www, depois www)
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\.biointegralsaude\.com\.br$ [NC]
 RewriteRule ^ https://www.biointegralsaude.com.br%{REQUEST_URI} [R=301,L]
 
 # Pasta visível (SFTP ignora .well-known)
