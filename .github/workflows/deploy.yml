@@ -147,7 +147,7 @@ jobs:
             exit 1
           fi
           echo "out/.htaccess OK (CSP inclui Cloudflare Insights)."
-          for f in ./out/home2.php ./out/ad2/oauth-as.json ./out/ad2/oauth-prm.json ./out/ad2/webmcp.js ./out/agent-well-known/api-catalog.json; do
+          for f in ./out/home2.php ./out/ad2/oauth-as.json ./out/ad2/oauth-prm.json ./out/ad2/webmcp.js ./out/ad3/register.php ./out/ad3/oauth-as.json ./out/agent-well-known/api-catalog.json; do
             if [ ! -f "$f" ]; then
               echo "::error::$f ausente no artefato de build."
               exit 1
@@ -208,6 +208,19 @@ jobs:
           password: ${{ env.FTP_PASSWORD }}
           local_path: "./out/ad2"
           remote_path: ${{ env.SFTP_REMOTE_PATH }}/ad2
+          sftp_only: true
+          sftpArgs: ${{ env.SFTP_ARGS }}
+
+      - name: Deploy SFTP — ad3
+        if: steps.sftp_deploy.outcome == 'success'
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        with:
+          username: ${{ env.FTP_USERNAME }}
+          server: ${{ env.FTP_SERVER }}
+          port: 65002
+          password: ${{ env.FTP_PASSWORD }}
+          local_path: "./out/ad3"
+          remote_path: ${{ env.SFTP_REMOTE_PATH }}/ad3
           sftp_only: true
           sftpArgs: ${{ env.SFTP_ARGS }}
 

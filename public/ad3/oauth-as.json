@@ -1,0 +1,40 @@
+{
+  "resource": "https://www.biointegralsaude.com.br/",
+  "authorization_servers": ["https://www.biointegralsaude.com.br"],
+  "scopes_supported": ["clinic.read", "agent.register"],
+  "bearer_methods_supported": ["header"],
+  "issuer": "https://www.biointegralsaude.com.br",
+  "authorization_endpoint": "https://www.biointegralsaude.com.br/ad3/register.php",
+  "token_endpoint": "https://www.biointegralsaude.com.br/ad3/register.php",
+  "revocation_endpoint": "https://www.biointegralsaude.com.br/ad3/register.php",
+  "jwks_uri": "https://www.biointegralsaude.com.br/jwks.json",
+  "registration_endpoint": "https://www.biointegralsaude.com.br/ad3/register.php",
+  "grant_types_supported": [
+    "authorization_code",
+    "urn:ietf:params:oauth:grant-type:jwt-bearer",
+    "urn:workos:agent-auth:grant-type:claim"
+  ],
+  "response_types_supported": ["code"],
+  "token_endpoint_auth_methods_supported": ["none"],
+  "agent_auth": {
+    "skill": "https://www.biointegralsaude.com.br/auth.md",
+    "register_uri": "https://www.biointegralsaude.com.br/ad3/register.php",
+    "identity_endpoint": "https://www.biointegralsaude.com.br/ad3/register.php",
+    "claim_uri": "https://www.biointegralsaude.com.br/ad3/register.php",
+    "claim_endpoint": "https://www.biointegralsaude.com.br/ad3/register.php",
+    "revocation_uri": "https://www.biointegralsaude.com.br/ad3/register.php",
+    "events_endpoint": "https://www.biointegralsaude.com.br/ad3/register.php",
+    "identity_types_supported": ["anonymous", "identity_assertion"],
+    "anonymous": {
+      "credential_types_supported": ["api_key"],
+      "claim_uri": "https://www.biointegralsaude.com.br/ad3/register.php"
+    },
+    "identity_assertion": {
+      "assertion_types_supported": [
+        "verified_email",
+        "urn:ietf:params:oauth:token-type:id-jag"
+      ],
+      "credential_types_supported": ["access_token", "api_key"]
+    }
+  }
+}
