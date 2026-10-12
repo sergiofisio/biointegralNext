@@ -156,7 +156,9 @@ jobs:
           echo "Artefatos de agent-discovery OK."
 
       # Preferir SFTP (criptografado) quando SSH estiver ativo no hPanel.
-      # Usar "./out" (sem /*) para incluir arquivos ocultos como .htaccess (CSP, redirects).
+      # "put -r <pasta> <destino>" recria a pasta dentro do destino (public_html/out/...),
+      # então os uploads de diretório enviam o conteúdo via "<pasta>/*". O glob não inclui
+      # arquivos ocultos: .htaccess e .well-known têm etapas próprias abaixo.
       - name: Deploy SFTP — tentativa 1 (porta 65002)
         id: sftp_deploy
         continue-on-error: true
@@ -166,7 +168,7 @@ jobs:
           server: ${{ env.FTP_SERVER }}
           port: 65002
           password: ${{ env.FTP_PASSWORD }}
-          local_path: "./out"
+          local_path: "./out/*"
           remote_path: ${{ env.SFTP_REMOTE_PATH }}
           sftp_only: true
           sftpArgs: ${{ env.SFTP_ARGS }}
@@ -182,6 +184,19 @@ jobs:
           password: ${{ env.FTP_PASSWORD }}
           local_path: "./out/.htaccess"
           remote_path: ${{ env.SFTP_REMOTE_PATH }}
+          sftp_only: true
+          sftpArgs: ${{ env.SFTP_ARGS }}
+
+      - name: Deploy SFTP — .well-known
+        if: steps.sftp_deploy.outcome == 'success' && hashFiles('out/.well-known/**') != ''
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        with:
+          username: ${{ env.FTP_USERNAME }}
+          server: ${{ env.FTP_SERVER }}
+          port: 65002
+          password: ${{ env.FTP_PASSWORD }}
+          local_path: "./out/.well-known/*"
+          remote_path: ${{ env.SFTP_REMOTE_PATH }}/.well-known
           sftp_only: true
           sftpArgs: ${{ env.SFTP_ARGS }}
 
@@ -219,7 +234,7 @@ jobs:
           server: ${{ env.FTP_SERVER }}
           port: 65002
           password: ${{ env.FTP_PASSWORD }}
-          local_path: "./out/agent-well-known"
+          local_path: "./out/agent-well-known/*"
           remote_path: ${{ env.SFTP_REMOTE_PATH }}/agent-well-known
           sftp_only: true
           sftpArgs: ${{ env.SFTP_ARGS }}
@@ -232,7 +247,7 @@ jobs:
           server: ${{ env.FTP_SERVER }}
           port: 65002
           password: ${{ env.FTP_PASSWORD }}
-          local_path: "./out/ad2"
+          local_path: "./out/ad2/*"
           remote_path: ${{ env.SFTP_REMOTE_PATH }}/ad2
           sftp_only: true
           sftpArgs: ${{ env.SFTP_ARGS }}
@@ -245,7 +260,7 @@ jobs:
           server: ${{ env.FTP_SERVER }}
           port: 65002
           password: ${{ env.FTP_PASSWORD }}
-          local_path: "./out/ad3"
+          local_path: "./out/ad3/*"
           remote_path: ${{ env.SFTP_REMOTE_PATH }}/ad3
           sftp_only: true
           sftpArgs: ${{ env.SFTP_ARGS }}
