@@ -158,7 +158,8 @@ jobs:
       # Preferir SFTP (criptografado) quando SSH estiver ativo no hPanel.
       # "put -r <pasta> <destino>" recria a pasta dentro do destino (public_html/out/...),
       # então os uploads de diretório enviam o conteúdo via "<pasta>/*". O glob não inclui
-      # arquivos ocultos: .htaccess e .well-known têm etapas próprias abaixo.
+      # arquivos ocultos: .htaccess tem etapa própria e .well-known é servido por rewrite
+      # a partir de agent-well-known/.
       - name: Deploy SFTP — tentativa 1 (porta 65002)
         id: sftp_deploy
         continue-on-error: true
@@ -184,19 +185,6 @@ jobs:
           password: ${{ env.FTP_PASSWORD }}
           local_path: "./out/.htaccess"
           remote_path: ${{ env.SFTP_REMOTE_PATH }}
-          sftp_only: true
-          sftpArgs: ${{ env.SFTP_ARGS }}
-
-      - name: Deploy SFTP — .well-known
-        if: steps.sftp_deploy.outcome == 'success' && hashFiles('out/.well-known/**') != ''
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
-        with:
-          username: ${{ env.FTP_USERNAME }}
-          server: ${{ env.FTP_SERVER }}
-          port: 65002
-          password: ${{ env.FTP_PASSWORD }}
-          local_path: "./out/.well-known/*"
-          remote_path: ${{ env.SFTP_REMOTE_PATH }}/.well-known
           sftp_only: true
           sftpArgs: ${{ env.SFTP_ARGS }}
 
