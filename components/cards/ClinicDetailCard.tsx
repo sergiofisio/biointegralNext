@@ -15,7 +15,7 @@ type Clinic = {
 export function ClinicDetailCard({ clinic }: { clinic: Clinic }) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-0 bg-white rounded-3xl ring-1 ring-black/5 overflow-hidden">
-      <div className="aspect-video md:aspect-auto md:min-h-[320px]">
+      <div className="aspect-video md:aspect-auto md:min-h-80">
         <iframe
           src={clinic.embed}
           title={`Mapa ${clinic.name}`}

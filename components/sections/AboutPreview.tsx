@@ -9,7 +9,7 @@ export function AboutPreview() {
     <section id="sobre" className="scroll-mt-20 py-24 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div className="grid grid-cols-2 gap-4">
-          <div className="aspect-[3/4] rounded-2xl overflow-hidden ring-1 ring-black/5 relative">
+          <div className="aspect-3/4 rounded-2xl overflow-hidden ring-1 ring-black/5 relative">
             <Image
               src={IMAGES.draFresia}
               alt="Dra. Fresia"
@@ -18,7 +18,7 @@ export function AboutPreview() {
               sizes="(max-width: 1024px) 50vw, 25vw"
             />
           </div>
-          <div className="aspect-[3/4] rounded-2xl overflow-hidden ring-1 ring-black/5 mt-12 relative">
+          <div className="aspect-3/4 rounded-2xl overflow-hidden ring-1 ring-black/5 mt-12 relative">
             <Image
               src={IMAGES.drSergio}
               alt="Dr. Sergio"

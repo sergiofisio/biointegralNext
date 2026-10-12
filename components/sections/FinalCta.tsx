@@ -5,7 +5,7 @@ import { WhatsAppButton } from "@/components/ui/WhatsAppButton";
 export function FinalCta() {
   return (
     <section id="contato" className="scroll-mt-20 py-24 px-6">
-      <div className="max-w-7xl mx-auto bg-gold rounded-[2rem] p-12 md:p-20 text-center relative overflow-hidden">
+      <div className="max-w-7xl mx-auto bg-gold rounded-4xl p-12 md:p-20 text-center relative overflow-hidden">
         <h2 className="font-display text-4xl md:text-6xl text-navy mb-6 text-balance leading-tight">
           Pronto para tratar a causa,{" "}
           <span className="italic">não apenas o sintoma?</span>

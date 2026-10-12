@@ -18,8 +18,9 @@ export function HeroSection() {
           <p className="text-lg text-zinc-600 max-w-[52ch] text-pretty mb-10 leading-relaxed">
             Com ciência e sensibilidade, buscamos o seu equilíbrio vital sob a
             coordenação do Dr. Sergio e Dra. Fresia. Unimos a precisão da
-            Microfisioterapia ao reequilíbrio emocional do PSYCH-K® e Biodécodage
-            para tratar a causa primária das suas dores físicas e emocionais.
+            Microfisioterapia ao reequilíbrio emocional do PSYCH-K® e
+            Biodécodage para tratar a causa primária das suas dores físicas e
+            emocionais.
           </p>
           <div className="flex flex-wrap gap-4">
             <WhatsAppButton>Agende sua consulta</WhatsAppButton>
@@ -33,7 +34,7 @@ export function HeroSection() {
           </div>
         </div>
         <div className="lg:col-span-5">
-          <div className="w-full aspect-[4/5] bg-champagne outline outline-1 -outline-offset-1 outline-black/5 rounded-3xl overflow-hidden relative">
+          <div className="w-full aspect-4/5 bg-champagne outline -outline-offset-1 outline-black/5 rounded-3xl overflow-hidden relative">
             <StaticPicture
               src={IMAGES.hero.src}
               srcSet={IMAGES.hero.srcSet}

@@ -6,7 +6,7 @@ import { HONEYPOT_FIELD_NAME } from "@/lib/form-guard";
 export function HoneypotField() {
   return (
     <div
-      className="absolute -left-[9999px] top-auto h-0 w-0 overflow-hidden"
+      className="absolute -left-2499.75 top-auto h-0 w-0 overflow-hidden"
       aria-hidden="true"
     >
       <label htmlFor={HONEYPOT_FIELD_NAME}>Não preencha este campo</label>
