@@ -363,7 +363,13 @@ export type Course = {
   /** Como a formação enriquece o atendimento — texto para o paciente. */
   benefits: string[];
   relatedTechniques: Technique["slug"][];
+  modules: CourseModule[];
   published: boolean;
+};
+
+export type CourseModule = {
+  title: string;
+  topics: string[];
 };
 
 const ALL_FRESIA_COURSES: Course[] = [
@@ -379,6 +385,116 @@ const ALL_FRESIA_COURSES: Course[] = [
       "Recursos para conduzir ansiedade, luto e traumas dentro de um processo de autoconhecimento e transformação.",
     ],
     relatedTechniques: ["biodecodage", "psych-k"],
+    modules: [
+      {
+        title: "Princípios da Psicologia Analítica de Jung",
+        topics: [
+          "Aspectos biográficos de Jung: origem, época e meio social na formação da sua teoria",
+          "Inconsciente coletivo e pessoal",
+          "A construção das estruturas básicas da psique e sua dinâmica: Arquétipos, Complexos, Persona e Sombra",
+          "Anima, Animus e Self",
+        ],
+      },
+      {
+        title: "Conceitos Fundamentais da Psicologia Analítica",
+        topics: [
+          "Processo de Individuação",
+          "A Metanoia e Individuação",
+          "Função Transcendente",
+          "Os Livros Negros e o Livro Vermelho de Jung",
+        ],
+      },
+      {
+        title: "Linguagem Simbólica",
+        topics: [
+          "O Símbolo, o uso de mitos como ferramenta da Psicologia Analítica",
+          "Mitologias: Africana, Indígena, Egípcia e Grega/Romana na Psicologia Analítica",
+          "Contos de fada como instrumento clínico na Psicologia Analítica",
+          "Alquimia e suas chaves na Psicologia Analítica",
+        ],
+      },
+      {
+        title: "Psicopatologia e Psicologia Analítica",
+        topics: [
+          "Desenvolvimento da Personalidade à luz da Psicologia Analítica",
+          "Transferência e Contratransferência na Psicologia Analítica",
+          "Tipos Psicológicos na Psicologia Analítica",
+          "Psicopatologias e Mitologemas em Jung",
+        ],
+      },
+      {
+        title: "Técnicas Junguianas I",
+        topics: [
+          "Estudo da linguagem simbólica em Jung",
+          "A Interpretação dos Sonhos na concepção de Jung",
+          "Imaginação Ativa nos princípios junguianos",
+          "Recursos terapêuticos como desenho, pintura e modelagem",
+        ],
+      },
+      {
+        title: "Técnicas Junguianas II",
+        topics: [
+          "Arte e Jung: recursos artísticos na prática clínica",
+          "O uso de mandalas e seu simbolismo na prática clínica",
+          "Integração Psicofísica: o encontro do trabalho de Sandor e Jung",
+          "Terapia Sandplay (Caixa de Areia)",
+        ],
+      },
+      {
+        title: "Imagem e Símbolo",
+        topics: [
+          "História da Arte e a leitura simbólica",
+          "Cinema como expressão de imagens e a leitura junguiana",
+          "Sonhos na infância, na adolescência, na metanoia e na clínica",
+          "Terapia Familiar e a Visão Sistêmica de Jung",
+        ],
+      },
+      {
+        title: "Intervenções Terapêuticas pela Psicologia Analítica",
+        topics: [
+          "A família e o casal na Psicologia Analítica",
+          "Práticas de Terapia de Casal e de Grupo na Psicologia Analítica",
+          "Práticas de Terapia Familiar e a Visão Sistêmica de Jung",
+          "Aspectos clínicos da Análise Junguiana",
+        ],
+      },
+      {
+        title: "Cultura, Sociedade e Psicologia Analítica",
+        topics: [
+          "A Psicologia Analítica e os desafios da contemporaneidade",
+          "Arquétipos culturais e coletivos sociais",
+          "Jung e a religiosidade: espiritualidade, ritos e experiências numinosas",
+          "Psicologia Analítica, gênero e diversidade",
+        ],
+      },
+      {
+        title: "Psicologia Analítica e Saúde Mental",
+        topics: [
+          "Contribuições da Psicologia Analítica na prevenção e promoção da saúde mental",
+          "Ansiedade, depressão e trauma sob a ótica junguiana",
+          "Processos de resiliência e transformação psíquica",
+          "Psicoterapia breve e intervenções integrativas com base junguiana",
+        ],
+      },
+      {
+        title: "Psicologia Analítica e Criatividade",
+        topics: [
+          "A criatividade como expressão do inconsciente",
+          "Jung, arte e processos criativos",
+          "Escrita, música e dramatização como instrumentos terapêuticos",
+          "Imaginação ativa aplicada à criatividade e ao autoconhecimento",
+        ],
+      },
+      {
+        title: "Psicologia Analítica e Contemporaneidade",
+        topics: [
+          "Arquétipos no mundo digital e nas mídias sociais",
+          "Psicologia Analítica e diversidade cultural",
+          "Psicologia Analítica aplicada a grupos, organizações e comunidades",
+          "Tendências contemporâneas da prática junguiana",
+        ],
+      },
+    ],
     published: true,
   },
   {
@@ -393,6 +509,143 @@ const ALL_FRESIA_COURSES: Course[] = [
       "Estratégias de regulação do estresse e da ansiedade apoiadas em neuroplasticidade e mindfulness.",
     ],
     relatedTechniques: ["psych-k", "microfisioterapia"],
+    modules: [
+      {
+        title: "Introdução à Neurociência I",
+        topics: [
+          "Fundamentos de Neuroanatomia Funcional",
+          "Fisiologia do Sistema Sensorial, Neurossensorial e Funções Hemisféricas",
+          "Funções Corticais e Subcorticais",
+          "Definição e classificação dos neurotransmissores",
+        ],
+      },
+      {
+        title: "Introdução à Neurociência II",
+        topics: [
+          "Catecolaminas: Dopamina, Noradrenalina, Adrenalina e Serotonina",
+          "Sistema endocanabinoide e Sistema GABAérgico",
+          "Sistema Glutamatérgico",
+          "Neuropeptídios e hormônios dos sistemas nervosos central e periférico",
+        ],
+      },
+      {
+        title: "Desenvolvimento Cerebral I",
+        topics: [
+          "Neuroplasticidade Cerebral",
+          "Desenvolvimento Infantil e Plasticidade Cerebral",
+          "Desenvolvimento Neuropsicomotor",
+          "Fatores ambientais que influenciam a plasticidade do SNC",
+        ],
+      },
+      {
+        title: "Desenvolvimento Cerebral II",
+        topics: [
+          "Desenvolvimento Cerebral e processos de aprendizagem",
+          "Os princípios do Desenvolvimento Cognitivo",
+          "Consciência, memória, instinto, razão e emoção",
+          "O papel da linguagem no desenvolvimento e na aprendizagem",
+        ],
+      },
+      {
+        title: "Funções Cognitivas e Emocionais",
+        topics: [
+          "Funções Psicológicas Básicas: Memória e Cognição",
+          "Funções cognitivas, conativas e executivas na aprendizagem",
+          "Emoções: relação com o funcionamento cerebral e processos de aprendizagem",
+          "Transtornos e condições que influenciam o funcionamento cognitivo",
+        ],
+      },
+      {
+        title: "Contextualização e Critérios Diagnósticos do Autismo",
+        topics: [
+          "História do Autismo e sua definição",
+          "Sinais do TEA na infância",
+          "Critérios diagnósticos do TEA",
+          "A importância da família e o diagnóstico",
+        ],
+      },
+      {
+        title: "Desenvolvimento Humano e Desafios em Indivíduos com TEA",
+        topics: [
+          "Avaliação neuropsicológica no TEA",
+          "Ausência de habilidades x excessos de comportamentos disruptivos e inadequados",
+          "Alterações sensoriais x birras",
+          "Estereotipias, comportamentos repetitivos e rigidez",
+        ],
+      },
+      {
+        title: "Epidemiologia do Transtorno de Déficit de Atenção/Hiperatividade",
+        topics: [
+          "Aspectos Neurobiológicos do TDAH",
+          "Identificação e Avaliação do TDAH: DSM-5 e CID-11",
+          "Sintomatologia do TDAH na primeira e segunda infância",
+          "Sintomatologia do TDAH em adolescentes",
+        ],
+      },
+      {
+        title: "Transtornos Globais do Desenvolvimento (TGD), Altas Habilidades e Superdotação",
+        topics: [
+          "Definição e visão social de TGD, Altas Habilidades e Superdotação",
+          "Características específicas da Educação Especial e a relação com o TGD",
+          "Inclusão escolar de alunos com TGD, Altas Habilidades e Superdotação",
+          "A formação e o acompanhamento da tríade escola, família e sociedade no processo de ensino-aprendizagem",
+        ],
+      },
+      {
+        title: "Neuroalfabetização na Educação I",
+        topics: [
+          "Teorias de Alfabetização e estímulo de áreas neurológicas fundamentais: leitura, escrita e compreensão leitora",
+          "Funcionamento Executivo, Atenção e Memória no processo de aprendizagem",
+          "Funções Executivas e o aprendizado da leitura e escrita",
+          "Habilidade de decodificar para ler e recodificar para escrever",
+        ],
+      },
+      {
+        title: "Neuroalfabetização na Educação II",
+        topics: [
+          "Constituição do léxico ortográfico",
+          "Consciência fonológica e domínio do princípio alfabético",
+          "Audição e construção da linguagem e do léxico gramatical",
+          "Ordem de apresentação das letras e rotas de leitura",
+        ],
+      },
+      {
+        title: "Neuropsicomotricidade",
+        topics: [
+          "Definição e diferenças entre psicomotricidade e neuropsicomotricidade",
+          "Bases teóricas da psicomotricidade: corpo, movimento e integração sensorial",
+          "A neuropsicomotricidade: abordagem neurobiológica do movimento e comportamento",
+          "Inter-relação entre aspectos cognitivos, emocionais e motores",
+        ],
+      },
+      {
+        title: "Conceitos e Funções da Psicologia e o Comportamento",
+        topics: [
+          "O surgimento do estudo do comportamento",
+          "Panorama do comportamento no campo psicológico: conceitos e tendências",
+          "A psicologia do comportamento desviante",
+          "Personalidade e comportamento",
+        ],
+      },
+      {
+        title: "Psicologia e Neuroaprendizagem",
+        topics: [
+          "Relação entre dificuldade de aprendizagem e as inteligências",
+          "Métodos de avaliação da inteligência",
+          "As inteligências múltiplas aplicadas à educação infantil",
+          "Neurociência e linguagem",
+        ],
+      },
+      {
+        title: "Psicologia Positiva e Mindfulness",
+        topics: [
+          "Introdução à Psicologia Positiva e seus princípios fundamentais",
+          "Psicologia Positiva, Mindfulness e PNL",
+          "Princípios e práticas de mindfulness",
+          "Impacto do mindfulness na redução do estresse e promoção do bem-estar",
+        ],
+      },
+    ],
     published: true,
   },
   {
@@ -407,6 +660,116 @@ const ALL_FRESIA_COURSES: Course[] = [
       "Trabalho em parceria com médico e nutricionista, que seguem responsáveis pela prescrição de dieta e medicamentos.",
     ],
     relatedTechniques: ["biodecodage", "psych-k"],
+    modules: [
+      {
+        title: "Fundamentos da Nutrição Clínica",
+        topics: [
+          "Alimentação e nutrição",
+          "Implicações clínicas relacionadas à nutrição: doenças por carência ou excesso de nutrientes e doenças metabólicas",
+          "Avaliação do consumo alimentar",
+          "Avaliação antropométrica",
+        ],
+      },
+      {
+        title: "Composição Corporal e Diagnóstico Nutricional",
+        topics: [
+          "Avaliação da composição corporal localizada e total do corpo humano",
+          "IMC, bioimpedância e cineantropometria",
+          "Biomarcadores da desnutrição: albumina, transferrina, índice de creatinina, balanço nitrogenado",
+          "Biomarcadores do metabolismo lipídico: triglicerídeos, colesterol, lipoproteínas",
+        ],
+      },
+      {
+        title: "Metabolismo e Marcadores Clínicos",
+        topics: [
+          "Biomarcadores do metabolismo da glicose: glicemia, hemoglobina glicada, insulina",
+          "Obesidade e desordens alimentares",
+          "Alimentação especial e estratégias de controle da obesidade",
+          "Tratamento de diabetes, distúrbios tireoidianos, dislipidemias e associação com dietas",
+        ],
+      },
+      {
+        title: "Transtornos Alimentares e Conduta Nutricional",
+        topics: [
+          "Nutrição em transtornos alimentares",
+          "Avaliação e conduta nutricional em caso de transtornos alimentares",
+          "Nutrição e saúde mental: alimentação saudável e adoção de novos hábitos",
+          "Protocolos clínicos de acompanhamento nutricional em transtornos alimentares",
+        ],
+      },
+      {
+        title: "Psiconutrição e Comportamento Alimentar",
+        topics: [
+          "Comportamento alimentar e psiconutrição na obesidade e emagrecimento",
+          "Compulsão alimentar e resistência ao emagrecimento",
+          "Estratégias motivacionais e adesão terapêutica",
+          "Abordagens contemporâneas em reeducação alimentar",
+        ],
+      },
+      {
+        title: "Estratégias Nutricionais Avançadas no Emagrecimento",
+        topics: [
+          "Dietas terapêuticas e emagrecimento baseado em evidências",
+          "Prescrição nutricional individualizada na obesidade",
+          "Preservação de massa magra durante perda ponderal",
+          "Intervenções nutricionais de longo prazo e manutenção do peso",
+        ],
+      },
+      {
+        title: "Farmacologia Aplicada à Nutrição Clínica",
+        topics: [
+          "Introdução à farmacologia da obesidade",
+          "Medicamentos utilizados no controle do peso: panorama atual",
+          "Interações fármaco-nutriente e efeitos metabólicos",
+          "Papel do nutricionista no acompanhamento de pacientes medicados",
+        ],
+      },
+      {
+        title: "Canetas Emagrecedoras: GLP-1 e Novas Terapias",
+        topics: [
+          "Mecanismos de ação dos agonistas de GLP-1",
+          "Principais canetas emagrecedoras e diferenças clínicas",
+          "Evidências científicas e resultados em obesidade e diabetes",
+          "Monitorização nutricional durante o uso de canetas",
+        ],
+      },
+      {
+        title: "Protocolos Nutricionais Integrados ao GLP-1",
+        topics: [
+          "Ajustes alimentares em pacientes com supressão de apetite",
+          "Estratégias para evitar deficiências nutricionais",
+          "Suporte proteico e preservação muscular",
+          "Estudos de caso clínicos e condutas práticas",
+        ],
+      },
+      {
+        title: "Riscos, Limites e Uso Responsável",
+        topics: [
+          "Efeitos adversos e complicações mais comuns",
+          "Automedicação, uso estético e riscos sociais",
+          "Contraindicações e grupos vulneráveis",
+          "Educação do paciente e orientação multiprofissional",
+        ],
+      },
+      {
+        title: "Cirurgia Bariátrica e Intervenções Clínicas",
+        topics: [
+          "A cirurgia bariátrica e principais intervenções",
+          "Resoluções e legislações a respeito da cirurgia bariátrica",
+          "Manejo nutricional e suplementação do paciente bariátrico no primeiro ano de cirurgia",
+          "Análise de exames laboratoriais no paciente bariátrico",
+        ],
+      },
+      {
+        title: "Prática Clínica Avançada em Emagrecimento",
+        topics: [
+          "Construção de protocolos completos de atendimento em obesidade",
+          "Integração nutrição + farmacoterapia + saúde mental",
+          "Casos complexos: obesidade refratária e reganho de peso",
+          "Ética e responsabilidade profissional no emagrecimento moderno",
+        ],
+      },
+    ],
     published: CURSO_NUTRICAO_CONCLUIDO,
   },
 ];
