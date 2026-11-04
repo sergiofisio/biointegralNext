@@ -64,7 +64,7 @@ export default async function TechniquePage({ params }: Props) {
       </section>
 
       <section className="px-6 max-w-5xl mx-auto">
-        <div className="aspect-[21/9] rounded-3xl overflow-hidden ring-1 ring-black/5 relative">
+        <div className="aspect-21/9 rounded-3xl overflow-hidden ring-1 ring-black/5 relative">
           <Image
             src={IMAGES.tech[tech.slug]}
             alt={`${tech.name} — Biointegral Saúde`}
