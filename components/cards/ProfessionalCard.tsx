@@ -6,6 +6,7 @@ type ProfessionalCardProps = {
   image: "draFresia" | "drSergio";
   bio: string;
   offset?: boolean;
+  courses?: string[];
 };
 
 export function ProfessionalCard({
@@ -14,6 +15,7 @@ export function ProfessionalCard({
   image,
   bio,
   offset = false,
+  courses = [],
 }: ProfessionalCardProps) {
   return (
     <div
@@ -34,6 +36,23 @@ export function ProfessionalCard({
           {crefito}
         </p>
         <p className="text-zinc-600 leading-relaxed text-sm">{bio}</p>
+        {courses.length > 0 && (
+          <div className="mt-6 pt-6 border-t border-zinc-950/5">
+            <p className="text-xs font-semibold text-navy uppercase tracking-wider mb-3">
+              Pós-graduações
+            </p>
+            <ul className="space-y-2">
+              {courses.map((course) => (
+                <li
+                  key={course}
+                  className="border-l-2 border-gold pl-4 text-sm text-zinc-600"
+                >
+                  {course}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );

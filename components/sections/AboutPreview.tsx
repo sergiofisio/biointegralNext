@@ -2,7 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { IMAGES } from "@/lib/images";
+import { FRESIA_COURSES } from "@/lib/site-data";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+
+function formatList(items: string[]) {
+  if (items.length <= 1) return items.join("");
+  return `${items.slice(0, -1).join(", ")} e ${items[items.length - 1]}`;
+}
 
 export function AboutPreview() {
   return (
@@ -40,11 +46,28 @@ export function AboutPreview() {
             especializaram em Microfisioterapia diretamente com os criadores da
             técnica, Daniel Grosjean e Patrice Benini, na França.
           </p>
-          <p className="text-zinc-600 leading-relaxed mb-8">
+          <p
+            className={`text-zinc-600 leading-relaxed ${FRESIA_COURSES.length > 0 ? "mb-4" : "mb-8"}`}
+          >
             Especializaram-se também em Décodage Biologique com Emmanuel
             Corbeel, na Bélgica, e dedicam-se atualmente ao estudo da
             BIOdécodage Prática com seu criador Christian Flèche.
           </p>
+          {FRESIA_COURSES.length > 0 && (
+            <p className="text-zinc-600 leading-relaxed mb-8">
+              A Dra. Fresia é ainda pós-graduada em{" "}
+              {formatList(FRESIA_COURSES.map((c) => c.title))} — formações que
+              ampliam o olhar sobre emoções, comportamento e corpo em cada
+              atendimento.{" "}
+              <Link
+                href="/quem-somos#formacao-academica"
+                className="text-gold font-medium hover:underline"
+              >
+                Ver formação acadêmica
+              </Link>
+              .
+            </p>
+          )}
           <Link
             href="/quem-somos"
             className="inline-flex items-center gap-2 text-navy font-semibold border-b border-gold pb-1 hover:gap-3 transition-all"

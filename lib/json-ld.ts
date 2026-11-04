@@ -2,6 +2,7 @@ import { canonicalUrl, SEO_BASE_URL, SEO_DEFAULT_IMAGE, SEO_LOGO_URL, SEO_SITE_N
 import {
   CLINICS,
   FAQS,
+  FRESIA_COURSES,
   PROFESSIONALS,
   SITE,
   TECHNIQUES,
@@ -37,6 +38,16 @@ export function buildOrganizationGraph() {
     identifier: p.crefito,
     worksFor: { "@id": ORG_ID },
     url: `${SEO_BASE_URL}/quem-somos/`,
+    ...(p.image === "draFresia" && FRESIA_COURSES.length > 0
+      ? {
+          hasCredential: FRESIA_COURSES.map((c) => ({
+            "@type": "EducationalOccupationalCredential" as const,
+            credentialCategory: "Pós-graduação",
+            name: `Pós-graduação em ${c.title} (${c.hours} horas)`,
+            about: c.summary,
+          })),
+        }
+      : {}),
   }));
 
   const services = TECHNIQUES.map((t) => ({

@@ -352,6 +352,67 @@ export const PROFESSIONALS = [
   },
 ];
 
+/** Mude para true quando a Dra. Fresia concluir a pós em Emagrecimento e Nutrição Clínica Avançada. */
+export const CURSO_NUTRICAO_CONCLUIDO = false;
+
+export type Course = {
+  slug: string;
+  title: string;
+  hours: number;
+  summary: string;
+  /** Como a formação enriquece o atendimento — texto para o paciente. */
+  benefits: string[];
+  relatedTechniques: Technique["slug"][];
+  published: boolean;
+};
+
+const ALL_FRESIA_COURSES: Course[] = [
+  {
+    slug: "psicologia-analitica-junguiana",
+    title: "Psicologia Analítica Junguiana",
+    hours: 720,
+    summary:
+      "Pós-graduação dedicada à psicologia de Carl Gustav Jung: inconsciente pessoal e coletivo, arquétipos, símbolos, sonhos e o processo de individuação.",
+    benefits: [
+      "Escuta mais profunda da história do paciente, reconhecendo símbolos, sonhos e imagens que acompanham o sintoma.",
+      "Compreensão de padrões inconscientes — como sombra e complexos — que se repetem em relações, crises e queixas físicas.",
+      "Recursos para conduzir ansiedade, luto e traumas dentro de um processo de autoconhecimento e transformação.",
+    ],
+    relatedTechniques: ["biodecodage", "psych-k"],
+    published: true,
+  },
+  {
+    slug: "neurociencias-e-comportamento",
+    title: "Neurociências e Comportamento",
+    hours: 800,
+    summary:
+      "Pós-graduação sobre a relação entre cérebro, emoções e comportamento: neuroplasticidade, neurotransmissores, funções cognitivas, desenvolvimento infantil, TEA, TDAH e mindfulness.",
+    benefits: [
+      "Base científica para explicar como emoções, crenças e experiências se registram no cérebro e no corpo.",
+      "Olhar atento ao desenvolvimento infantil e a condições como TEA e TDAH no acolhimento de crianças e famílias.",
+      "Estratégias de regulação do estresse e da ansiedade apoiadas em neuroplasticidade e mindfulness.",
+    ],
+    relatedTechniques: ["psych-k", "microfisioterapia"],
+    published: true,
+  },
+  {
+    slug: "emagrecimento-e-nutricao-clinica-avancada",
+    title: "Emagrecimento e Nutrição Clínica Avançada",
+    hours: 720,
+    summary:
+      "Pós-graduação sobre obesidade e emagrecimento como processo integral: metabolismo, comportamento alimentar, psiconutrição, saúde mental e terapias contemporâneas.",
+    benefits: [
+      "Compreensão da relação entre emoções, compulsão alimentar e dificuldade de emagrecer.",
+      "Acolhimento integrativo de quem busca perder peso, inclusive durante o uso de terapias como os agonistas de GLP-1.",
+      "Trabalho em parceria com médico e nutricionista, que seguem responsáveis pela prescrição de dieta e medicamentos.",
+    ],
+    relatedTechniques: ["biodecodage", "psych-k"],
+    published: CURSO_NUTRICAO_CONCLUIDO,
+  },
+];
+
+export const FRESIA_COURSES = ALL_FRESIA_COURSES.filter((c) => c.published);
+
 export type FaqEntry = {
   q: string;
   /** Texto plano para JSON-LD e leitores. */

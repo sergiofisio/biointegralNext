@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { PROFESSIONALS } from "@/lib/site-data";
+import { FRESIA_COURSES, PROFESSIONALS } from "@/lib/site-data";
 import { pageMetadata } from "@/lib/metadata";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { ProfessionalCard } from "@/components/cards/ProfessionalCard";
+import { FresiaCourses } from "@/components/sections/FresiaCourses";
 import { Breadcrumbs } from "@/components/ui/Breadcrumbs";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { buildBreadcrumbJsonLd } from "@/lib/json-ld";
@@ -19,6 +20,7 @@ export const metadata: Metadata = pageMetadata({
     "Dr Sergio Bastos",
     "Dra Fresia Bastos",
     "fisioterapeuta microfisioterapia",
+    ...FRESIA_COURSES.map((c) => c.title.toLowerCase()),
   ],
 });
 
@@ -50,7 +52,15 @@ export default function AboutPage() {
 
       <section className="px-6 py-16 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
         {PROFESSIONALS.map((p) => (
-          <ProfessionalCard key={p.name} {...p} />
+          <ProfessionalCard
+            key={p.name}
+            {...p}
+            courses={
+              p.image === "draFresia"
+                ? FRESIA_COURSES.map((c) => c.title)
+                : undefined
+            }
+          />
         ))}
       </section>
 
@@ -104,6 +114,8 @@ export default function AboutPage() {
           </p>
         </div>
       </section>
+
+      <FresiaCourses />
 
       <section className="px-6 py-16 max-w-4xl mx-auto text-center">
         <Link
