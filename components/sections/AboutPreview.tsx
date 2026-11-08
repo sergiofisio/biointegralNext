@@ -20,7 +20,7 @@ export function AboutPreview() {
               src={IMAGES.draFresia}
               alt="Dra. Fresia"
               fill
-              className="object-cover"
+              className="object-cover object-top"
               sizes="(max-width: 1024px) 50vw, 25vw"
             />
           </div>
@@ -29,7 +29,7 @@ export function AboutPreview() {
               src={IMAGES.drSergio}
               alt="Dr. Sergio"
               fill
-              className="object-cover"
+              className="object-cover object-top"
               sizes="(max-width: 1024px) 50vw, 25vw"
             />
           </div>

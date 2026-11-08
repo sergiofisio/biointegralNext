@@ -2,9 +2,10 @@
  * Gera WebP otimizados em public/images a partir dos assets-fonte.
  * Uso: npm run optimize:images
  *
- * - Hero: variantes 480 / 640 / 960 / 1280 a partir de hero-professionals.webp
- * - Fotos SVG (PNG embutido): WebP na resolução intrínseca do SVG
- *   (sem upscale — a fonte é ~240px)
+ * - Hero: hero-professionals.webp (resolução cheia) + variantes 480 / 640 / 960 / 1280
+ *   a partir de assets/photos/hero.jpg
+ * - Profissionais: WebP (até 800px) a partir de assets/photos/*.jpg
+ * - Técnicas: SVG (PNG embutido) na resolução intrínseca, sem upscale
  */
 import { mkdir } from "node:fs/promises";
 import path from "node:path";
@@ -13,6 +14,7 @@ import sharp from "sharp";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const imagesDir = path.join(__dirname, "..", "public", "images");
+const photosDir = path.join(__dirname, "..", "assets", "photos");
 
 const WEBP_QUALITY = 80;
 /** Qualidade um pouco menor na variante LCP mobile. */
@@ -34,8 +36,9 @@ async function writeWebp(inputPath, outputName, width, quality = WEBP_QUALITY) {
 async function main() {
   await mkdir(imagesDir, { recursive: true });
 
-  const heroSource = path.join(imagesDir, "hero-professionals.webp");
+  const heroSource = path.join(photosDir, "hero.jpg");
   console.log("Hero variants:");
+  await writeWebp(heroSource, "hero-professionals.webp");
   await writeWebp(
     heroSource,
     "hero-professionals-480.webp",
@@ -48,12 +51,12 @@ async function main() {
 
   console.log("Professionals:");
   await writeWebp(
-    path.join(imagesDir, "dra-fresia.svg"),
+    path.join(photosDir, "dra-fresia.jpg"),
     "dra-fresia.webp",
     800,
   );
   await writeWebp(
-    path.join(imagesDir, "dr-sergio.svg"),
+    path.join(photosDir, "dr-sergio.jpg"),
     "dr-sergio.webp",
     800,
   );
