@@ -29,12 +29,6 @@ export function Nav() {
               {l.label}
             </SectionScrollLink>
           ))}
-          <Link
-            href="/tecnicas/microfisioterapia"
-            className="nav-link-underline hover:text-navy hidden xl:inline"
-          >
-            Microfisioterapia
-          </Link>
           <SocialLinks variant="nav" />
           <WhatsAppButton variant="nav">Agendar Consulta</WhatsAppButton>
         </div>
