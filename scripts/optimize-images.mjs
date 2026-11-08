@@ -5,7 +5,8 @@
  * - Hero: variantes 480 / 640 / 960 / 1280 / 1600 / 2048 a partir de assets/photos/hero.jpg
  * - Profissionais: WebP (até 1200px) a partir de assets/photos/*.jpg
  * - As fotos em assets/photos foram ampliadas 2x (Real-ESRGAN mesclado 50% com lanczos)
- * - Técnicas: SVG (PNG embutido) na resolução intrínseca, sem upscale
+ * - Técnicas: logos (até 1000px) a partir de assets/logos/*.png, ampliados 4x com
+ *   Real-ESRGAN (modelo anime, adequado para gráficos) e sem margens
  */
 import { mkdir } from "node:fs/promises";
 import path from "node:path";
@@ -15,10 +16,13 @@ import sharp from "sharp";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const imagesDir = path.join(__dirname, "..", "public", "images");
 const photosDir = path.join(__dirname, "..", "assets", "photos");
+const logosDir = path.join(__dirname, "..", "assets", "logos");
 
 const WEBP_QUALITY = 80;
 /** Qualidade um pouco menor na variante LCP mobile. */
 const WEBP_QUALITY_MOBILE = 75;
+/** Logos com texto fino borram com compressão mais agressiva. */
+const WEBP_QUALITY_LOGO = 90;
 
 async function writeWebp(inputPath, outputName, width, quality = WEBP_QUALITY) {
   const outputPath = path.join(imagesDir, outputName);
@@ -62,19 +66,22 @@ async function main() {
 
   console.log("Techniques:");
   await writeWebp(
-    path.join(imagesDir, "tech-micro.svg"),
+    path.join(logosDir, "microfisioterapia.png"),
     "tech-micro.webp",
-    640,
+    1000,
+    WEBP_QUALITY_LOGO,
   );
   await writeWebp(
-    path.join(imagesDir, "tech-psychk.svg"),
+    path.join(logosDir, "psych-k.png"),
     "tech-psychk.webp",
-    640,
+    1000,
+    WEBP_QUALITY_LOGO,
   );
   await writeWebp(
-    path.join(imagesDir, "tech-biode.svg"),
+    path.join(logosDir, "biodecodage.png"),
     "tech-biode.webp",
-    640,
+    1000,
+    WEBP_QUALITY_LOGO,
   );
 
   console.log("Done.");

@@ -42,12 +42,12 @@ export function TechniqueCard({
       href={`/tecnicas/${technique.slug}`}
       className="group block"
     >
-      <div className="w-full aspect-video bg-zinc-100 rounded-2xl mb-6 overflow-hidden ring-1 ring-black/5 relative">
+      <div className="w-full aspect-video bg-white rounded-2xl mb-6 overflow-hidden ring-1 ring-black/5 relative">
         <Image
           src={imageSrc}
           alt={technique.name}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-700"
+          className="object-contain p-8 group-hover:scale-105 transition-transform duration-700"
           sizes="(max-width: 768px) 100vw, 33vw"
         />
       </div>
