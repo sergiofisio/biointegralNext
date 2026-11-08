@@ -2,7 +2,7 @@ export const IMAGES = {
   hero: {
     src: "/images/hero-professionals-640.webp",
     srcSet:
-      "/images/hero-professionals-480.webp 480w, /images/hero-professionals-640.webp 640w, /images/hero-professionals-960.webp 960w, /images/hero-professionals-1280.webp 1024w",
+      "/images/hero-professionals-480.webp 480w, /images/hero-professionals-640.webp 640w, /images/hero-professionals-960.webp 960w, /images/hero-professionals-1280.webp 1280w, /images/hero-professionals-1600.webp 1600w, /images/hero-professionals-2048.webp 2048w",
     /** Variante mobile-first para preload (LCP). */
     preload: "/images/hero-professionals-480.webp",
     /** Foto paisagem cortada num quadro 4:5: a largura útil é ~1,9x a do quadro. */

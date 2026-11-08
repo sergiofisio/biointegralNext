@@ -2,9 +2,9 @@
  * Gera WebP otimizados em public/images a partir dos assets-fonte.
  * Uso: npm run optimize:images
  *
- * - Hero: hero-professionals.webp (resolução cheia) + variantes 480 / 640 / 960 / 1280
- *   a partir de assets/photos/hero.jpg
- * - Profissionais: WebP (até 800px) a partir de assets/photos/*.jpg
+ * - Hero: variantes 480 / 640 / 960 / 1280 / 1600 / 2048 a partir de assets/photos/hero.jpg
+ * - Profissionais: WebP (até 1200px) a partir de assets/photos/*.jpg
+ * - As fotos em assets/photos foram ampliadas 2x (Real-ESRGAN mesclado 50% com lanczos)
  * - Técnicas: SVG (PNG embutido) na resolução intrínseca, sem upscale
  */
 import { mkdir } from "node:fs/promises";
@@ -38,14 +38,13 @@ async function main() {
 
   const heroSource = path.join(photosDir, "hero.jpg");
   console.log("Hero variants:");
-  await writeWebp(heroSource, "hero-professionals.webp");
   await writeWebp(
     heroSource,
     "hero-professionals-480.webp",
     480,
     WEBP_QUALITY_MOBILE,
   );
-  for (const width of [640, 960, 1280]) {
+  for (const width of [640, 960, 1280, 1600, 2048]) {
     await writeWebp(heroSource, `hero-professionals-${width}.webp`, width);
   }
 
@@ -53,12 +52,12 @@ async function main() {
   await writeWebp(
     path.join(photosDir, "dra-fresia.jpg"),
     "dra-fresia.webp",
-    800,
+    1200,
   );
   await writeWebp(
     path.join(photosDir, "dr-sergio.jpg"),
     "dr-sergio.webp",
-    800,
+    1200,
   );
 
   console.log("Techniques:");
