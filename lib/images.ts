@@ -8,8 +8,8 @@ export const IMAGES = {
     /** Foto paisagem cortada num quadro 4:5: a largura útil é ~1,9x a do quadro. */
     sizes: "(max-width: 1024px) min(188vw, 790px), 75vw",
   },
-  draFresia: "/images/dra-fresia.webp",
-  drSergio: "/images/dr-sergio.webp",
+  draFresia: "/images/dra-fresia new.webp",
+  drSergio: "/images/dr-sergio new.webp",
   tech: {
     microfisioterapia: "/images/tech-micro.webp",
     "psych-k": "/images/tech-psychk.webp",
