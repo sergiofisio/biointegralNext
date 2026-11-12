@@ -4,6 +4,10 @@ DirectoryIndex home2.php home.php index.html
 # Página 404 do Next (out/404.html) em vez da página padrão da Hostinger
 ErrorDocument 404 /404.html
 
+# URLs do site anterior — destino absoluto para resolver host e caminho em um único 301
+RewriteRule ^home/?$ https://www.biointegralsaude.com.br/ [R=301,L]
+RewriteRule ^service/microfisioterapia/?$ https://www.biointegralsaude.com.br/tecnicas/microfisioterapia/ [R=301,L]
+
 # Canonical em um único 301 (evita HTTP→HTTPS sem www, depois www)
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} !^www\.biointegralsaude\.com\.br$ [NC]
@@ -96,8 +100,8 @@ RewriteRule ^index\.html$ /agent-root/index.md [T=text/markdown,E=MARKDOWN_AGENT
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
   Header always set X-Frame-Options "SAMEORIGIN"
-  # Cloudflare Insights (Web Analytics) + Turnstile + EmailJS + Maps
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.emailjs.com https://challenges.cloudflare.com https://cloudflareinsights.com; frame-src https://www.google.com https://maps.google.com https://challenges.cloudflare.com;"
+  # Cloudflare Insights (Web Analytics) + Turnstile + EmailJS + Maps + Google tag (Google Ads)
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://static.cloudflareinsights.com https://www.googletagmanager.com https://www.googleadservices.com https://www.google.com https://googleads.g.doubleclick.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.emailjs.com https://challenges.cloudflare.com https://cloudflareinsights.com https://www.googletagmanager.com https://www.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://ad.doubleclick.net https://pagead2.googlesyndication.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://www.google.com https://maps.google.com https://challenges.cloudflare.com https://td.doubleclick.net https://www.googletagmanager.com;"
 
   # HTML e dados dinâmicos — sempre buscar versão nova no servidor
   <FilesMatch "\.(html?|json|xml|txt)$">

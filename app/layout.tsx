@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Instrument_Serif, Inter } from "next/font/google";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
@@ -18,6 +19,8 @@ import { rootOpenGraph } from "@/lib/metadata";
 import { buildOrganizationGraph } from "@/lib/json-ld";
 import { JsonLd } from "@/components/ui/JsonLd";
 import "./globals.css";
+
+const GOOGLE_TAG_ID = "AW-955217513";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -85,6 +88,16 @@ export default function RootLayout({
         className={`${instrumentSerif.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
+        <Script
+          src={`https://www.googletagmanager.com/gtm.js?id=${GOOGLE_TAG_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-tag" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GOOGLE_TAG_ID}');`}
+        </Script>
         <script src="/agent-root/webmcp-v2.js" />
         <script dangerouslySetInnerHTML={{ __html: WEB_MCP_INLINE_SCRIPT }} />
         <JsonLd data={buildOrganizationGraph()} />
