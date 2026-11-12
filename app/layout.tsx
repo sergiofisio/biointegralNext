@@ -21,6 +21,7 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import "./globals.css";
 
 const GOOGLE_TAG_ID = "AW-955217513";
+const GTM_CONTAINER_ID = "GTM-PZPZ23";
 
 const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
@@ -88,16 +89,30 @@ export default function RootLayout({
         className={`${instrumentSerif.variable} ${inter.variable} antialiased`}
         suppressHydrationWarning
       >
-        <Script
-          src={`https://www.googletagmanager.com/gtm.js?id=${GOOGLE_TAG_ID}`}
-          strategy="afterInteractive"
-        />
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_CONTAINER_ID}`}
+            title="Google Tag Manager"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <Script id="google-tag" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '${GOOGLE_TAG_ID}');`}
+gtag('config', '${GOOGLE_TAG_ID}');
+dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});`}
         </Script>
+        <Script
+          src={`https://www.googletagmanager.com/gtm.js?id=${GOOGLE_TAG_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script
+          src={`https://www.googletagmanager.com/gtm.js?id=${GTM_CONTAINER_ID}`}
+          strategy="afterInteractive"
+        />
         <script src="/agent-root/webmcp-v2.js" />
         <script dangerouslySetInnerHTML={{ __html: WEB_MCP_INLINE_SCRIPT }} />
         <JsonLd data={buildOrganizationGraph()} />
