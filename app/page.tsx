@@ -2,7 +2,6 @@ import { preload } from "react-dom";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { SymptomMarquee } from "@/components/sections/SymptomMarquee";
 import { IndicationsGrid } from "@/components/sections/IndicationsGrid";
 import { TechniquesGrid } from "@/components/sections/TechniquesGrid";
 import { AboutPreview } from "@/components/sections/AboutPreview";
@@ -31,7 +30,7 @@ const TestimonialsSection = dynamic(
 export const metadata: Metadata = pageMetadata({
   title: "Microfisioterapia em São Paulo e Santo André",
   description:
-    "Clínica de fisioterapia integrativa na capital e no ABC. Microfisioterapia, PSYCH-K® e Biodécodage com Dr. Sergio e Dra. Fresia (CREFITO-3).",
+    "Fisioterapia e cuidado integrativo em São Paulo e Santo André. Pré-avaliação online gratuita pelo WhatsApp com Dra. Fresia e Dr. Sergio (CREFITO-3).",
   path: "/",
   ogTitle: "Biointegral Saúde — Microfisioterapia em SP e ABC",
   keywords: [
@@ -52,7 +51,6 @@ export default function HomePage() {
   return (
     <div className="bg-canvas text-zinc-900">
       <HeroSection />
-      <SymptomMarquee />
       <IndicationsGrid />
       <TechniquesGrid />
       <AboutPreview />

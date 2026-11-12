@@ -37,21 +37,22 @@ export function AboutPreview() {
         <div>
           <SectionLabel className="mb-3">Quem somos</SectionLabel>
           <h2 className="font-display text-4xl md:text-5xl text-navy text-balance leading-tight mb-6">
-            Dr. Sergio e Dra. Fresia — pioneiros das terapias integrativas no
-            Brasil.
+            Dr. Sergio e Dra. Fresia — fisioterapeutas à frente da
+            Biointegral desde 2008.
           </h2>
           <p className="text-zinc-600 leading-relaxed mb-4">
             Fisioterapeutas formados pelas Faculdades Integradas Pitágoras de
-            Montes Claros/MG, aperfeiçoaram-se em Terapia Manual e se
-            especializaram em Microfisioterapia diretamente com os criadores da
-            técnica, Daniel Grosjean e Patrice Benini, na França.
+            Montes Claros/MG, aperfeiçoaram-se em Terapia Manual e formaram-se
+            em Microfisioterapia diretamente com os criadores da técnica,
+            Daniel Grosjean e Patrice Benini, na França.
           </p>
           <p
             className={`text-zinc-600 leading-relaxed ${FRESIA_COURSES.length > 0 ? "mb-4" : "mb-8"}`}
           >
-            Especializaram-se também em Décodage Biologique com Emmanuel
-            Corbeel, na Bélgica, e dedicam-se atualmente ao estudo da
-            BIOdécodage Prática com seu criador Christian Flèche.
+            Estudaram também Décodage Biologique com Emmanuel Corbeel, na
+            Bélgica, e dedicam-se atualmente ao estudo da BIOdécodage Prática
+            com seu criador Christian Flèche. São facilitadores certificados em
+            PSYCH-K®.
           </p>
           {FRESIA_COURSES.length > 0 && (
             <p className="text-zinc-600 leading-relaxed mb-8">

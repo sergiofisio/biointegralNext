@@ -53,15 +53,15 @@ export const metadata: Metadata = {
   alternates: { canonical: `${SEO_BASE_URL}/` },
   openGraph: {
     ...rootOpenGraph,
-    title: "Biointegral Saúde — Fisioterapia Integrativa em São Paulo",
+    title: "Biointegral Saúde — Fisioterapia e cuidado integrativo",
     description:
-      "Trate a causa das suas dores. Microfisioterapia, PSYCH-K® e Biodécodage em São Paulo e ABC.",
+      "Fisioterapia e cuidado integrativo em São Paulo e Santo André. Microfisioterapia, PSYCH-K® e Biodécodage com Dra. Fresia e Dr. Sergio.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Biointegral Saúde — Fisioterapia Integrativa",
+    title: "Biointegral Saúde — Fisioterapia e cuidado integrativo",
     description:
-      "Clínica pioneira em Microfisioterapia, PSYCH-K® e Biodécodage em São Paulo e ABC.",
+      "Fisioterapia e cuidado integrativo em São Paulo e Santo André. Microfisioterapia, PSYCH-K® e Biodécodage.",
     images: [SEO_DEFAULT_IMAGE],
   },
   icons: {

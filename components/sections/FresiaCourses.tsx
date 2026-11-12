@@ -16,8 +16,8 @@ export function FresiaCourses() {
           <p className="text-zinc-600 leading-relaxed">
             Além da formação internacional nas técnicas integrativas, a Dra.
             Fresia aprofundou-se em pós-graduações que ampliam a compreensão
-            das emoções, do comportamento e de como eles se expressam no corpo
-            — um diferencial em cada etapa do atendimento.
+            das emoções e do comportamento e enriquecem a escuta em cada
+            atendimento.
           </p>
         </div>
         <div

@@ -1,7 +1,7 @@
 export const NAV_SECTIONS = [
-  { section: "indicacoes", label: "Indicações" },
+  { section: "indicacoes", label: "Primeira conversa" },
   { section: "tecnicas", label: "Técnicas" },
-  { section: "sobre", label: "Especialistas" },
+  { section: "sobre", label: "Profissionais" },
   { section: "clinicas", label: "Unidades" },
   { section: "faq", label: "FAQ" },
   { section: "contato", label: "Contato" },

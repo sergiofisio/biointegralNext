@@ -11,7 +11,6 @@ export const SEO_KEYWORDS = [
   "fisioterapia integrativa",
   "clínica de fisioterapia SP",
   "Biointegral Saúde",
-  "tratamento de dor crônica",
   "ABC Paulista",
   "Santo André",
 ];

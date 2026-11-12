@@ -20,7 +20,7 @@ export const LOCAL_LANDINGS: LocalLanding[] = [
     title: "Microfisioterapia em São Paulo",
     h1: "Microfisioterapia em São Paulo",
     description:
-      "Microfisioterapia na capital: atendimento na Av. Paulista e no Brigadeiro com Dr. Sergio e Dra. Fresia (CREFITO-3). Técnica francesa para dores e traumas.",
+      "Microfisioterapia na capital: atendimento na Av. Paulista e no Brigadeiro com Dr. Sergio e Dra. Fresia (CREFITO-3). Abordagem manual de origem francesa, com toques suaves.",
     keywords: [
       "microfisioterapia São Paulo",
       "microfisioterapia Paulista",
@@ -30,7 +30,7 @@ export const LOCAL_LANDINGS: LocalLanding[] = [
     clinics: ["livance-paulista", "livance-brigadeiro"],
     intro: [
       "A Biointegral Saúde aplica Microfisioterapia em São Paulo capital, nas unidades Livance Paulista (Avenida Paulista, 2064) e Livance Brigadeiro (Rua Cincinato Braga, 340). O atendimento é feito pelos fisioterapeutas Dr. Sergio A. M. Bastos Jr. e Dra. Fresia Jorge de Sá Bastos, registrados no CREFITO-3.",
-      "A técnica, criada na França por Patrice Benini e Daniel Grosjean, usa toques sutis para identificar cicatrizes de traumas físicos e emocionais. É complementar à medicina convencional: não substitui diagnóstico médico nem medicamentos prescritos.",
+      "A microfisioterapia, criada na França por Patrice Benini e Daniel Grosjean, é uma abordagem manual que utiliza toques suaves. Antes de começar, conversamos sobre sua queixa e explicamos como será a sessão. É complementar à medicina convencional: não substitui diagnóstico médico nem medicamentos prescritos.",
     ],
     whyHere: [
       {
@@ -39,11 +39,11 @@ export const LOCAL_LANDINGS: LocalLanding[] = [
       },
       {
         heading: "Formação com os criadores da técnica",
-        text: "Os profissionais da clínica formaram-se em Microfisioterapia diretamente com Grosjean e Benini, na França, e combinam a abordagem com PSYCH-K® e Biodécodage quando a avaliação indica.",
+        text: "Os profissionais da clínica formaram-se em Microfisioterapia diretamente com Grosjean e Benini, na França, e conversam com você sobre combinar a abordagem com PSYCH-K® e Biodécodage quando faz sentido para o seu caso.",
       },
       {
-        heading: "Indicações frequentes em consultório",
-        text: "Dores crônicas, enxaqueca, ansiedade, traumas emocionais, alergias persistentes e sintomas sem causa clara em exames — sempre com escuta clínica e encaminhamento médico quando necessário.",
+        heading: "Como é a primeira conversa",
+        text: "Você conta o que trouxe você até aqui e como isso afeta sua rotina. Conversamos sobre os cuidados que você já recebe, explicamos a abordagem e seus limites e, quando necessário, orientamos a buscar avaliação médica.",
       },
     ],
     faq: [
@@ -74,7 +74,7 @@ export const LOCAL_LANDINGS: LocalLanding[] = [
     clinics: ["livance-santo-andre"],
     intro: [
       "Quem busca microfisioterapia em Santo André e no ABC Paulista pode se atender na unidade Livance Santo André, na Avenida Portugal, 1265 — 3º andar (bairro Jardim). A Biointegral Saúde atende ali com a mesma equipe da capital: Dr. Sergio e Dra. Fresia, fisioterapeutas CREFITO-3.",
-      "A Microfisioterapia (TME) é uma técnica francesa de toque sutil voltada a registros corporais de traumas. No ABC, o fluxo clínico é o mesmo de São Paulo: avaliação, sessão não invasiva e, quando faz sentido, integração com PSYCH-K® e Biodécodage.",
+      "A Microfisioterapia (TME) é uma abordagem manual de origem francesa que utiliza toques suaves. No ABC, o atendimento segue o mesmo caminho de São Paulo: primeira conversa, avaliação, sessão não invasiva e, quando faz sentido para o seu caso, combinação com PSYCH-K® e Biodécodage.",
     ],
     whyHere: [
       {

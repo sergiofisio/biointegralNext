@@ -11,8 +11,7 @@ export function Footer() {
             Biointegral
           </span>
           <p className="text-sm text-zinc-500 max-w-xs leading-relaxed mb-6">
-            Pioneiros no Brasil em Microfisioterapia, PSYCH-K® e Biodécodage.
-            Fisioterapia integrativa em São Paulo e ABC Paulista.
+            Fisioterapia e cuidado integrativo em São Paulo e Santo André.
           </p>
           <SocialLinks variant="footer" className="mb-6" />
           <p className="text-xs text-zinc-400">

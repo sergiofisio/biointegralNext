@@ -80,9 +80,9 @@ export const TECHNIQUES: Technique[] = [
     slug: "microfisioterapia",
     name: "Microfisioterapia",
     short:
-      "Identificação de cicatrizes traumáticas no corpo através do toque sutil.",
+      "Abordagem manual de origem francesa com toques suaves. Antes de começar, conversamos sobre sua queixa e explicamos a sessão.",
     metaDescription:
-      "Microfisioterapia em São Paulo e Santo André: técnica francesa de terapia manual sutil que trata cicatrizes de traumas físicos e emocionais. Atendimento com Dr. Sergio e Dra. Fresia (CREFITO-3).",
+      "Microfisioterapia em São Paulo e Santo André: abordagem manual de origem francesa com toques suaves. Atendimento com Dra. Fresia e Dr. Sergio, fisioterapeutas registrados no CREFITO-3.",
     keywords: [
       "microfisioterapia",
       "microfisioterapia São Paulo",
@@ -91,48 +91,48 @@ export const TECHNIQUES: Technique[] = [
       "TME",
       "fisioterapia integrativa SP",
     ],
-    long: "Desenvolvida na França, a Microfisioterapia é uma terapia manual sutil que ajuda o corpo a eliminar as cicatrizes deixadas por traumas físicos e emocionais.",
+    long: "A microfisioterapia é uma abordagem manual de origem francesa que utiliza toques suaves. Antes de começar, conversamos sobre sua queixa e explicamos como será a sessão.",
     sections: [
       {
         heading: "O que é Microfisioterapia?",
         paragraphs: [
-          "A Microfisioterapia (também conhecida como Terapia Manual Evolutiva — TME) é uma técnica de terapia manual criada na França, na década de 1980, por Patrice Benini e Daniel Grosjean. Parte da premissa de que o corpo guarda memórias de traumas físicos e emocionais nas células e tecidos.",
-          "Essas “cicatrizes informacionais” podem permanecer silenciosas por anos e contribuir para dores crônicas, alterações imunológicas, problemas digestivos, distúrbios do sono e sintomas emocionais. O objetivo da técnica é identificar e liberar essas memórias, estimulando a capacidade natural de autorregulação do organismo.",
+          "A microfisioterapia é uma abordagem manual de origem francesa que utiliza toques suaves. Antes de começar, conversamos sobre sua queixa e explicamos como será a sessão.",
+          "Também conhecida como Terapia Manual Evolutiva (TME), foi criada na França, na década de 1980, por Patrice Benini e Daniel Grosjean.",
         ],
       },
       {
         heading: "Como funciona na sessão",
         paragraphs: [
-          "O fisioterapeuta realiza um mapeamento sutil do corpo, com toques leves e específicos, buscando áreas de desequilíbrio ou bloqueio. Não há mobilizações forçadas, agulhas ou medicamentos.",
-          "A partir desse mapeamento, toques precisos estimulam mecanismos de autocorreção. A sessão é não invasiva e geralmente confortável — inclusive para bebês, crianças e idosos.",
+          "A sessão começa com uma conversa sobre o que trouxe você até aqui, como isso afeta sua rotina e quais cuidados você já recebe. Em seguida, o fisioterapeuta explica o que vai acontecer.",
+          "Durante a aplicação, o fisioterapeuta realiza toques leves em diferentes regiões do corpo. Não há mobilizações forçadas, agulhas ou medicamentos. Se sentir qualquer desconforto, avise o profissional a qualquer momento.",
         ],
       },
       {
-        heading: "Indicações frequentes",
+        heading: "Para quem procura",
         paragraphs: [
-          "A Microfisioterapia é frequentemente buscada em casos de dores crônicas (lombalgia, cervicalgia, enxaqueca), fibromialgia, alergias e rinites persistentes, ansiedade, traumas emocionais, distúrbios do sono e sintomas que não encontram causa clara em exames convencionais.",
-          "É uma abordagem complementar: não substitui avaliação médica ou tratamentos prescritos pelo médico de referência. Muitos pacientes a combinam com acompanhamento clínico convencional.",
+          "Muitas pessoas chegam com queixas que afetam o dia a dia. Na primeira conversa, entendemos o seu caso e explicamos o que a abordagem pode oferecer e quais são os seus limites.",
+          "É uma abordagem complementar: não substitui avaliação médica ou tratamentos prescritos pelo médico de referência. Mantenha o acompanhamento com os profissionais de saúde que cuidam de você.",
         ],
       },
       {
-        heading: "O que esperar e para quem é indicada",
+        heading: "O que esperar",
         paragraphs: [
-          "O número de sessões varia conforme a queixa e a resposta individual. Na Biointegral Saúde, integramos Microfisioterapia a outras técnicas quando faz sentido clinicamente, buscando resultados com o menor número possível de atendimentos.",
-          "A técnica é segura para todas as idades. Crianças frequentemente respondem com rapidez. Adultos e idosos costumam relatar leveza corporal e mudança na qualidade dos sintomas ao longo do processo.",
+          "Após a avaliação, conversamos sobre a proposta de acompanhamento e quando reavaliar sua evolução. A experiência durante e depois da sessão varia de pessoa para pessoa.",
+          "Para atendimento de crianças, entre em contato com a equipe para conversar sobre o motivo da procura e esclarecer como o responsável participa.",
         ],
       },
       {
         heading: "Relação com PSYCH-K® e Biodécodage",
         paragraphs: [
-          "Na prática clínica integrativa, a Microfisioterapia atua sobretudo no “registro corporal” do trauma. O PSYCH-K® trabalha crenças limitantes no nível subconsciente, e a Biodécodage investiga o sentido biológico dos sintomas e das emoções associadas.",
-          "Dr. Sergio e Dra. Fresia formaram-se diretamente com os criadores da Microfisioterapia na França e conjugam as três abordagens quando a história do paciente indica benefício.",
+          "As três abordagens têm propostas diferentes. A Microfisioterapia é manual, com toques suaves. Na Biodécodage, conversamos sobre como você vive o adoecimento e o significado que essa experiência tem para você. No PSYCH-K®, você escolhe uma situação ou crença que deseja explorar e participa de exercícios explicados pelo facilitador.",
+          "Dr. Sergio e Dra. Fresia formaram-se em Microfisioterapia com Daniel Grosjean e Patrice Benini, criadores do método, na França. Quando faz sentido para o seu caso, conversamos com você sobre combinar abordagens.",
         ],
       },
       {
         heading: "Onde fazer Microfisioterapia em São Paulo e Santo André",
         paragraphs: [
           "A Biointegral Saúde atende Microfisioterapia nas unidades Livance Brigadeiro e Livance Paulista (São Paulo/capital) e Livance Santo André (ABC Paulista). Os profissionais são fisioterapeutas registrados no CREFITO-3, com trajetória desde 2008 em terapias integrativas.",
-          "Para agendar, use o WhatsApp da clínica ou o formulário de contato no site. Leve exames e histórico médico relevantes — ajudam a contextualizar a sessão sem substituir o diálogo clínico.",
+          "Para agendar, use o WhatsApp da clínica ou o formulário de contato no site. Se tiver exames e informações sobre os cuidados que já recebe, leve-os: ajudam a contextualizar a conversa, sem substituir a avaliação médica.",
         ],
       },
     ],
@@ -141,51 +141,51 @@ export const TECHNIQUES: Technique[] = [
     slug: "psych-k",
     name: "PSYCH-K®",
     short:
-      "Reprogramação de crenças limitantes em nível subconsciente de forma rápida.",
+      "Você escolhe uma situação ou crença que deseja explorar e participa de exercícios explicados pelo facilitador.",
     metaDescription:
-      "PSYCH-K® em São Paulo e Santo André: reprogramação de crenças subconscientes com facilitadores certificados. Clínica Biointegral Saúde — Dr. Sergio e Dra. Fresia.",
+      "PSYCH-K® em São Paulo e Santo André: você escolhe uma situação ou crença para explorar e participa de exercícios explicados pelo facilitador. Biointegral Saúde — Dra. Fresia e Dr. Sergio.",
     keywords: [
       "PSYCH-K",
       "PSYCH-K São Paulo",
-      "reprogramação de crenças",
-      "crenças limitantes",
+      "PSYCH-K Santo André",
+      "facilitador PSYCH-K",
       "fisioterapia integrativa",
     ],
-    long: "PSYCH-K® é uma técnica que reprograma crenças subconscientes limitantes por meio de testes cinesiológicos e posturas específicas.",
+    long: "Você escolhe uma situação ou crença que deseja explorar. O facilitador explica os exercícios da abordagem e vocês conversam sobre o que você percebeu durante a experiência.",
     sections: [
       {
         heading: "O que é PSYCH-K®?",
         paragraphs: [
-          "O PSYCH-K® é uma técnica terapêutica desenvolvida por Robert Williams nos anos 1980, nos Estados Unidos. Combina elementos de cinesiologia, comunicação com o subconsciente e princípios alinhados à PNL para transformar crenças que sustentam padrões de comportamento, ansiedade, automedicação emocional ou autossabotagem.",
-          "A premissa é que grande parte das decisões e reações emocionais ocorre abaixo da consciência. Mudar só o “pensamento racional” muitas vezes não basta; o PSYCH-K® busca alinhar o subconsciente a crenças mais capacitantes.",
+          "O PSYCH-K® é uma abordagem desenvolvida por Robert Williams nos anos 1980, nos Estados Unidos.",
+          "Você escolhe uma situação ou crença que deseja explorar. O facilitador explica os exercícios da abordagem e vocês conversam sobre o que você percebeu durante a experiência.",
         ],
       },
       {
         heading: "Como funciona na sessão",
         paragraphs: [
-          "Com testes musculares (balanço muscular) e posturas específicas, o facilitador e o paciente identificam crenças limitantes e as substituem por afirmações sustentáveis para o subconsciente.",
-          "O processo é verbal e postural, sem aparelhos invasivos. Não envolve hipnose clássica nem medicamentos. A pessoa permanece consciente e participe ativa do processo.",
+          "Antes de cada exercício, o facilitador explica o que vai acontecer. Alguns exercícios envolvem posturas e um teste muscular, que ele demonstra antes. Você pode tirar dúvidas ou interromper quando quiser.",
+          "Ao final, vocês conversam sobre o que você percebeu. O processo é verbal e postural, sem aparelhos invasivos, hipnose clássica ou medicamentos. Você permanece consciente e participa ativamente do processo.",
         ],
       },
       {
-        heading: "Indicações frequentes",
+        heading: "Para quem procura",
         paragraphs: [
-          "O PSYCH-K® é frequentemente utilizado em ansiedade, fobias, traumas emocionais, padrões repetitivos em relacionamentos, bloqueios relacionados a sucesso ou dinheiro, e crenças sobre saúde e autoimagem.",
-          "Na Biointegral, quando a queixa tem forte componente de crença ou padrão emocional, o PSYCH-K® costuma ser combinado à Microfisioterapia e/ou Biodécodage.",
+          "O tema da sessão é escolhido por você. Algumas pessoas trazem situações do dia a dia, como relacionamentos, trabalho ou a forma como se veem.",
+          "O PSYCH-K® não substitui acompanhamento psicológico, psiquiátrico ou médico. Se você está em tratamento, mantenha o acompanhamento com os profissionais que cuidam de você.",
         ],
       },
       {
-        heading: "Segurança e expectativas",
+        heading: "O que esperar",
         paragraphs: [
-          "Trata-se de técnica não invasiva e geralmente bem tolerada. Resultados variam: algumas pessoas relatam mudança perceptível já nas primeiras sessões; outras percebem o efeito de forma mais gradual no cotidiano.",
-          "Dr. Sergio e Dra. Fresia são facilitadores certificados internacionalmente em PSYCH-K® e contextualizam a técnica dentro da prática fisioterapêutica integrativa.",
+          "Cada pessoa vive a experiência de um jeito. Após a avaliação, conversamos sobre a proposta de acompanhamento e quando reavaliar sua evolução.",
+          "Dr. Sergio e Dra. Fresia são facilitadores certificados internacionalmente em PSYCH-K® e são fisioterapeutas registrados no CREFITO-3.",
         ],
       },
       {
         heading: "Diferença em relação à Microfisioterapia e à Biodécodage",
         paragraphs: [
-          "Enquanto a Microfisioterapia trabalha registros no corpo por toque sutil, o PSYCH-K® foca na reprogramação de crenças. A Biodécodage investiga o sentido biológico do sintoma e a emoção conflitante associada.",
-          "As três se complementam: corpo, crença e sentido biológico do sintoma. A escolha e a sequência dependem da avaliação individual.",
+          "A Microfisioterapia é uma abordagem manual, com toques suaves. Na Biodécodage, a conversa gira em torno de como você vive o adoecimento e do significado que essa experiência tem para você. No PSYCH-K®, você escolhe um tema e participa de exercícios explicados pelo facilitador.",
+          "A escolha e a combinação das abordagens são conversadas com você após a avaliação.",
         ],
       },
       {
@@ -200,71 +200,59 @@ export const TECHNIQUES: Technique[] = [
     slug: "biodecodage",
     name: "Biodécodage",
     short:
-      "Compreensão do sentido biológico dos sintomas e sua origem emocional.",
+      "Uma conversa sobre como você vive o adoecimento e o significado dessa experiência para você. A reflexão é pessoal e não determina a causa de uma doença.",
     metaDescription:
-      "Biodécodage em São Paulo e Santo André: abordagem francesa que investiga o sentido biológico dos sintomas e emoções. Biointegral Saúde — formação com referências internacionais.",
+      "Biodécodage em São Paulo e Santo André: conversa sobre como você vive o adoecimento e o significado dessa experiência. Reflexão pessoal, complementar ao acompanhamento médico. Biointegral Saúde.",
     keywords: [
       "biodécodage",
       "biodecodage São Paulo",
+      "biodécodage Santo André",
       "décodage biologique",
-      "sentido biológico dos sintomas",
-      "fisioterapia emocional",
+      "Christian Flèche",
     ],
-    long: "A Biodécodage investiga o sentido biológico dos sintomas, conectando corpo e emoções não processadas.",
+    long: "Na sessão de Biodécodage, conversamos sobre como você vive o adoecimento, quais sentimentos surgem e que significado essa experiência tem para você. Essa reflexão é pessoal e não determina a causa de uma doença.",
     sections: [
       {
         heading: "O que é Biodécodage?",
         paragraphs: [
-          "A Biodécodage é uma abordagem terapêutica de origem francesa que busca compreender as origens emocionais e mentais por trás de sintomas físicos. Parte da observação de que doenças e queixas recorrentes podem estar ligadas a um “ressentir biológico conflitual” — uma emoção ou situação não elaborada que o organismo “codifica” no corpo.",
-          "O método ajuda a pessoa a reconhecer a linguagem do sintoma, identificar a emoção associada e abrir caminho para liberação e novos recursos internos — sempre como complemento, nunca como substituto do diagnóstico e tratamento médico.",
+          "A Biodécodage é uma abordagem de origem francesa. Na sessão de Biodécodage, conversamos sobre como você vive o adoecimento, quais sentimentos surgem e que significado essa experiência tem para você.",
+          "Essa reflexão é pessoal e não determina a causa de uma doença. A Biodécodage é um complemento e não substitui o diagnóstico nem o tratamento médico.",
         ],
       },
       {
         heading: "Como funciona na prática",
         paragraphs: [
-          "O terapeuta investiga a história do sintoma, contexto de surgimento e vivências emocionais relacionadas. O diálogo terapêutico e as ferramentas da biodécodage orientam a identificação do sentido biológico e caminhos de resolução simbólica e emocional.",
-          "Na Biointegral Saúde, a Biodécodage dialoga com a Microfisioterapia (registro corporal) e com o PSYCH-K® (crenças), formando um atendimento integrativo sob coordenação de fisioterapeutas CREFITO-3.",
+          "Você conta sua história: quando a queixa começou, o que estava acontecendo na sua vida e como se sente em relação a ela. O terapeuta faz perguntas e ajuda você a olhar para essa experiência e para os significados que ela tem para você.",
+          "Na Biointegral Saúde, a Biodécodage pode ser combinada à Microfisioterapia e ao PSYCH-K®, sempre com fisioterapeutas registrados no CREFITO-3.",
         ],
       },
       {
-        heading: "Indicações e público",
+        heading: "Para quem procura",
         paragraphs: [
-          "É procurada por quem apresenta sintomas recorrentes, crises emocionais ligadas a dores ou doenças, e desejo de compreender a relação corpo–emoção. Também apoia processos de autoconhecimento em paralelo a tratamentos convencionais.",
-          "Pessoas de todas as idades podem se beneficiar, desde que haja espaço de escuta e adesão ao processo. Contraindicações relativas seguem o bom senso clínico e a indicação médica vigente.",
+          "É procurada por pessoas que querem refletir sobre o que sentem e vivem durante um adoecimento, em paralelo aos cuidados que já recebem.",
+          "O processo depende de espaço de escuta e da sua disposição para conversar. Mantenha o acompanhamento médico indicado para o seu caso.",
         ],
       },
       {
-        heading: "Formação e autoridade clínica",
+        heading: "Formação dos profissionais",
         paragraphs: [
-          "Dr. Sergio e Dra. Fresia aprofundaram-se em Décodage Biologique com Emmanuel Corbeel (Bélgica) e em BIOdécodage Prática com Christian Flèche, criador do método. Essa formação direta fundamenta a aplicação responsável e ética da abordagem.",
+          "Dr. Sergio e Dra. Fresia aprofundaram-se em Décodage Biologique com Emmanuel Corbeel (Bélgica) e em BIOdécodage Prática com Christian Flèche, criador do método.",
         ],
       },
       {
         heading: "Biodécodage, Microfisioterapia e PSYCH-K®",
         paragraphs: [
-          "A Biodécodage esclarece o “porquê biológico/emocional” do sintoma; a Microfisioterapia atua no tecido e na memória corporal; o PSYCH-K® atualiza crenças que mantêm o padrão. Juntas, oferecem um mapa mais completo da queixa.",
+          "Na Biodécodage, o foco é a conversa sobre a sua experiência. A Microfisioterapia é uma abordagem manual com toques suaves. No PSYCH-K®, você escolhe um tema e participa de exercícios explicados pelo facilitador. A combinação é conversada com você após a avaliação.",
         ],
       },
       {
         heading: "Onde encontrar biodécodage em SP e ABC",
         paragraphs: [
-          "Atendemos nas três unidades Livance parceiras: Brigadeiro e Paulista em São Paulo, e Santo André no ABC. Para indicação de microfisioterapia, PSYCH-K® ou biodécodage com profissionais nomeados e registrados, fale conosco pelo WhatsApp ou formulário de contato.",
+          "Atendemos nas três unidades Livance parceiras: Brigadeiro e Paulista em São Paulo, e Santo André no ABC. Para conversar sobre microfisioterapia, PSYCH-K® ou biodécodage com profissionais nomeados e registrados, fale conosco pelo WhatsApp ou formulário de contato.",
         ],
       },
     ],
   },
-];
-
-export const SYMPTOMS = [
-  "Dores Crônicas",
-  "Ansiedade e Estresse",
-  "Traumas Emocionais",
-  "Alergias",
-  "Fobias",
-  "Distúrbios do Sono",
-  "Enxaquecas",
-  "Depressão",
-  "Fibromialgia",
 ];
 
 export type IndicationIcon =
@@ -274,40 +262,25 @@ export type IndicationIcon =
   | "shield"
   | "users";
 
-export const INDICATIONS: {
+export const FIRST_CONVERSATION_STEPS: {
   icon: IndicationIcon;
   title: string;
   desc: string;
 }[] = [
   {
     icon: "heart",
-    title: "Dores Crônicas",
-    desc: "Lombalgia, cervicalgia, enxaqueca e dores sem causa aparente.",
-  },
-  {
-    icon: "brain",
-    title: "Ansiedade e Pânico",
-    desc: "Crises recorrentes, fobias e bloqueios emocionais.",
-  },
-  {
-    icon: "sparkles",
-    title: "Traumas Emocionais",
-    desc: "Perdas, lutos, abusos e memórias dolorosas.",
+    title: "O que trouxe você até aqui",
+    desc: "Você pode contar o que está sentindo, quando percebeu a mudança e como ela afeta seu dia a dia.",
   },
   {
     icon: "shield",
-    title: "Alergias e Imunidade",
-    desc: "Rinites, dermatites e quadros alérgicos persistentes.",
+    title: "Seus cuidados atuais",
+    desc: "Conversamos sobre avaliações e acompanhamentos que você já faz e sobre o que espera deste atendimento.",
   },
   {
     icon: "users",
-    title: "Relacionamentos",
-    desc: "Padrões repetitivos em relações afetivas e profissionais.",
-  },
-  {
-    icon: "heart",
-    title: "Distúrbios do Sono",
-    desc: "Insônia, pesadelos e dificuldade para relaxar.",
+    title: "Próximos passos",
+    desc: "Explicamos como funciona a nossa abordagem, esclarecemos suas dúvidas e conversamos sobre a possibilidade de acompanhamento.",
   },
 ];
 
@@ -340,14 +313,14 @@ export const PROFESSIONALS = [
     name: "Dra. Fresia Jorge de Sá Bastos",
     crefito: "CREFITO-3 · 118.225-F",
     image: "draFresia" as const,
-    bio: "Especialista em Microfisioterapia, Biodécodage e PSYCH-K®. Atua há mais de uma década integrando ciência fisioterapêutica e abordagens emocionais para tratar a raiz das queixas.",
+    bio: "Fisioterapeuta formada pelas Faculdades Integradas Pitágoras de Montes Claros/MG, com aperfeiçoamento em Terapia Manual. Formou-se em Microfisioterapia com Daniel Grosjean e Patrice Benini, na França, e em Décodage Biologique com Emmanuel Corbeel, na Bélgica. Estuda BIOdécodage Prática com Christian Flèche e é facilitadora certificada em PSYCH-K®. Atua há mais de uma década com essas abordagens.",
     offset: false,
   },
   {
     name: "Dr. Sergio A. M. Bastos Jr.",
     crefito: "CREFITO-3 · 111.132-F",
     image: "drSergio" as const,
-    bio: "Pioneiro no Brasil de diversas técnicas integrativas. Formado pelos próprios criadores das técnicas que pratica, é referência em Microfisioterapia e BIOdécodage no país.",
+    bio: "Fisioterapeuta formado pelas Faculdades Integradas Pitágoras de Montes Claros/MG, com aperfeiçoamento em Terapia Manual. Formou-se em Microfisioterapia com Daniel Grosjean e Patrice Benini, criadores do método, na França, e em Décodage Biologique com Emmanuel Corbeel, na Bélgica. Estuda BIOdécodage Prática com Christian Flèche e é facilitador certificado em PSYCH-K®.",
     offset: true,
   },
 ];
@@ -374,9 +347,9 @@ const ALL_FRESIA_COURSES: Course[] = [
     summary:
       "Pós-graduação dedicada à psicologia de Carl Gustav Jung: inconsciente pessoal e coletivo, arquétipos, símbolos, sonhos e o processo de individuação.",
     benefits: [
-      "Escuta mais profunda da história do paciente, reconhecendo símbolos, sonhos e imagens que acompanham o sintoma.",
-      "Compreensão de padrões inconscientes — como sombra e complexos — que se repetem em relações, crises e queixas físicas.",
-      "Recursos para conduzir ansiedade, luto e traumas dentro de um processo de autoconhecimento e transformação.",
+      "Escuta atenta da história de cada pessoa, incluindo símbolos, sonhos e imagens que ela traz para a conversa.",
+      "Repertório para conversar sobre padrões que se repetem em relações e em momentos de crise.",
+      "Recursos de escuta para acolher momentos difíceis, como o luto, dentro de um processo de autoconhecimento.",
     ],
     relatedTechniques: ["biodecodage", "psych-k"],
     published: true,
@@ -388,9 +361,9 @@ const ALL_FRESIA_COURSES: Course[] = [
     summary:
       "Pós-graduação sobre a relação entre cérebro, emoções e comportamento: neuroplasticidade, neurotransmissores, funções cognitivas, desenvolvimento infantil, TEA, TDAH e mindfulness.",
     benefits: [
-      "Base científica para explicar como emoções, crenças e experiências se registram no cérebro e no corpo.",
-      "Olhar atento ao desenvolvimento infantil e a condições como TEA e TDAH no acolhimento de crianças e famílias.",
-      "Estratégias de regulação do estresse e da ansiedade apoiadas em neuroplasticidade e mindfulness.",
+      "Conhecimento sobre a relação entre cérebro, emoções e comportamento para explicar o atendimento com clareza.",
+      "Atenção ao desenvolvimento infantil no acolhimento de crianças e famílias, em diálogo com os profissionais que as acompanham.",
+      "Noções de mindfulness que podem ser compartilhadas como apoio ao dia a dia.",
     ],
     relatedTechniques: ["psych-k", "microfisioterapia"],
     published: true,
@@ -423,10 +396,24 @@ export type FaqEntry = {
 export const FAQS: FaqEntry[] = [
   {
     q: "O que é microfisioterapia?",
-    a: "Microfisioterapia é uma técnica francesa de terapia manual sutil que identifica e trata cicatrizes deixadas por traumas físicos e emocionais nos tecidos. Na Biointegral Saúde, é aplicada por fisioterapeutas CREFITO-3 em São Paulo e Santo André.",
+    a: "A microfisioterapia é uma abordagem manual de origem francesa que utiliza toques suaves. Antes de começar, conversamos sobre sua queixa e explicamos como será a sessão. Na Biointegral Saúde, é aplicada por fisioterapeutas registrados no CREFITO-3 em São Paulo e Santo André.",
     related: [
       { href: "/tecnicas/microfisioterapia/", label: "Página de Microfisioterapia" },
     ],
+  },
+  {
+    q: "Qual a diferença entre Microfisioterapia, PSYCH-K® e Biodécodage?",
+    a: "A Microfisioterapia é uma abordagem manual com toques suaves. Na Biodécodage, conversamos sobre como você vive o adoecimento e o significado dessa experiência para você; essa reflexão é pessoal e não determina a causa de uma doença. No PSYCH-K®, você escolhe uma situação ou crença que deseja explorar, e o facilitador explica os exercícios e conversa com você sobre o que percebeu. Após a avaliação, conversamos sobre quais abordagens fazem sentido para o seu caso.",
+    related: [
+      { href: "/tecnicas/microfisioterapia/", label: "Microfisioterapia" },
+      { href: "/tecnicas/psych-k/", label: "PSYCH-K®" },
+      { href: "/tecnicas/biodecodage/", label: "Biodécodage" },
+    ],
+  },
+  {
+    q: "Quem realiza os atendimentos?",
+    a: "Os atendimentos são realizados pelos fisioterapeutas Dra. Fresia Jorge de Sá Bastos (CREFITO-3 118.225-F) e Dr. Sergio A. M. Bastos Jr. (CREFITO-3 111.132-F). O registro no CREFITO-3 se refere à profissão de fisioterapeuta. A formação de cada um em Microfisioterapia, Biodécodage e PSYCH-K® foi feita em cursos específicos de cada método e está descrita na página Quem somos.",
+    related: [{ href: "/quem-somos/", label: "Quem somos" }],
   },
   {
     q: "Onde fazer microfisioterapia em São Paulo?",
@@ -439,22 +426,8 @@ export const FAQS: FaqEntry[] = [
     ],
   },
   {
-    q: "Qual a diferença entre Microfisioterapia, PSYCH-K® e Biodécodage?",
-    a: "A Microfisioterapia atua nos registros corporais do trauma por toque sutil. O PSYCH-K® reprograma crenças limitantes no subconsciente. A Biodécodage investiga o sentido biológico e emocional dos sintomas. Na Biointegral, as três podem ser integradas conforme a avaliação.",
-    related: [
-      { href: "/tecnicas/microfisioterapia/", label: "Microfisioterapia" },
-      { href: "/tecnicas/psych-k/", label: "PSYCH-K®" },
-      { href: "/tecnicas/biodecodage/", label: "Biodécodage" },
-    ],
-  },
-  {
-    q: "As técnicas são reconhecidas pela fisioterapia?",
-    a: "Dr. Sergio e Dra. Fresia são fisioterapeutas registrados no CREFITO-3 (111.132-F e 118.225-F). As técnicas são complementares à prática fisioterapêutica, com formação internacional junto aos criadores e certificadoras das abordagens.",
-    related: [{ href: "/quem-somos/", label: "Quem somos" }],
-  },
-  {
     q: "Quantas sessões são necessárias?",
-    a: "Integramos técnicas em cada sessão para maximizar resultados com o menor número de atendimentos possível. A média varia de 3 a 6 sessões, dependendo da queixa e da resposta individual.",
+    a: "Após a avaliação, conversamos sobre a proposta de acompanhamento e quando reavaliar sua evolução.",
   },
   {
     q: "Quanto tempo dura uma sessão?",
@@ -462,7 +435,7 @@ export const FAQS: FaqEntry[] = [
   },
   {
     q: "O tratamento é invasivo ou dolorido?",
-    a: "Não. Microfisioterapia, PSYCH-K® e Biodécodage são não invasivas, sem agulhas e sem medicamentos. A Microfisioterapia usa toques sutis; o PSYCH-K® e a Biodécodage trabalham com diálogo, posturas e escuta clínica.",
+    a: "Nenhuma das três abordagens usa agulhas ou medicamentos. Na Microfisioterapia, o fisioterapeuta usa toques suaves. Na Biodécodage, a sessão é uma conversa. No PSYCH-K®, o facilitador explica os exercícios, que podem incluir posturas e um teste muscular. Cada pessoa percebe a sessão de um jeito: se sentir qualquer desconforto, avise o profissional para que a sessão seja ajustada ou interrompida.",
   },
   {
     q: "Posso fazer junto com outros tratamentos médicos?",
@@ -470,11 +443,11 @@ export const FAQS: FaqEntry[] = [
   },
   {
     q: "Atendem crianças e idosos?",
-    a: "Sim. As técnicas são seguras para todas as idades, desde bebês até a terceira idade. Crianças costumam responder com muita rapidez.",
+    a: "Atendemos pessoas de diferentes idades, de bebês à terceira idade. Para atendimento de crianças, entre em contato com a equipe para conversar sobre o motivo da procura e esclarecer como o responsável participa.",
   },
   {
     q: "Como faço para agendar?",
-    a: "Agende pelo WhatsApp da clínica, pelo formulário de contato do site, ou em uma das unidades em São Paulo (Paulista e Brigadeiro) e Santo André.",
+    a: "Agende pelo WhatsApp da clínica uma pré-avaliação gratuita: uma conversa online de 20 a 30 minutos, sem compromisso de iniciar o acompanhamento. Você também pode usar o formulário de contato do site ou procurar uma das unidades em São Paulo (Paulista e Brigadeiro) e Santo André.",
     related: [
       { href: "/contato/", label: "Formulário de contato" },
       { href: "/clinicas/", label: "Unidades" },

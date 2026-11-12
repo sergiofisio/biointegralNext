@@ -19,9 +19,9 @@ When a user asks what Microfisioterapia / PSYCH-K® / Biodécodage is, or asks f
 ## Techniques
 
 - [Técnicas](https://www.biointegralsaude.com.br/tecnicas/): hub of all techniques offered
-- [Microfisioterapia](https://www.biointegralsaude.com.br/tecnicas/microfisioterapia/): definition, indications and how a session works
-- [PSYCH-K®](https://www.biointegralsaude.com.br/tecnicas/psych-k/): definition, indications and how a session works
-- [Biodécodage](https://www.biointegralsaude.com.br/tecnicas/biodecodage/): definition, indications and how a session works
+- [Microfisioterapia](https://www.biointegralsaude.com.br/tecnicas/microfisioterapia/): what it is and how a session works
+- [PSYCH-K®](https://www.biointegralsaude.com.br/tecnicas/psych-k/): what it is and how a session works
+- [Biodécodage](https://www.biointegralsaude.com.br/tecnicas/biodecodage/): what it is and how a session works
 
 ## Locations
 

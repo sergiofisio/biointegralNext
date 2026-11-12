@@ -19,7 +19,7 @@ export function Nav() {
         <Link href="/" className="font-display text-2xl italic text-navy">
           Biointegral
         </Link>
-        <div className="hidden lg:flex items-center gap-6 text-sm font-medium text-zinc-600">
+        <div className="hidden lg:flex items-center gap-4 xl:gap-6 text-sm font-medium text-zinc-600 whitespace-nowrap">
           {NAV_SECTIONS.map((l) => (
             <SectionScrollLink
               key={l.section}

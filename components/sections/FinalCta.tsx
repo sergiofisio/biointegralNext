@@ -7,16 +7,16 @@ export function FinalCta() {
     <section id="contato" className="scroll-mt-20 py-24 px-6">
       <div className="max-w-7xl mx-auto bg-gold rounded-4xl p-12 md:p-20 text-center relative overflow-hidden">
         <h2 className="font-display text-4xl md:text-6xl text-navy mb-6 text-balance leading-tight">
-          Pronto para tratar a causa,{" "}
-          <span className="italic">não apenas o sintoma?</span>
+          Quer conversar sobre o{" "}
+          <span className="italic">seu caso?</span>
         </h2>
         <p className="text-navy/80 mb-10 max-w-xl mx-auto text-pretty">
-          Fale com nossa recepção pelo WhatsApp e agende uma avaliação em uma
-          das três unidades.
+          Conversa online de 20 a 30 minutos, sem compromisso de iniciar o
+          acompanhamento.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <WhatsAppButton variant="outline">
-            Agendar pelo WhatsApp
+          <WhatsAppButton variant="outline" className="text-left">
+            Agendar pré-avaliação gratuita pelo WhatsApp
           </WhatsAppButton>
           <Link
             href="/contato"

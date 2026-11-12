@@ -13,7 +13,7 @@ import { buildBreadcrumbJsonLd } from "@/lib/json-ld";
 export const metadata: Metadata = pageMetadata({
   title: "Quem somos — Dr. Sergio e Dra. Fresia",
   description:
-    "Conheça Dr. Sergio Augusto e Dra. Fresia Jorge, fisioterapeutas pioneiros no Brasil em Microfisioterapia, PSYCH-K® e Biodécodage. CREFITO-3, formação internacional.",
+    "Conheça Dra. Fresia Jorge de Sá Bastos (CREFITO-3 118.225-F) e Dr. Sergio A. M. Bastos Jr. (CREFITO-3 111.132-F), fisioterapeutas com formação em Microfisioterapia na França, Décodage Biologique na Bélgica e PSYCH-K®.",
   path: "/quem-somos",
   ogTitle: "Quem somos — Biointegral Saúde",
   keywords: [
@@ -40,11 +40,11 @@ export default function AboutPage() {
         label="Quem somos"
         title={
           <>
-            Dr. Sergio e Dra. Fresia — uma vida dedicada à{" "}
-            <span className="italic text-gold">causa</span>.
+            Dr. Sergio e Dra. Fresia — formação e prática{" "}
+            <span className="italic text-gold">desde 2008</span>.
           </>
         }
-        description="Fisioterapeutas formados pelas Faculdades Integradas Pitágoras de Montes Claros/MG, aperfeiçoaram-se em Terapia Manual e construíram uma das trajetórias mais sólidas do Brasil em terapias integrativas. Clínica fundada em 2008, com atendimento em São Paulo e Santo André."
+        description="Fisioterapeutas formados pelas Faculdades Integradas Pitágoras de Montes Claros/MG, aperfeiçoaram-se em Terapia Manual e estudaram Microfisioterapia com Daniel Grosjean e Patrice Benini, Décodage Biologique com Emmanuel Corbeel e BIOdécodage Prática com Christian Flèche. São facilitadores certificados em PSYCH-K®. Clínica fundada em 2008, com atendimento em São Paulo e Santo André."
         className="pt-4 max-w-5xl"
         titleClassName="text-5xl md:text-7xl"
         showBackLink
@@ -77,7 +77,7 @@ export default function AboutPage() {
             </li>
             <li className="border-l-2 border-gold pl-6 py-1">
               <strong className="text-navy">Décodage Biologique</strong> —
-              especialização com Emmanuel Corbeel, na Bélgica.
+              formação com Emmanuel Corbeel, na Bélgica.
             </li>
             <li className="border-l-2 border-gold pl-6 py-1">
               <strong className="text-navy">BIOdécodage Prática</strong> —

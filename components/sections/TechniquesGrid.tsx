@@ -8,8 +8,8 @@ export function TechniquesGrid() {
       <div className="max-w-7xl mx-auto">
         <SectionHeader
           label="Nossa abordagem"
-          title="Três técnicas integradas em cada sessão."
-          description="Métodos não invasivos que acessam a memória celular e o subconsciente para promover a autocura."
+          title="Conheça as abordagens da Biointegral"
+          description="Abordagens não invasivas, apresentadas com clareza sobre como funcionam e quais são seus limites. Não substituem o acompanhamento médico."
         />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {TECHNIQUES.map((t) => (

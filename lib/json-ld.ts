@@ -73,7 +73,7 @@ export function buildOrganizationGraph() {
         logo: SEO_LOGO_URL,
         image: SEO_DEFAULT_IMAGE,
         description:
-          "Clínica de fisioterapia integrativa em São Paulo e Santo André, especializada em Microfisioterapia, PSYCH-K® e Biodécodage. Atendimento com Dr. Sergio e Dra. Fresia (CREFITO-3).",
+          "Fisioterapia e cuidado integrativo em São Paulo e Santo André, com atendimentos em Microfisioterapia, PSYCH-K® e Biodécodage. Atendimento com Dr. Sergio e Dra. Fresia (CREFITO-3).",
         medicalSpecialty: "PhysicalTherapy",
         email: SITE.email,
         telephone: `+${SITE.whatsappNumber}`,
