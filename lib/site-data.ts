@@ -442,12 +442,16 @@ export const FAQS: FaqEntry[] = [
     a: "Sim. Nossas abordagens são complementares e não substituem tratamentos médicos. Mantenha o acompanhamento com seu médico de confiança e compartilhe seus exames quando relevante.",
   },
   {
-    q: "Atendem crianças e idosos?",
-    a: "Atendemos pessoas de diferentes idades, de bebês à terceira idade. Para atendimento de crianças, entre em contato com a equipe para conversar sobre o motivo da procura e esclarecer como o responsável participa.",
+    q: "Como saber se o atendimento é adequado para meu filho?",
+    a: "Você pode conversar com a nossa equipe antes de agendar. Conte a idade da criança e o motivo da procura. Assim, podemos orientar sua família sobre o atendimento e explicar como o responsável participa.",
+  },
+  {
+    q: "Atendem idosos?",
+    a: "Sim. Atendemos pessoas da terceira idade.",
   },
   {
     q: "Como faço para agendar?",
-    a: "Agende pelo WhatsApp da clínica uma pré-avaliação gratuita: uma conversa online de 20 a 30 minutos, sem compromisso de iniciar o acompanhamento. Você também pode usar o formulário de contato do site ou procurar uma das unidades em São Paulo (Paulista e Brigadeiro) e Santo André.",
+    a: "Agende pelo WhatsApp da clínica uma pré-avaliação gratuita: uma conversa online de 20 a 30 minutos, sem compromisso de iniciar o acompanhamento. Nessa conversa, você conhece o profissional, conta o que trouxe você até nós e tira suas dúvidas. Você também pode usar o formulário de contato do site ou procurar uma das unidades em São Paulo (Paulista e Brigadeiro) e Santo André.",
     related: [
       { href: "/contato/", label: "Formulário de contato" },
       { href: "/clinicas/", label: "Unidades" },

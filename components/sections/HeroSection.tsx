@@ -37,7 +37,8 @@ export function HeroSection() {
           </div>
           <p className="mt-4 text-sm text-zinc-500 max-w-[52ch] text-pretty">
             Conversa online de 20 a 30 minutos, sem compromisso de iniciar o
-            acompanhamento.
+            acompanhamento. Você conhece o profissional, conta o que trouxe
+            você até nós e tira suas dúvidas.
           </p>
         </div>
         <div className="lg:col-span-5">

@@ -11,8 +11,9 @@ export function FinalCta() {
           <span className="italic">seu caso?</span>
         </h2>
         <p className="text-navy/80 mb-10 max-w-xl mx-auto text-pretty">
-          Conversa online de 20 a 30 minutos, sem compromisso de iniciar o
-          acompanhamento.
+          Pré-avaliação online gratuita de 20 a 30 minutos, sem compromisso de
+          iniciar o acompanhamento. Você conhece o profissional, conta o que
+          trouxe você até nós e tira suas dúvidas.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
           <WhatsAppButton variant="outline" className="text-left">
